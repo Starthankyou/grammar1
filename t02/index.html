@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="8 種時態一張表：句型、時間線索字、例句；附時間子句、完成式 vs. 過去式、被動式、解題三步驟">
+<title>T2｜時態總表</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#8a7bb5;--warm:#fff6e3}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:15px/1.5 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:920px;margin:0 auto 50px;background:#fff;padding:24px 28px 30px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:6px;justify-content:space-between;align-items:center;max-width:920px;margin:0 auto;padding:9px 14px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:6px}
+.toolbar button,.toolbar a{font:inherit;font-size:13.5px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:6px 11px;cursor:pointer;text-decoration:none}
+.toolbar button.on{background:var(--accent);color:#fff}
+.eyebrow{color:var(--moon);font-weight:700;letter-spacing:.08em;font-size:12.5px}
+h1{font-size:23px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:6px}
+.lead{color:var(--sub);margin:0 0 8px;font-size:14px}
+h2{font-size:16px;color:var(--accent);margin:12px 0 4px}
+.timeline{position:relative;height:52px;margin:6px 6px 12px}
+.timeline .bar{position:absolute;left:0;right:0;top:20px;height:3px;background:linear-gradient(90deg,#c9b8e8,#7a93df 50%,#f0b27a)}
+.timeline .now{position:absolute;left:50%;top:11px;width:3px;height:21px;background:var(--accent);transform:translateX(-50%)}
+.timeline span{position:absolute;top:28px;font-size:12px;color:var(--sub);transform:translateX(-50%);white-space:nowrap}
+.timeline b{position:absolute;top:0;font-size:12px;transform:translateX(-50%);white-space:nowrap;color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-size:12px;color:var(--sub);font-weight:400;text-align:left;padding:3px 5px;border-bottom:1.5px solid var(--line);background:var(--soft)}
+td{padding:4px 5px;border-bottom:1px solid #eef2f5;vertical-align:top}
+td.name{font-weight:700;color:var(--accent);white-space:nowrap}
+td.form{font-family:Georgia,serif}
+td.clue{color:#5d4a8f;font-family:Georgia,serif}
+td.ex{font-family:Georgia,serif;color:#234f6b}
+td.night{color:var(--sub);font-size:12px;white-space:nowrap}
+tr.ext td{color:var(--sub)}
+tr.ext td.name{color:var(--sub)}
+.boxes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.box{border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13.5px}
+.box b{color:var(--accent)}
+.box .en{font-family:Georgia,serif;color:#234f6b}
+.box.steps{background:var(--warm);border-color:#f0dfb8}
+.box ol{margin:3px 0 0;padding-left:20px}
+body.hidex td.ex, body.hidec td.clue{color:transparent;background:repeating-linear-gradient(45deg,#eef2f5,#eef2f5 4px,#f8fafb 4px,#f8fafb 8px);cursor:pointer}
+body.hidex td.ex.show, body.hidec td.clue.show{color:inherit;background:#fff7e0}
+@media (max-width:700px){main{padding:16px 12px 24px}.boxes{grid-template-columns:1fr}table{font-size:12.5px}td.night,th.night{display:none}}
+@page{size:A4;margin:8mm 10mm}
+@media print{
+  body{background:#fff;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .toolbar{display:none!important}
+  main{max-width:none;padding:0;box-shadow:none}
+  h1{font-size:15pt;margin:0 0 2px;padding-bottom:3px}
+  .lead{font-size:10pt;margin:0 0 4px}
+  h2{font-size:12.5pt;margin:8px 0 3px}
+  .timeline{height:48px;margin:2px 6px 6px}
+  .timeline span,.timeline b{font-size:9.5pt}
+  table{font-size:11pt;line-height:1.35}
+  th{font-size:9pt;padding:3px 5px}
+  td{padding:5px 5px}
+  td.night{font-size:8pt}
+  .boxes{gap:7px;margin-top:9px}
+  .box{padding:5px 9px;font-size:10.5pt;line-height:1.4}
+  body.hidex td.ex,body.hidec td.clue{color:inherit!important;background:none!important}
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div class="btns"><a id="home" href="../">← 月亮圖書館目錄</a></div>
+  <div class="btns">
+    <span style="font-size:13px;color:#5f7282;align-self:center">自我測驗：</span>
+    <button type="button" data-hide="hidec">遮住時間線索</button>
+    <button type="button" data-hide="hidex">遮住例句</button>
+    <button type="button" onclick="window.print()">列印</button>
+  </div>
+</div>
+<main>
+<div class="eyebrow">月亮圖書館 · 工具卡</div>
+<h1>T2｜時態總表：看線索，選時態</h1>
+<p class="lead">會考單題最常考的就是時態（6 年 116 題中有 18 題）。線索常常藏在另一句話裡。</p>
+
+<div class="timeline">
+  <div class="bar"></div><div class="now"></div>
+  <b style="left:8%">過去完成</b><b style="left:29%">過去</b><b style="left:50%">現在</b><b style="left:74%">未來</b>
+  <span style="left:8%">更早</span><span style="left:29%">yesterday、ago</span><span style="left:50%">now</span><span style="left:74%">tomorrow、next</span>
+</div>
+<p class="lead" style="margin-top:0">現在完成式＝從過去一直延續到現在（since、for），或到現在為止的經驗、結果（already、ever、never）。</p>
+
+<table>
+<thead><tr><th>時態</th><th>句型（肯定｜否定｜疑問）</th><th>時間線索</th><th>例句（月亮圖書館）</th><th class="night">夜</th></tr></thead>
+<tbody>
+<tr><td class="name">現在簡單式</td><td class="form">S＋V／V-s｜don't／doesn't＋V｜Do／Does＋S＋V?</td><td class="clue">every day、usually、often、always、on Sundays</td><td class="ex">Robo visits the tree every morning.</td><td class="night">5、6</td></tr>
+<tr><td class="name">現在進行式</td><td class="form">S＋am／is／are＋V-ing</td><td class="clue">now、Look!、Listen!、right now、at the moment</td><td class="ex">Look! The key is moving.</td><td class="night">4、6</td></tr>
+<tr><td class="name">過去簡單式</td><td class="form">S＋V-ed／過去式｜didn't＋V｜Did＋S＋V?</td><td class="clue">yesterday、last night、two days ago、in 2020</td><td class="ex">Ash opened the letter last night.</td><td class="night">3、7–9</td></tr>
+<tr><td class="name">過去進行式</td><td class="form">S＋was／were＋V-ing</td><td class="clue">at nine last night、when…、while…</td><td class="ex">Mia was reading when the song started.</td><td class="night">10</td></tr>
+<tr><td class="name">未來式 will</td><td class="form">S＋will＋V｜won't＋V｜Will＋S＋V?</td><td class="clue">tomorrow、next week、soon；臨時決定、預測</td><td class="ex">It will rain on Friday.</td><td class="night">11、12</td></tr>
+<tr><td class="name">be going to</td><td class="form">S＋am／is／are going to＋V</td><td class="clue">早就計畫好；看得到跡象</td><td class="ex">Look at those clouds! It's going to rain.</td><td class="night">11、12</td></tr>
+<tr><td class="name">進行式表未來</td><td class="form">S＋am／is／are＋V-ing＋未來時間</td><td class="clue">已經安排好的行程（票買好了）</td><td class="ex">I'm visiting my grandparents tomorrow.</td><td class="night">11</td></tr>
+<tr><td class="name">現在完成式</td><td class="form">S＋have／has＋p.p.｜haven't／hasn't＋p.p.｜Have／Has＋S＋p.p.?</td><td class="clue">since、for、already、yet、ever、never、just</td><td class="ex">Rose has worked here for forty years.</td><td class="night">16、17</td></tr>
+<tr class="ext"><td class="name">過去完成式（延伸）</td><td class="form">S＋had＋p.p.</td><td class="clue">過去兩件事中比較早的那件</td><td class="ex">When I got there, the bus had left.</td><td class="night">S18</td></tr>
+</tbody>
+</table>
+
+<div class="boxes">
+  <div class="box steps"><b>解題三步驟（第 18 夜）</b>
+    <ol><li>找時間線索：同一句沒有，就看前一句、後一句、對話。</li>
+    <li>判斷：平常的習慣？正在發生？已經過去？還沒發生？從過去持續到現在？</li>
+    <li>最後看主詞：he／she／it 加 -s、has；I 用 am；複數用 are、were、have。</li></ol></div>
+  <div class="box"><b>時間、條件子句用現在式（第 13、19 夜）</b><br>when／before／after／until／if＋<b>現在式</b>，主要子句才用 will。<br><span class="en">I'll call you when I arrive. If it rains, we'll stay home.</span></div>
+  <div class="box"><b>現在完成式 vs. 過去式（第 17 夜）</b><br>有明確的過去時間（yesterday、ago、in 2020、When…?）→ 過去式。<br>沒說什麼時候、說經驗或「到現在」→ 現在完成式。<br><span class="en">I lost my key yesterday.｜I have lost my key. I can't find it.</span></div>
+  <div class="box"><b>被動式：時態放在 be 上（第 25 夜）</b><br>現在 is／are＋p.p.｜過去 was／were＋p.p.｜未來 will be＋p.p.｜完成 have／has been＋p.p.<br><span class="en">The books were written by Luna.</span></div>
+</div>
+</main>
+<script>
+document.querySelectorAll("[data-hide]").forEach(b => b.onclick = () => {
+  const on = document.body.classList.toggle(b.dataset.hide); b.classList.toggle("on", on);
+  document.querySelectorAll("td.show").forEach(td => td.classList.remove("show"));
+});
+document.addEventListener("click", e => { const td = e.target.closest("td.ex,td.clue"); if (td) td.classList.toggle("show"); });
+if (location.pathname.endsWith(".html")) document.getElementById("home").href = "../web/index.html";
+</script>
+</body>
+</html>
