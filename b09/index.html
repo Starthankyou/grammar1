@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>B9｜一般動詞過去式：didn't、Did 與簡答</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:28px 32px 40px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 13px;cursor:pointer}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:25px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+.title-zh{color:var(--sub);margin:0}
+h2{font-size:19px;color:var(--accent);margin:26px 0 6px}
+.story{background:var(--moon);border-radius:12px;padding:8px 14px;margin:10px 0}
+.story-label{font-size:13px;color:var(--moonline);font-weight:700;margin:4px 0 2px}
+.line{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:7px 4px;cursor:pointer;color:inherit;font:inherit}
+.line:last-of-type{border-bottom:0}
+.line:hover{background:#ece7f6}
+.line:focus-visible{outline:3px solid #b5a8dc}
+.line .en{display:block;font:17px/1.55 Georgia,"Times New Roman",serif}
+.line.frame .en{font-style:italic;color:#4b3f75}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.think{background:#fff6e3;border-radius:10px;padding:8px 14px;margin:10px 0}
+.rule{margin:2px 0 6px}
+.examples{display:grid;gap:6px;margin:6px 0 8px}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--soft);border-radius:8px;padding:7px 12px}
+.ex .en{font:16px/1.45 Georgia,serif;font-weight:700;color:#234f6b}
+.ex .zh{font-size:14px;color:var(--sub)}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:7px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:7px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt:focus-visible{outline:3px solid #91c3dd}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+.vocab{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.word{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;line-height:1.4}
+.word b{font:16px Georgia,serif;margin-right:4px}
+.word .tag{display:inline-block;font-size:11px;border-radius:9px;padding:0 6px;background:#e4eef5;color:#38617a}
+.word .tag.review{background:#efe9f8;color:#5d4a8f}
+.chunks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chunk{background:var(--soft);border-radius:8px;padding:7px 10px;font-size:14px;line-height:1.45}
+.chunk b{font-family:Georgia,serif;font-size:15px}
+.chunk i{display:block;font-family:Georgia,serif;font-style:normal;color:#234f6b}
+#answers{margin-top:22px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0 10px}
+.anskey{display:none}
+.series-nav{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin:0 0 14px}
+.series-nav.bottom{margin:28px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.series-nav a{color:var(--accent);text-decoration:none;border:1px solid #b9cfdc;border-radius:7px;padding:5px 11px}
+.series-nav a:hover{background:#edf7ff}
+.series-nav .gap{flex:1}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .ex{grid-template-columns:1fr;gap:2px}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .vocab{grid-template-columns:repeat(2,1fr)}
+  .chunks{grid-template-columns:1fr}
+  h1{font-size:21px}
+  .toolbar{padding:6px 10px;gap:4px}
+  .toolbar button{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+
+/* ===== 紙本：一張雙面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .toolbar,body.paper .series-nav,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;break-after:page;display:flex;flex-direction:column}
+body.paper .page:last-child{break-after:auto}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16.5pt;margin:0 0 2px;padding-bottom:3px}
+body.paper .title-zh{font-size:9.5pt}
+body.paper h2{font-size:12pt;margin:7px 0 2px}
+body.paper .story{padding:3px 9px;margin:5px 0;border-radius:7px}
+body.paper .story-label{font-size:8.5pt;margin:2px 0 0}
+body.paper .line{display:grid;grid-template-columns:55% 1fr;gap:9px;padding:1.6px 0;border-bottom:1px dashed #e2dcef}
+body.paper .line .en{font-size:10.6pt;line-height:1.32}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.35;padding-top:1px}
+body.paper .think{padding:3px 9px;margin:4px 0;font-size:9.5pt}
+body.paper .rule{font-size:9.5pt;margin:0 0 3px}
+body.paper .examples{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:3px 0 2px}
+body.paper .ex{display:block;padding:3px 8px;border-radius:5px}
+body.paper .ex .en{display:block;font-size:10pt;line-height:1.3}
+body.paper .ex .zh{display:block;font-size:8.5pt;line-height:1.3}
+body.paper .q{padding:2.6px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .qnum{min-width:16px;font-size:10pt}
+body.paper .stem-text{font-size:10.4pt;line-height:1.32}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px;line-height:1.3}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+/* 觀念一、二：題目和選項同一行 */
+body.paper .short .q{display:grid;grid-template-columns:1fr 92mm;gap:6px;align-items:center;padding:5.5px 0}
+body.paper .short .stem-text{font-size:10.8pt}
+body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
+/* 觀念三：選項四欄 */
+body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .vocab{gap:4px}
+body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
+body.paper .word b{font-size:10.3pt}
+body.paper .word .tag{font-size:7.5pt;padding:0 4px}
+body.paper .chunks{gap:5px}
+body.paper .chunk{padding:3px 7px;font-size:8.8pt;border-radius:5px;line-height:1.35}
+body.paper .chunk b,body.paper .chunk i{font-size:9.8pt}
+body.paper .page.tight .short .q{padding:2.4px 0}
+body.paper .page.tight .q{padding:1.8px 0}
+body.paper .page.tight .line{padding:0.6px 0}
+body.paper .page.tight h2{margin:5px 0 1px}
+body.paper .page.tight .examples{margin:2px 0 1px}
+body.paper .page.tight2 .vocab{gap:3px}
+body.paper .page.tight2 .word{padding:1px 5px}
+body.paper .page.tight2 .chunks{gap:3px}
+body.paper .page.tight2 .chunk{padding:1.5px 6px}
+body.paper .page.tight2 .think{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 .story{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 h2{margin:3px 0 1px}
+body.paper .page.tight2 .examples{gap:3px}
+body.paper .page.tight2 .ex{padding:2px 7px}
+body.paper .page.tight2 .rule{margin:0 0 2px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.6pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span class="status" id="progress">完成 0 / 15 題</span>
+  <div class="btns">
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="lesson"></main>
+
+<script>
+/* ===== 單元資料：做新單元時只改這一段 ===== */
+const UNIT = {
+  code: "B9",
+  names: ["Robo","Mimi"],
+  title: "一般動詞過去式：didn't、Did 與簡答",
+  night: "月亮圖書館 · 第九夜",
+  storyTitle: "The Letter with Two Words",
+  storyTitleZh: "只有兩個字的信",
+  // f:1 = 外框（Mia 和 Ash），其餘是 Mia 講的故事
+  storyFront: [
+    {f:1, en:"Ash found a letter on the desk. It said, “DID YOU?” He didn't open it.", zh:"Ash 在書桌上發現一封信，上面寫著「DID YOU?」。他卻沒有打開。"},
+    {f:1, en:"Mia asked, “Did you write it?” Ash shook his head. “I don't know.”", zh:"Mia 問：「是你寫的嗎？」Ash 搖頭：「我不知道。」"},
+    {en:"Mia began a story. Yesterday, Robo and Mimi found a small bag at the bus stop.", zh:"Mia 開始說故事。昨天，Robo 和 Mimi 在公車站發現一個小袋子。"},
+    {en:"They didn't take it home. They waited beside the road.", zh:"他們沒有把袋子帶回家，而是在路邊等待。"},
+    {en:"A boy came back. “Did you see my bag?” he asked.", zh:"一個男孩跑回來，問：「你們看到我的袋子了嗎？」"},
+    {en:"“Yes, we did,” Mimi said. “But did you lose a red bag?”", zh:"Mimi 說：「有，我們看到了。不過，你掉的是紅色袋子嗎？」"},
+    {en:"“No, I didn't. Mine was blue.” The boy looked worried.", zh:"「不是，我的袋子是藍色的。」男孩看起來很擔心。"},
+    {en:"Robo opened the bag. Inside was a note: “Did you remember?”", zh:"Robo 打開袋子，裡面有張紙條：「你還記得嗎？」"},
+    {f:1, en:"Ash touched his letter. “Who wrote that note?” Mia smiled. “Three puzzles first.”", zh:"Ash 摸著自己的信：「紙條是誰寫的？」Mia 笑了：「先解三道謎題。」"}
+  ],
+  storyBack: [
+    {en:"The note had a name, but it wasn't the boy's name.", zh:"紙條上有個名字，卻不是那個男孩的名字。"},
+    {en:"An old woman walked to the bus stop. “Did you find my bag?”", zh:"一位老婆婆走向公車站：「你們找到我的袋子了嗎？」"},
+    {en:"“Yes, we did,” said Robo. “Did you write this note?”", zh:"Robo 說：「找到了。這張紙條是您寫的嗎？」"},
+    {en:"“No, I didn't. My son wrote it many years ago.”", zh:"「不是。那是我兒子很多年前寫的。」"},
+    {en:"“He didn't forget my birthday. But I forgot the bag today.” She laughed.", zh:"「他從來沒忘記我的生日，倒是我今天忘了拿袋子。」她笑了。"},
+    {en:"The boy smiled, too. “I didn't find my bag, but I found my grandma!”", zh:"男孩也笑了：「我沒找到自己的袋子，卻找到我奶奶了！」"},
+    {en:"He carried her bag, and they walked home together.", zh:"他提著奶奶的袋子，兩人一起走回家。"},
+    {f:1, en:"Ash opened his letter at last. Inside, one question waited: “Did you remember our song?”", zh:"Ash 終於打開自己的信。裡面只有一個問題：「你還記得我們的歌嗎？」"},
+    {f:1, en:"He didn't answer. The ninth door opened. Behind it, someone was singing softly.", zh:"他沒有回答。第九扇門打開了，門後有人正輕輕唱著歌。"}
+  ],
+  think: "男孩沒有找到自己的袋子，卻遇見了奶奶。你有沒有一次『沒找到想要的，卻得到別的東西』的經驗？",
+  concepts: [
+    {
+      title: "觀念一｜過去式否定句：didn't + 原形動詞",
+      rule: "過去沒有做的事，用主詞＋didn't＋原形動詞。didn't 已經表示過去，後面的動詞不再用過去式。",
+      examples: [["Robo didn't take the bag home.","Robo 沒有把袋子帶回家。"],["Ash didn't open the letter.","Ash 沒有打開那封信。"]],
+      qs: [
+        {s:"Robo ___ the bag home yesterday.", o:["doesn't take","didn't took","didn't take"], a:2,
+         h1:"故事中說 Robo 昨天沒有把袋子拿回家。", h2:"表示過去沒做，要用 didn't，後面的主要動詞恢復原形。", ok:"didn't take：didn't 已帶有過去時間。"},
+        {s:"Ash didn't ___ the letter at first.", o:["opened","open","opening"], a:1,
+         h1:"didn't 後面還需要一個主要動詞。", h2:"助動詞 did 已表示過去，主要動詞不用 -ed。", ok:"didn't open 是正確的否定句。"},
+        {s:"Mimi ___ at home last night. She waited outside.", o:["doesn't stay","didn't stay","didn't stayed"], a:1,
+         h1:"last night 是過去，後句說她在外面等待。", h2:"過去否定要用 didn't，stay 保留原形。", ok:"didn't stay：否定助動詞後接原形。"},
+        {s:"They didn't ___ the blue bag.", o:["find","finding","found"], a:0,
+         h1:"找不到袋子是過去的事。", h2:"didn't 後面不可再用不規則動詞的過去式。", ok:"find 是原形；found 是過去式。"},
+        {s:"The boy ___ his bag, but he found his grandma.", o:["didn't find","doesn't find","didn't found"], a:0,
+         h1:"後面用了 found，說的是昨天的結果。", h2:"過去否定是 didn't，加上 find 的原形。", ok:"didn't find 與後句 found 形成對比。"}
+      ]
+    },
+    {
+      title: "觀念二｜過去式疑問句：Did + 主詞 + 原形動詞",
+      rule: "問過去是否發生某個動作，用 Did＋主詞＋原形動詞…?。不論主詞是 he、she 或 they，都用 Did，主要動詞不變過去式。",
+      examples: [["Did you see my bag?","你有看到我的袋子嗎？"],["Did Ash write the letter?","Ash 寫了那封信嗎？"]],
+      qs: [
+        {s:"Mimi: I saw a blue bag yesterday.\nRobo: ___ you see a red one, too?", o:["Do","Did","Does"], a:1,
+         h1:"Mimi 說的是昨天看到的東西。", h2:"詢問過去是否看見，問句開頭要用表示過去的助動詞。", ok:"Did you see...? 表示詢問過去。"},
+        {s:"The woman lost her bag yesterday. ___ she find it later?", o:["Does","Did","Is"], a:1,
+         h1:"lost 和 yesterday 都指向過去。", h2:"問一般動詞的過去事件，用過去式助動詞起頭。", ok:"Did she find...? 主詞是 she 也用 Did。"},
+        {s:"Did the boy ___ his grandma at the bus stop?", o:["see","sees","saw"], a:0,
+         h1:"問句已經有 Did。", h2:"Did 後的主要動詞必須是原形，而不是過去式。", ok:"Did ... see...? 才是正確問法。"},
+        {s:"Ash: I didn't open the letter yesterday.\nMia: ___ you open it this morning?", o:["Did","Does","Do"], a:0,
+         h1:"Mia 問的是今天早上有沒有打開信。", h2:"詢問已經發生的動作，句首要使用過去式助動詞。", ok:"Did you open it this morning? 是在問已經發生的事。"},
+        {s:"___ they walk home last night?", o:["Do","Were","Did"], a:2,
+         h1:"last night 說的是昨天晚上。", h2:"一般動詞 walk 的過去疑問句由過去式助動詞開始。", ok:"Did they walk home last night?"}
+      ]
+    },
+    {
+      title: "觀念三｜Yes / No 簡答：Did 問，就用 did 答",
+      rule: "Did 開頭的問句，肯定簡答用 Yes, 主詞＋did.；否定簡答用 No, 主詞＋didn't.。先看對話中的事實，再選對簡答與動詞形式。",
+      examples: [["Did you find the bag? — Yes, I did.","你找到袋子了嗎？——有，我找到了。"],["Did Ash answer? — No, he didn't.","Ash 回答了嗎？——沒有，他沒回答。"]],
+      qs: [
+        {s:"Robo: Did you lose a red bag?\nBoy: No, I ___. Mine was blue.", o:["don't","wasn't","doesn't","didn't"], a:3,
+         h1:"男孩說自己的袋子是藍色，不是紅色。", h2:"Did 問句的否定簡答，要用相同助動詞的否定縮寫。", ok:"No, I didn't. 前後句意思一致。"},
+        {s:"Mia: Did Ash open the letter at first?\nRobo: No, he ___. He opened it later.", o:["didn't","did","doesn't","wasn't"], a:0,
+         h1:"at first 是一開始；後句說後來才打開。", h2:"問過去是否做某事，否定簡答要用 did 的否定形式。", ok:"No, he didn't. 表示一開始沒有打開。"},
+        {s:"Mimi: Did the old woman write the note?\nRobo: No, she ___. Her son wrote it.", o:["don't","isn't","didn't","wasn't"], a:2,
+         h1:"後句說紙條是兒子寫的。", h2:"did 問句的簡答必須沿用 did 系列，而非 be 動詞。", ok:"No, she didn't. 她沒有寫。"},
+        {s:"Ash: Did the boy find his grandma?\nMia: Yes, he ___. They walked home together.", o:["didn't","did","does","was"], a:1,
+         h1:"他們一起走回家，表示男孩確實遇見奶奶。", h2:"肯定簡答不重複主要動詞，而是沿用問句的過去助動詞。", ok:"Yes, he did. 表示他找到了。"},
+        {s:"Mia: Did Ash answer the question in his letter?\nRobo: No, he ___. Someone was singing behind the door.", o:["isn't","wasn't","didn't","doesn't"], a:2,
+         h1:"故事結尾說 Ash 沒有回答。", h2:"一般動詞 answer 的過去疑問句，用同一個過去助動詞做否定簡答。", ok:"No, he didn't. 與故事結尾一致。"}
+      ]
+    }
+  ],
+  vocab: [
+    ["letter","n.","信","複習"],
+    ["bag","n.","袋子","新"],
+    ["bus","n.","公車","新"],
+    ["stop","n.","車站；停靠站","新"],
+    ["note","n.","紙條","新"],
+    ["road","n.","道路","新"],
+    ["woman","n.","女人","複習"],
+    ["door","n.","門","複習"],
+    ["name","n.","名字","複習"],
+    ["old","adj.","老的；舊的","複習"]
+  ],
+  chunks: [
+    ["come back","回來","A boy came back. 'Did you see my bag?' he asked."],
+    ["at the bus stop","在公車站","Yesterday, Robo and Mimi found a small bag at the bus stop."],
+    ["walk home","走路回家","He carried her bag, and they walked home together."]
+  ]
+};
+/* ===== 以下是版型，做新單元不用改（新增一夜時，把 SERIES_LAST 改成最新的單元號碼） ===== */
+const SERIES_LAST = 15;
+const L = ["A","B","C","D"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const storyHTML = lines => lines.map(l=>`<button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en">${esc(l.en)}</span><span class="zh">${esc(l.zh)}</span></button>`).join("");
+function conceptHTML(c, ci){
+  const kind = c.qs[0].o.length > 3 ? "long" : "short";
+  let h = `<section class="concept ${kind}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
+  c.qs.forEach((q,qi)=>{
+    h += `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+  });
+  return h + `</section>`;
+}
+function navHTML(pos){
+  const n = parseInt(UNIT.code.replace(/\D/g, ""), 10), local = location.pathname.endsWith(".html");
+  const href = k => { const id = "b" + String(k).padStart(2, "0"); return local ? id + ".html" : "../" + id + "/"; };
+  const home = local ? "../web/index.html" : "../";
+  const prev = n > 1 ? `<a href="${href(n - 1)}">← 第 ${n - 1} 夜</a>` : "";
+  const next = n < SERIES_LAST ? `<a href="${href(n + 1)}">第 ${n + 1} 夜 →</a>` : "";
+  return `<nav class="series-nav ${pos}">${prev}<span class="gap"></span><a href="${home}">月亮圖書館目錄</a><span class="gap"></span>${next}</nav>`;
+}
+function render(){
+  const u = UNIT;
+  const head = `<header><div class="eyebrow">${u.night}</div><h1>${u.code}｜${u.title}</h1><p class="title-zh">${u.storyTitle}｜${u.storyTitleZh}</p></header>`;
+  const front = `<section class="story"><div class="story-label">故事（上）</div>${storyHTML(u.storyFront)}<p class="tap-tip">點一下英文句子可以看中文。</p></section>`;
+  const back = `<section class="story"><div class="story-label">故事（下）</div>${storyHTML(u.storyBack)}</section><div class="think"><b>想一想：</b>${esc(u.think)}</div>`;
+  const vocab = `<h2>Vocabulary｜10 個單字</h2><div class="vocab">${u.vocab.map(v=>`<div class="word"><b>${v[0]}</b>${v[1]} ${v[2]} <span class="tag${v[3]==="複習"?" review":""}">${v[3]}</span></div>`).join("")}</div>`;
+  const chunks = `<h2>Chunks｜片語</h2><div class="chunks">${u.chunks.map(c=>`<div class="chunk"><b>${c[0]}</b> ${c[1]}<i>${esc(c[2])}</i></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2>${u.concepts.map((c,ci)=>`<b>練習 ${ci+1}</b><ol>${c.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>`).join("")}</section>`;
+  const anskey = `<div class="anskey"><b>答案</b>　${u.concepts.map((c,ci)=>`練習 ${ci+1}：${c.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join(" ")}`).join("　｜　")}</div>`;
+  document.getElementById("lesson").innerHTML =
+    `${navHTML("top")}<div class="page">${head}${front}${conceptHTML(u.concepts[0],0)}${conceptHTML(u.concepts[1],1)}</div>` +
+    `<div class="page">${conceptHTML(u.concepts[2],2)}${back}${vocab}${chunks}${answers}${anskey}</div>${navHTML("bottom")}`;
+}
+const total = UNIT.concepts.reduce((n,c)=>n+c.qs.length,0);
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `完成 ${done.size} / ${total} 題`; };
+document.addEventListener("click", e=>{
+  const line = e.target.closest(".line");
+  if(line){ line.classList.toggle("show"); line.setAttribute("aria-expanded", line.classList.contains("show")); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), ci = +qEl.dataset.c, qi = +qEl.dataset.q, key = ci+"-"+qi;
+  const q = UNIT.concepts[ci].qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){
+    btn.classList.add("correct"); done.add(key);
+    qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true);
+    fb.textContent = "✓ 對了。" + q.ok; updateProgress();
+  } else {
+    tries[key] = (tries[key]||0) + 1; btn.classList.add("wrong");
+    fb.textContent = tries[key] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2;
+  }
+});
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+// 列印時切換成雙面 A4 版面
+// 某一面快超出 A4 時，只收緊那一面的行距（不縮字）
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight","tight2");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom() > p.clientHeight - reserve - 12) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+render();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>

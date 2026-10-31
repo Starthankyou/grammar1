@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>B14｜情態助動詞：can、could、may</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:28px 32px 40px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 13px;cursor:pointer}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:25px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+.title-zh{color:var(--sub);margin:0}
+h2{font-size:19px;color:var(--accent);margin:26px 0 6px}
+.story{background:var(--moon);border-radius:12px;padding:8px 14px;margin:10px 0}
+.story-label{font-size:13px;color:var(--moonline);font-weight:700;margin:4px 0 2px}
+.line{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:7px 4px;cursor:pointer;color:inherit;font:inherit}
+.line:last-of-type{border-bottom:0}
+.line:hover{background:#ece7f6}
+.line:focus-visible{outline:3px solid #b5a8dc}
+.line .en{display:block;font:17px/1.55 Georgia,"Times New Roman",serif}
+.line.frame .en{font-style:italic;color:#4b3f75}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.think{background:#fff6e3;border-radius:10px;padding:8px 14px;margin:10px 0}
+.rule{margin:2px 0 6px}
+.examples{display:grid;gap:6px;margin:6px 0 8px}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--soft);border-radius:8px;padding:7px 12px}
+.ex .en{font:16px/1.45 Georgia,serif;font-weight:700;color:#234f6b}
+.ex .zh{font-size:14px;color:var(--sub)}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:7px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:7px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt:focus-visible{outline:3px solid #91c3dd}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+.vocab{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.word{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;line-height:1.4}
+.word b{font:16px Georgia,serif;margin-right:4px}
+.word .tag{display:inline-block;font-size:11px;border-radius:9px;padding:0 6px;background:#e4eef5;color:#38617a}
+.word .tag.review{background:#efe9f8;color:#5d4a8f}
+.chunks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chunk{background:var(--soft);border-radius:8px;padding:7px 10px;font-size:14px;line-height:1.45}
+.chunk b{font-family:Georgia,serif;font-size:15px}
+.chunk i{display:block;font-family:Georgia,serif;font-style:normal;color:#234f6b}
+#answers{margin-top:22px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0 10px}
+.anskey{display:none}
+.series-nav{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin:0 0 14px}
+.series-nav.bottom{margin:28px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.series-nav a{color:var(--accent);text-decoration:none;border:1px solid #b9cfdc;border-radius:7px;padding:5px 11px}
+.series-nav a:hover{background:#edf7ff}
+.series-nav .gap{flex:1}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .ex{grid-template-columns:1fr;gap:2px}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .vocab{grid-template-columns:repeat(2,1fr)}
+  .chunks{grid-template-columns:1fr}
+  h1{font-size:21px}
+  .toolbar{padding:6px 10px;gap:4px}
+  .toolbar button{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+
+/* ===== 紙本：一張雙面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .toolbar,body.paper .series-nav,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;break-after:page;display:flex;flex-direction:column}
+body.paper .page:last-child{break-after:auto}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16.5pt;margin:0 0 2px;padding-bottom:3px}
+body.paper .title-zh{font-size:9.5pt}
+body.paper h2{font-size:12pt;margin:7px 0 2px}
+body.paper .story{padding:3px 9px;margin:5px 0;border-radius:7px}
+body.paper .story-label{font-size:8.5pt;margin:2px 0 0}
+body.paper .line{display:grid;grid-template-columns:55% 1fr;gap:9px;padding:1.6px 0;border-bottom:1px dashed #e2dcef}
+body.paper .line .en{font-size:10.6pt;line-height:1.32}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.35;padding-top:1px}
+body.paper .think{padding:3px 9px;margin:4px 0;font-size:9.5pt}
+body.paper .rule{font-size:9.5pt;margin:0 0 3px}
+body.paper .examples{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:3px 0 2px}
+body.paper .ex{display:block;padding:3px 8px;border-radius:5px}
+body.paper .ex .en{display:block;font-size:10pt;line-height:1.3}
+body.paper .ex .zh{display:block;font-size:8.5pt;line-height:1.3}
+body.paper .q{padding:2.6px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .qnum{min-width:16px;font-size:10pt}
+body.paper .stem-text{font-size:10.4pt;line-height:1.32}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px;line-height:1.3}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+/* 觀念一、二：題目和選項同一行 */
+body.paper .short .q{display:grid;grid-template-columns:1fr 92mm;gap:6px;align-items:center;padding:5.5px 0}
+body.paper .short .stem-text{font-size:10.8pt}
+body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
+/* 觀念三：選項四欄 */
+body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .vocab{gap:4px}
+body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
+body.paper .word b{font-size:10.3pt}
+body.paper .word .tag{font-size:7.5pt;padding:0 4px}
+body.paper .chunks{gap:5px}
+body.paper .chunk{padding:3px 7px;font-size:8.8pt;border-radius:5px;line-height:1.35}
+body.paper .chunk b,body.paper .chunk i{font-size:9.8pt}
+body.paper .page.tight .short .q{padding:2.4px 0}
+body.paper .page.tight .q{padding:1.8px 0}
+body.paper .page.tight .line{padding:0.6px 0}
+body.paper .page.tight h2{margin:5px 0 1px}
+body.paper .page.tight .examples{margin:2px 0 1px}
+body.paper .page.tight2 .vocab{gap:3px}
+body.paper .page.tight2 .word{padding:1px 5px}
+body.paper .page.tight2 .chunks{gap:3px}
+body.paper .page.tight2 .chunk{padding:1.5px 6px}
+body.paper .page.tight2 .think{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 .story{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 h2{margin:3px 0 1px}
+body.paper .page.tight2 .examples{gap:3px}
+body.paper .page.tight2 .ex{padding:2px 7px}
+body.paper .page.tight2 .rule{margin:0 0 2px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.6pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span class="status" id="progress">完成 0 / 15 題</span>
+  <div class="btns">
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="lesson"></main>
+
+<script>
+/* ===== 單元資料：做新單元時只改這一段 ===== */
+const UNIT = {
+  code: "B14",
+  names: ["Robo","Mimi","Ben"],
+  title: "情態助動詞：can、could、may",
+  night: "月亮圖書館 · 第十四夜",
+  storyTitle: "The Book That Could Answer",
+  storyTitleZh: "會回答問題的書",
+  // f:1 = 外框（Mia 和 Ash），其餘是 Mia 講的故事
+  storyFront: [
+    {f:1, en:"Ash picked up the little red book from under the table. Its cover had no name.", zh:"Ash 撿起桌下的紅色小書。書的封面沒有名字。"},
+    {f:1, en:"“Can you read it?” he asked. Mia opened the first page. “Maybe. Listen to this story.”", zh:"「妳看得懂嗎？」他問。Mia 翻開第一頁：「或許可以。先聽這個故事。」"},
+    {en:"Robo and Mimi found a red book beside an empty chair. A boy named Ben was standing there.", zh:"Robo 和 Mimi 在一張空椅子旁找到一本紅色的書。一個叫 Ben 的男孩站在旁邊。"},
+    {en:"“I can't read the last page,” Ben said. “The words are too small. Can you help me?”", zh:"「我看不清最後一頁，」Ben 說。「字太小了。你們能幫我嗎？」"},
+    {en:"Mimi could see the words, but she couldn't understand them. Robo couldn't see anything. To him, the page was empty.", zh:"Mimi 看得見那些字，卻看不懂。Robo 什麼也看不見，在他眼裡，那一頁是空白的。"},
+    {en:"“May I turn the page?” Robo asked. Ben nodded. A strange sound came first. Then a soft voice came from the book.", zh:"「我可以翻頁嗎？」Robo 問。Ben 點點頭。先是一個奇怪的聲響，接著書裡傳來輕柔的說話聲。"},
+    {en:"“I can answer one question,” the voice said. “But you must share your answer.”", zh:"「我可以回答一個問題，」那聲音說。「但你必須把答案分享出去。」"},
+    {f:1, en:"Ash held the book close. “What question did they ask?” Mia smiled. “Three puzzles first.”", zh:"Ash 把書抱緊：「他們問了什麼？」Mia 笑了：「先解三道謎題。」"}
+  ],
+  storyBack: [
+    {en:"Ben wanted to ask where his father was. Mimi wanted to ask why the moon was so quiet. Robo said nothing.", zh:"Ben 想問爸爸在哪裡。Mimi 想問月亮為什麼這麼安靜。Robo 什麼也沒說。"},
+    {en:"“Could I ask a different question?” Robo said at last. “Can we help someone with this book?”", zh:"「我能問個不一樣的問題嗎？」Robo 終於開口。「我們能用這本書幫助別人嗎？」"},
+    {en:"The book was quiet. Then the last page began to shine. There was a picture of a long table.", zh:"書安靜了一會兒。接著最後一頁亮了起來，上面出現一張長桌的圖畫。"},
+    {en:"One chair was empty. Under it was a note: “A friend may be closer than you think.”", zh:"有一張椅子空著。椅子下面有張紙條：「朋友可能比你想的還要近。」"},
+    {en:"Ben looked up. “My father can't come home tonight. But I can bring dinner to him.”", zh:"Ben 抬起頭：「爸爸今晚沒辦法回家。但我可以把晚餐送去給他。」"},
+    {en:"Mimi smiled. “And we can go with you.” Robo closed the book. They walked out together.", zh:"Mimi 笑了：「我們可以陪你去。」Robo 闔上書。他們一起走了出去。"},
+    {f:1, en:"Ash looked at the empty chair beside him. “Could someone sit here?” he asked softly. Mia sat down.", zh:"Ash 看著身旁的空椅子，輕聲問：「有人可以坐這裡嗎？」Mia 坐了下來。"},
+    {f:1, en:"The fourteenth door opened. Behind it, a small sign said: “You must choose.”", zh:"第十四扇門打開了。門後一塊小牌子寫著：「你必須做出選擇。」"}
+  ],
+  think: "如果一本書只能回答你一個問題，你想問什麼？你會願意和別人分享答案嗎？",
+  concepts: [
+    {
+      title: "觀念一｜can：現在的能力與請求",
+      rule: "can＋原形動詞，表示『能夠、會』，也可以用來請求幫忙。否定是 cannot／can't；問句將 Can 放在主詞前。can 不因主詞改變，也不加 -s。",
+      examples: [["Robo can read the words.","Robo 看得懂那些字。"],["Can you help me?","你能幫我嗎？"]],
+      qs: [
+        {s:"Mimi ___ see the words on the page.", o:["couldn't","is","can"], a:2,
+         h1:"這句在說 Mimi 現在有能力看見字。", h2:"表示現在『能夠』，後面直接接原形動詞。", ok:"can see 表示現在看得見。"},
+        {s:"Robo ___ read English very well.", o:["is reading","can reads","can"], a:2,
+         h1:"but 前面說 Robo 具備讀字的能力。", h2:"情態助動詞後面接原形動詞；本題談能力，不是正在進行的動作。", ok:"can read：can 後面是原形 read。"},
+        {s:"Ben: ___ you help me with this book?\nMimi: Of course!", o:["Can","Did","Are"], a:0,
+         h1:"Ben 正在請求協助，不是在問過去的事。", h2:"請別人幫忙，可以把表示能力的情態助動詞放句首。", ok:"Can you help me? 是常見的請求方式。"},
+        {s:"The baby is too young. She ___ read yet.", o:["doesn't","can't","wasn't"], a:1,
+         h1:"too young 和 yet 表示目前還沒有讀字的能力。", h2:"說『目前不能夠』，用 can 的否定形式，後接原形動詞。", ok:"can't read 表示目前還不會閱讀。"},
+        {s:"Ash is very old, but he ___ still tell wonderful stories.", o:["is","can","cans"], a:1,
+         h1:"still 表示他到現在仍有這個能力。", h2:"情態助動詞不因 he 變形，後面接原形 tell。", ok:"he can tell：can 不加 -s。"}
+      ]
+    },
+    {
+      title: "觀念二｜could：過去的能力與禮貌請求",
+      rule: "could 可表示過去的能力，也常用在較有禮貌的請求。could 後接原形動詞，否定為 couldn't。Could you ...? 不一定是在問過去；要看上下文。",
+      examples: [["Mimi could see the words.","Mimi 當時看得見那些字。"],["Could you open the door, please?","可以請你開門嗎？"]],
+      qs: [
+        {s:"When Ben was five, he ___ read very well.", o:["couldn't","can","may"], a:0,
+         h1:"When Ben was five 是過去的時間。", h2:"這裡說他當時還不具備讀書的能力，要用過去能力的否定式。", ok:"couldn't read：表示五歲時還不會閱讀。"},
+        {s:"Robo: ___ you say that again, please?\nBen: Sure!", o:["Did","Were","Could"], a:2,
+         h1:"please 和 Sure! 表示正在禮貌地請求對方重說一次。", h2:"禮貌請求可用某個情態助動詞開頭，後面接 you 與原形動詞。", ok:"Could you say that again, please? 是禮貌請求。"},
+        {s:"Years ago, Ash ___ fly over the mountains. Now he is too tired.", o:["may","could","can"], a:1,
+         h1:"Years ago 和 Now 對比過去與現在。", h2:"談過去具備的能力，使用 can 對應的過去形式。", ok:"could fly 表示過去會飛。"},
+        {s:"Mia: I'm cold. Could you ___ the window?\nAsh: Of course.", o:["closed","close","closing"], a:1,
+         h1:"先看 Could you 後面的動詞形式。", h2:"所有這類情態助動詞後面，都要直接接動詞原形。", ok:"Could you close ...? 後面接原形 close。"},
+        {s:"Mimi could understand the first page, but she ___ understand the last page.", o:["couldn't","doesn't","can't to"], a:0,
+         h1:"前半句在描述當時讀懂第一頁，but 後面形成對比。", h2:"要用與前半句相同的過去時間，並改成否定。", ok:"couldn't understand：當時看不懂最後一頁。"}
+      ]
+    },
+    {
+      title: "觀念三｜may：禮貌許可與可能性（情境判斷）",
+      rule: "May I ...? 常用來較正式、禮貌地詢問是否獲准。may＋原形動詞也可表示『可能』，但不是保證會發生。看對話目的與另一句線索，再判斷 can、could 或 may。",
+      examples: [["May I turn the page?","我可以翻頁嗎？（請求許可）"],["A friend may be nearby.","朋友可能就在附近。（可能性）"]],
+      qs: [
+        {s:"Student: Excuse me, ___ I leave the room for a minute?\nTeacher: Yes, you may.", o:["May","Did","Was","Have"], a:0,
+         h1:"學生在詢問老師是否允許他暫時離開。", h2:"回答用了 you may；這是一個比較正式的許可問句。", ok:"May I ...? 用來禮貌詢問許可。"},
+        {s:"Mia: Where is our friend?\nAsh: I don't know. He ___ be in the garden.", o:["must","was","couldn't","may"], a:3,
+         h1:"I don't know 表示 Ash 不確定。", h2:"這裡只表達可能，不是確定或必須。", ok:"may be：表示可能在花園裡。"},
+        {s:"Ben: The words are too small for me. ___ you help me read them?\nRobo: Of course. Give me the book.", o:["Were","Did","Can","Has"], a:2,
+         h1:"Ben 在請對方協助閱讀，不是問許可或過去的動作。", h2:"這是現在的請求；使用能表達『你能不能幫忙』的助動詞。", ok:"Can you help me? 是自然的請求。"},
+        {s:"Mimi: Ash is sleeping. Can we talk here?\nMia: We ___ wake him up. Let's go outside.", o:["mustn't","should","may","will"], a:2,
+         h1:"Mia 建議出去，因為在這裡聊天有一個不確定的風險。", h2:"要表達『可能會吵醒』，而不是一定會或絕對禁止。", ok:"may wake him up：可能會吵醒他。"},
+        {s:"Robo: You look busy. ___ I carry those books for you?\nMia: Thank you. That's kind of you.", o:["May","Did","Was","Had"], a:0,
+         h1:"Robo 主動提出幫忙，Mia 接受了。", h2:"這裡是在禮貌地詢問對方是否願意讓自己幫忙。", ok:"May I carry ...? 可以用於有禮貌地提出協助。"}
+      ]
+    }
+  ],
+  vocab: [
+    ["page","n.","（書的）頁","新"],
+    ["voice","n.","聲音；嗓音","複習"],
+    ["different","adj.","不同的","新"],
+    ["answer","v./n.","回答；答案","新"],
+    ["share","v.","分享","新"],
+    ["understand","v.","了解；看懂","新"],
+    ["book","n.","書","複習"],
+    ["chair","n.","椅子","複習"],
+    ["quiet","adj.","安靜的","複習"],
+    ["help","v.","幫忙","複習"]
+  ],
+  chunks: [
+    ["look up","抬頭看","Ben looked up."],
+    ["go with","和……一起去","And we can go with you."],
+    ["pick up","撿起","Ash picked up the little red book from under the table."]
+  ]
+};
+/* ===== 以下是版型，做新單元不用改（新增一夜時，把 SERIES_LAST 改成最新的單元號碼） ===== */
+const SERIES_LAST = 15;
+const L = ["A","B","C","D"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const storyHTML = lines => lines.map(l=>`<button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en">${esc(l.en)}</span><span class="zh">${esc(l.zh)}</span></button>`).join("");
+function conceptHTML(c, ci){
+  const kind = c.qs[0].o.length > 3 ? "long" : "short";
+  let h = `<section class="concept ${kind}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
+  c.qs.forEach((q,qi)=>{
+    h += `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+  });
+  return h + `</section>`;
+}
+function navHTML(pos){
+  const n = parseInt(UNIT.code.replace(/\D/g, ""), 10), local = location.pathname.endsWith(".html");
+  const href = k => { const id = "b" + String(k).padStart(2, "0"); return local ? id + ".html" : "../" + id + "/"; };
+  const home = local ? "../web/index.html" : "../";
+  const prev = n > 1 ? `<a href="${href(n - 1)}">← 第 ${n - 1} 夜</a>` : "";
+  const next = n < SERIES_LAST ? `<a href="${href(n + 1)}">第 ${n + 1} 夜 →</a>` : "";
+  return `<nav class="series-nav ${pos}">${prev}<span class="gap"></span><a href="${home}">月亮圖書館目錄</a><span class="gap"></span>${next}</nav>`;
+}
+function render(){
+  const u = UNIT;
+  const head = `<header><div class="eyebrow">${u.night}</div><h1>${u.code}｜${u.title}</h1><p class="title-zh">${u.storyTitle}｜${u.storyTitleZh}</p></header>`;
+  const front = `<section class="story"><div class="story-label">故事（上）</div>${storyHTML(u.storyFront)}<p class="tap-tip">點一下英文句子可以看中文。</p></section>`;
+  const back = `<section class="story"><div class="story-label">故事（下）</div>${storyHTML(u.storyBack)}</section><div class="think"><b>想一想：</b>${esc(u.think)}</div>`;
+  const vocab = `<h2>Vocabulary｜10 個單字</h2><div class="vocab">${u.vocab.map(v=>`<div class="word"><b>${v[0]}</b>${v[1]} ${v[2]} <span class="tag${v[3]==="複習"?" review":""}">${v[3]}</span></div>`).join("")}</div>`;
+  const chunks = `<h2>Chunks｜片語</h2><div class="chunks">${u.chunks.map(c=>`<div class="chunk"><b>${c[0]}</b> ${c[1]}<i>${esc(c[2])}</i></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2>${u.concepts.map((c,ci)=>`<b>練習 ${ci+1}</b><ol>${c.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>`).join("")}</section>`;
+  const anskey = `<div class="anskey"><b>答案</b>　${u.concepts.map((c,ci)=>`練習 ${ci+1}：${c.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join(" ")}`).join("　｜　")}</div>`;
+  document.getElementById("lesson").innerHTML =
+    `${navHTML("top")}<div class="page">${head}${front}${conceptHTML(u.concepts[0],0)}${conceptHTML(u.concepts[1],1)}</div>` +
+    `<div class="page">${conceptHTML(u.concepts[2],2)}${back}${vocab}${chunks}${answers}${anskey}</div>${navHTML("bottom")}`;
+}
+const total = UNIT.concepts.reduce((n,c)=>n+c.qs.length,0);
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `完成 ${done.size} / ${total} 題`; };
+document.addEventListener("click", e=>{
+  const line = e.target.closest(".line");
+  if(line){ line.classList.toggle("show"); line.setAttribute("aria-expanded", line.classList.contains("show")); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), ci = +qEl.dataset.c, qi = +qEl.dataset.q, key = ci+"-"+qi;
+  const q = UNIT.concepts[ci].qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){
+    btn.classList.add("correct"); done.add(key);
+    qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true);
+    fb.textContent = "✓ 對了。" + q.ok; updateProgress();
+  } else {
+    tries[key] = (tries[key]||0) + 1; btn.classList.add("wrong");
+    fb.textContent = tries[key] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2;
+  }
+});
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+// 列印時切換成雙面 A4 版面
+// 某一面快超出 A4 時，只收緊那一面的行距（不縮字）
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight","tight2");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom() > p.clientHeight - reserve - 12) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+render();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>
