@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="看主詞選動詞：It 用 take、人用 spend／pay、東西用 cost">
+<title>S2｜take、spend、cost、pay：花時間、花錢</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:26px 32px 36px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button,.toolbar a{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 12px;cursor:pointer;text-decoration:none}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:24px;margin:2px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+h2{font-size:18px;color:var(--accent);margin:22px 0 6px}
+.scene{background:var(--moon);border-radius:12px;padding:8px 14px}
+.line{display:grid;grid-template-columns:62px 1fr;gap:8px;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:6px 2px;cursor:pointer;color:inherit;font:inherit}
+.line:last-child{border-bottom:0}
+.line:hover{background:#ece7f6}
+.who{font-weight:700;color:var(--moonline);font-size:14px}
+.line .en{font:16.5px/1.5 Georgia,serif}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.patterns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pat{border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.pat .head{font:700 19px Georgia,serif;color:var(--accent)}
+.pat .form{font-weight:700;margin:2px 0}
+.pat .rule{font-size:14px;color:var(--sub)}
+.pat .en{font:15px/1.45 Georgia,serif;color:#234f6b;margin-top:4px}
+.pat .zh{font-size:13.5px;color:var(--sub)}
+.tip{background:#fff6e3;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:14.5px}
+.words{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.words span{border:1px solid var(--line);border-radius:14px;padding:2px 10px;font-size:13.5px}
+.words b{font-family:Georgia,serif}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:6px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:6px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+#answers{margin-top:20px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0}
+.anskey{display:none}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .patterns{grid-template-columns:1fr}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .line{grid-template-columns:52px 1fr}
+  .toolbar button,.toolbar a{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+/* ===== 紙本：單面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.35;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .toolbar,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;display:flex;flex-direction:column}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16pt;margin:0 0 4px;padding-bottom:3px}
+body.paper h2{font-size:12pt;margin:7px 0 3px}
+body.paper .scene{padding:3px 9px;border-radius:7px}
+body.paper .line{grid-template-columns:11mm 58% 1fr;gap:5px;padding:1.2px 0;align-items:baseline}
+body.paper .who{font-size:8.6pt}
+body.paper .line .en{font-size:10.5pt;line-height:1.3}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.3}
+body.paper .patterns{gap:5px}
+body.paper .pat{padding:3px 8px;border-radius:6px}
+body.paper .pat .head{font-size:12pt}
+body.paper .pat .form{font-size:10pt;margin:0}
+body.paper .pat .rule{font-size:8.8pt}
+body.paper .pat .en{font-size:9.8pt;margin-top:1px;line-height:1.3}
+body.paper .pat .zh{font-size:8.6pt}
+body.paper .tip{padding:3px 8px;margin-top:5px;font-size:9.2pt}
+body.paper .words{gap:4px;margin-top:4px}
+body.paper .words span{font-size:8.8pt;padding:0 7px}
+body.paper .q{padding:3px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .stem-text{font-size:10.4pt;line-height:1.3}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+body.paper .page.tight .q{padding:1.5px 0}
+body.paper .page.tight .line{padding:0.5px 0}
+body.paper .page.tight h2{margin:4px 0 2px}
+body.paper .page.tight .pat{padding:2px 7px}
+body.paper .page.tight .tip{padding:2px 8px;margin-top:3px}
+body.paper .page.tight .words{margin-top:3px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.8pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div class="btns"><a id="home" href="../">← 目錄</a><span class="status" id="progress"></span></div>
+  <div class="btns">
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="sheet"></main>
+<script>
+/* ===== 單張資料：做新的補給站時只改這一段 ===== */
+const SHEET = {
+  code: "S2",
+  title: "take、spend、cost、pay：花時間、花錢",
+  kind: "月亮圖書館 · 補給站",
+  desc: "看主詞選動詞：It 用 take、人用 spend／pay、東西用 cost",
+  names: ["Robo","Mimi"],
+  // 情境對話：who＝說話的人
+  scene: [
+    {who:"Robo", en:"How long does it take to get to the night market?", zh:"到夜市要多久？"},
+    {who:"Mia", en:"It takes about twenty minutes by bus.", zh:"搭公車大約二十分鐘。"},
+    {who:"Mimi", en:"This hat is so cute! How much does it cost?", zh:"這頂帽子好可愛！多少錢？"},
+    {who:"Seller", en:"It costs 300 dollars.", zh:"三百元。"},
+    {who:"Mimi", en:"Oh no. I spent 200 dollars on bubble tea today.", zh:"糟了，我今天已經花兩百元買珍奶了。"},
+    {who:"Robo", en:"Don't worry. I'll pay for it.", zh:"別擔心，我來付。"},
+    {who:"Mia", en:"Robo, you paid 500 dollars for a lamp last week!", zh:"Robo，你上星期才花五百元買了一盞燈！"},
+    {who:"Robo", en:"Yes. And I spent three hours choosing it.", zh:"對啊，而且我花了三個小時挑它。"},
+    {who:"Mia", en:"It took me one second to understand: you two need a money plan!", zh:"我一秒就看懂了：你們兩個需要理財計畫！"}
+  ],
+  patterns: [
+    {head:"take", form:"It takes＋（人）＋時間＋to V", rule:"主詞是 It（那件事），只能說「時間」。", en:"It takes me ten minutes to walk to school.", zh:"我走路到學校要十分鐘。"},
+    {head:"spend", form:"人＋spend＋時間／錢＋on 東西／V-ing", rule:"主詞是「人」，時間和錢都可以。", en:"I spent two hours on my homework.", zh:"我花了兩個小時寫功課。"},
+    {head:"cost", form:"東西＋cost＋（人）＋錢", rule:"主詞是「東西」，只能說「錢」。", en:"The bag cost me 300 dollars.", zh:"這個包包花了我三百元。"},
+    {head:"pay", form:"人＋pay＋錢＋for 東西", rule:"主詞是「人」，後面常接 for。", en:"I paid 80 dollars for the ticket.", zh:"我付了八十元買票。"}
+  ],
+  tip: "一眼判斷：先看主詞。It（事情）→ take｜人＋on → spend｜東西 → cost｜人＋for → pay。三態：take–took–taken、spend–spent–spent、cost–cost–cost、pay–paid–paid。",
+  words: [["price","價格"],["dollar","元"],["minute","分鐘"],["hour","小時"],["ticket","票"],["expensive","貴的"],["cheap","便宜的"],["station","車站"]],
+  qs: [
+    {s:"It ___ me thirty minutes to finish my homework yesterday.", o:["spent","cost","took","paid"], a:2,
+     h1:"主詞是 It，後面說的是時間。", h2:"「It＋動詞＋人＋時間＋to V」只用一個動詞；yesterday 要用過去式。", ok:"It took me thirty minutes…＝花了我三十分鐘。"},
+    {s:"Ben ___ two hours playing games last night.", o:["spent","took","cost","paid"], a:0,
+     h1:"主詞是人，後面是「時間＋V-ing」。", h2:"人當主詞、後面接時間＋V-ing 的，是四個動詞裡專門說「人花」的那一個。", ok:"人＋spent＋時間＋V-ing。"},
+    {s:"This T-shirt ___ 250 dollars.", o:["takes","costs","spends","pays"], a:1,
+     h1:"主詞是什麼？人還是東西？", h2:"東西當主詞、後面直接接錢。", ok:"東西＋cost(s)＋錢。"},
+    {s:"I ___ 80 dollars for the movie ticket.", o:["paid","cost","took","spent"], a:0,
+     h1:"注意後面的 for。", h2:"人＋錢＋for＋東西；spend 後面要接 on，不接 for。", ok:"人＋paid＋錢＋for＋東西。"},
+    {s:"Mimi: How much did your new bike ___?\nRobo: About 3,000 dollars.", o:["take","spend","pay","cost"], a:3,
+     h1:"問的是「腳踏車多少錢」，主詞是 your new bike。", h2:"did 後面用原形；東西當主詞、說錢的那個動詞。", ok:"How much did it cost?"},
+    {s:"Amy: How long does it ___ to get to the train station?\nBen: About fifteen minutes by MRT.", o:["spend","take","cost","pay"], a:1,
+     h1:"主詞是 it，問的是「多久」。", h2:"問「要花多少時間」而主詞是 it 的句型。", ok:"How long does it take to…?"},
+    {s:"My brother ___ all his money on comic books. Now he can't buy lunch.", o:["spent","cost","took","paid"], a:0,
+     h1:"主詞是人，後面有 on。", h2:"人＋錢＋on＋東西。", ok:"人＋spent＋錢＋on＋東西。"},
+    {s:"The concert tickets were expensive. They ___ us 1,200 dollars, so we didn't buy dinner.", o:["took","spent","paid","cost"], a:3,
+     h1:"They 指的是什麼？人還是東西？", h2:"主詞是東西（票）；這個動詞的過去式和原形長一樣。", ok:"東西＋cost＋人＋錢（過去式也是 cost）。"}
+  ]
+};
+/* ===== 以下是版型，不用改 ===== */
+const L = ["A","B","C","D"];
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function render(){
+  const u = SHEET;
+  let h = `<div class="page"><header><div class="eyebrow">${esc(u.kind)}</div><h1>${esc(u.code)}｜${esc(u.title)}</h1></header>`;
+  h += `<h2>情境｜這樣說</h2><section class="scene">${u.scene.map(l=>`<button type="button" class="line"><span class="who">${esc(l.who)}</span><span><span class="en">${esc(l.en)}</span></span><span class="zh">${esc(l.zh)}</span></button>`).join("")}</section><p class="tap-tip">點一下句子可以看中文。</p>`;
+  h += `<h2>句型｜一眼分辨</h2><div class="patterns">${u.patterns.map(p=>`<div class="pat"><div class="head">${esc(p.head)}</div><div class="form">${esc(p.form)}</div><div class="rule">${esc(p.rule)}</div><div class="en">${esc(p.en)}</div><div class="zh">${esc(p.zh)}</div></div>`).join("")}</div>`;
+  if (u.tip) h += `<div class="tip">💡 ${esc(u.tip)}</div>`;
+  if (u.words?.length) h += `<div class="words">${u.words.map(w=>`<span><b>${esc(w[0])}</b> ${esc(w[1])}</span>`).join("")}</div>`;
+  h += `<h2>練習｜會考式</h2>`;
+  u.qs.forEach((q,qi)=>{
+    h += `<div class="q" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+  });
+  h += `<section id="answers" hidden><h2>答案</h2><ol>${u.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol></section>`;
+  h += `<div class="anskey"><b>答案</b>　${u.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join("　")}</div></div>`;
+  document.getElementById("sheet").innerHTML = h;
+}
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `　完成 ${done.size} / ${SHEET.qs.length} 題`; };
+document.addEventListener("click", e=>{
+  const line = e.target.closest(".line"); if(line){ line.classList.toggle("show"); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), qi = +qEl.dataset.q, q = SHEET.qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){ btn.classList.add("correct"); done.add(qi); qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true); fb.textContent = "✓ 對了。" + q.ok; updateProgress(); }
+  else { tries[qi] = (tries[qi]||0) + 1; btn.classList.add("wrong"); fb.textContent = tries[qi] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2; }
+});
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom > p.clientHeight - reserve) p.classList.add("tight");
+    const b2 = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+if (location.pathname.endsWith(".html")) document.getElementById("home").href = "../web/index.html";
+render(); updateProgress();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>
