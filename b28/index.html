@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>B28｜代動詞、附和句與附加問句</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:28px 32px 40px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 13px;cursor:pointer}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:25px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+.title-zh{color:var(--sub);margin:0}
+h2{font-size:19px;color:var(--accent);margin:26px 0 6px}
+.story{background:var(--moon);border-radius:12px;padding:8px 14px;margin:10px 0}
+.story-label{font-size:13px;color:var(--moonline);font-weight:700;margin:4px 0 2px}
+.line{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:7px 4px;cursor:pointer;color:inherit;font:inherit}
+.row{display:flex;align-items:flex-start;gap:2px}
+.row .line{flex:1;min-width:0}
+.row:last-of-type .line{border-bottom:0}
+.say{flex:none;border:0;background:none;cursor:pointer;font-size:15px;line-height:1;padding:9px 3px;opacity:.55;border-radius:6px}
+.say:hover,.say.playing{opacity:1;background:#e6dff5}
+.playall{float:right;font:inherit;font-size:12.5px;border:1px solid #cfc4ea;background:#fff;color:#5d4a8f;border-radius:12px;padding:1px 9px;cursor:pointer}
+.row.playing .line{background:#efe9fb}
+.line:hover{background:#ece7f6}
+.line:focus-visible{outline:3px solid #b5a8dc}
+.line .en{display:block;font:17px/1.55 Georgia,"Times New Roman",serif}
+.line.frame .en{font-style:italic;color:#4b3f75}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.think{background:#fff6e3;border-radius:10px;padding:8px 14px;margin:10px 0}
+.rule{margin:2px 0 6px}
+.examples{display:grid;gap:6px;margin:6px 0 8px}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--soft);border-radius:8px;padding:7px 12px}
+.ex .en{font:16px/1.45 Georgia,serif;font-weight:700;color:#234f6b}
+.ex .zh{font-size:14px;color:var(--sub)}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:7px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:7px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt:focus-visible{outline:3px solid #91c3dd}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+.vocab{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.word{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;line-height:1.4}
+.word b{font:16px Georgia,serif;margin-right:4px}
+.word .tag{display:inline-block;font-size:11px;border-radius:9px;padding:0 6px;background:#e4eef5;color:#38617a}
+.word .tag.review{background:#efe9f8;color:#5d4a8f}
+.chunks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chunk{background:var(--soft);border-radius:8px;padding:7px 10px;font-size:14px;line-height:1.45}
+.chunk b{font-family:Georgia,serif;font-size:15px}
+.chunk i{display:block;font-family:Georgia,serif;font-style:normal;color:#234f6b}
+#answers{margin-top:22px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0 10px}
+.anskey{display:none}
+.nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
+.series-nav{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin:0 0 14px}
+.series-nav.bottom{margin:28px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.series-nav a{color:var(--accent);text-decoration:none;border:1px solid #b9cfdc;border-radius:7px;padding:5px 11px}
+.series-nav a:hover{background:#edf7ff}
+.series-nav .gap{flex:1}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .ex{grid-template-columns:1fr;gap:2px}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .vocab{grid-template-columns:repeat(2,1fr)}
+  .chunks{grid-template-columns:1fr}
+  h1{font-size:21px}
+  .toolbar{padding:6px 10px;gap:4px}
+  .toolbar button{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+
+/* ===== 紙本：一張雙面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .say,body.paper .playall,body.paper .toolbar,body.paper .series-nav,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;break-after:page;display:flex;flex-direction:column}
+body.paper .page:last-child{break-after:auto}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16.5pt;margin:0 0 2px;padding-bottom:3px}
+body.paper .title-zh{font-size:9.5pt}
+body.paper h2{font-size:12pt;margin:7px 0 2px}
+body.paper .story{padding:3px 9px;margin:5px 0;border-radius:7px}
+body.paper .story-label{font-size:8.5pt;margin:2px 0 0}
+body.paper .line{display:grid;grid-template-columns:55% 1fr;gap:9px;padding:1.6px 0;border-bottom:1px dashed #e2dcef}
+body.paper .line .en{font-size:10.6pt;line-height:1.32}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.35;padding-top:1px}
+body.paper .think{padding:3px 9px;margin:4px 0;font-size:9.5pt}
+body.paper .rule{font-size:9.5pt;margin:0 0 3px}
+body.paper .examples{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:3px 0 2px}
+body.paper .ex{display:block;padding:3px 8px;border-radius:5px}
+body.paper .ex .en{display:block;font-size:10pt;line-height:1.3}
+body.paper .ex .zh{display:block;font-size:8.5pt;line-height:1.3}
+body.paper .q{padding:2.6px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .qnum{min-width:16px;font-size:10pt}
+body.paper .stem-text{font-size:10.4pt;line-height:1.32}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px;line-height:1.3}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+/* 觀念一、二：題目和選項同一行 */
+body.paper .short .q{display:grid;grid-template-columns:1fr 92mm;gap:6px;align-items:center;padding:5.5px 0}
+body.paper .short .stem-text{font-size:10.8pt}
+body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
+/* 觀念三：選項四欄 */
+body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .vocab{gap:4px}
+body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
+body.paper .word b{font-size:10.3pt}
+body.paper .word .tag{font-size:7.5pt;padding:0 4px}
+body.paper .chunks{gap:5px}
+body.paper .chunk{padding:3px 7px;font-size:8.8pt;border-radius:5px;line-height:1.35}
+body.paper .chunk b,body.paper .chunk i{font-size:9.8pt}
+body.paper .page.tight .short .q{padding:2.4px 0}
+body.paper .page.tight .q{padding:1.8px 0}
+body.paper .page.tight .line{padding:0.6px 0}
+body.paper .page.tight h2{margin:5px 0 1px}
+body.paper .page.tight .examples{margin:2px 0 1px}
+body.paper .page.tight2 .vocab{gap:3px}
+body.paper .page.tight2 .word{padding:1px 5px}
+body.paper .page.tight2 .chunks{gap:3px}
+body.paper .page.tight2 .chunk{padding:1.5px 6px}
+body.paper .page.tight2 .think{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 .story{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 h2{margin:3px 0 1px}
+body.paper .page.tight2 .examples{gap:3px}
+body.paper .page.tight2 .ex{padding:2px 7px}
+body.paper .page.tight2 .rule{margin:0 0 2px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.6pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span class="status" id="progress">完成 0 / 15 題</span>
+  <div class="btns">
+    <button type="button" id="slowBtn">🐢 慢速朗讀</button>
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="lesson"></main>
+
+<script>
+/* ===== 單元資料：做新單元時只改這一段 ===== */
+const UNIT = {
+  code: "B28",
+  names: ["Robo","Mimi","Ben"],
+  title: "代動詞、附和句與附加問句",
+  night: "月亮圖書館 · 第二十八夜",
+  storyTitle: "The Song We Both Knew",
+  storyTitleZh: "我們都會唱的那首歌",
+  // f:1 = 外框（Mia 和 Ash），其餘是 Mia 講的故事
+  storyFront: [
+    {f:1, en:"Ash looked again at the picture behind the twenty-seventh door. He began to sing softly, and Mia stopped beside him.", zh:"Ash 再次看著第二十七扇門後的照片。他輕聲唱起歌，Mia 在他身旁停下腳步。"},
+    {f:1, en:"“My grandma sings that song, too,” Mia said. Ash stopped singing. “Really? Tell me something else.”", zh:"「我奶奶也會唱那首歌，」Mia 說。Ash 停下歌聲。「真的嗎？再跟我說點別的。」"},
+    {en:"At school, Robo and Ben both wanted to join a singing game. Mimi did, too, but she was afraid of the stage.", zh:"在學校，Robo 和 Ben 都想參加唱歌遊戲。Mimi 也想，但她害怕上台。"},
+    {en:"“I like singing,” Robo said. “So do I,” Ben answered. Mimi smiled. “I do, too.”", zh:"「我喜歡唱歌，」Robo 說。「我也是，」Ben 回答。Mimi 笑了。「我也喜歡。」"},
+    {en:"The teacher gave them a simple rule: one person began a song, and another person finished it.", zh:"老師給了他們一個簡單的規則：一個人開始唱，另一個人接著唱完。"},
+    {en:"Ben knew the first song, but Robo didn't. Robo knew the second song, and Ben did, too.", zh:"Ben 會第一首歌，但 Robo 不會。Robo 會第二首歌，Ben 也會。"},
+    {en:"Then the teacher played an old song. Everyone looked at Mimi. “You know this song, don't you?” Ben asked.", zh:"接著老師播放了一首老歌。大家都看著 Mimi。「妳會這首歌，對吧？」Ben 問。"},
+    {f:1, en:"Ash turned to Mia. “Did Mimi sing it?” Mia raised one finger. “Three puzzles first.”", zh:"Ash 轉向 Mia。「Mimi 唱了嗎？」Mia 舉起一根手指。「先解三道謎題。」"}
+  ],
+  storyBack: [
+    {en:"Mimi shook her head. “I don't know the words.” Ben didn't know them, either, and Robo couldn't remember them.", zh:"Mimi 搖搖頭。「我不知道歌詞。」Ben 也不知道，Robo 也想不起來。"},
+    {en:"The teacher smiled. “You don't need the words. Listen to the music, and sing what you feel.”", zh:"老師笑了。「你們不需要歌詞。聽著音樂，唱出自己的感受就好。」"},
+    {en:"Robo sang one note. Ben did, too. Mimi heard their voices and began to laugh.", zh:"Robo 唱出一個音。Ben 也跟著唱。Mimi 聽見他們的聲音，開始笑了起來。"},
+    {en:"“This isn't a real song, is it?” Mimi asked. “It is now,” said Ben. “And you can sing with us.”", zh:"「這不算一首真正的歌，對吧？」Mimi 問。「現在算了，」Ben 說。「而且妳可以跟我們一起唱。」"},
+    {en:"She sang a funny note, and the class laughed. Soon everyone joined them, even the teacher.", zh:"她唱出一個滑稽的音，全班笑了起來。很快地，所有人都加入了，連老師也不例外。"},
+    {en:"After school, Mimi said, “I wasn't brave this morning.” Robo answered, “Neither was I. But we tried.”", zh:"放學後，Mimi 說：「今天早上我並不勇敢。」Robo 回答：「我也不勇敢。但我們試過了。」"},
+    {f:1, en:"Ash sang the song again. “Grandma knows it, doesn't she?” Mia whispered. Ash looked at her.", zh:"Ash 又唱起那首歌。「奶奶也會唱，對吧？」Mia 輕聲說。Ash 看著她。"},
+    {f:1, en:"Ash opened the twenty-eighth door. Behind it lay two letters, one old and one new. Both began with the same name.", zh:"Ash 打開第二十八扇門。門後放著兩封信，一封舊的，一封新的。兩封信都以同一個名字開頭。"}
+  ],
+  think: "Mimi 原本覺得自己不勇敢，但最後還是唱了。你認為「勇敢」是完全不害怕，還是害怕時仍願意嘗試？",
+  concepts: [
+    {
+      title: "觀念一｜do、does、did：代替前面說過的動作",
+      rule: "為了不重複前面說過的動作，可以用 do、does、did 代替。現在式 he／she／it 用 does，其他主詞用 do；過去式用 did。若前面是 be 動詞或情態助動詞，附和時則沿用相同助動詞。",
+      examples: [["Robo likes music, and Ben does, too.","Robo 喜歡音樂，Ben 也喜歡。"],["Mia sang yesterday, and Ash did, too.","Mia 昨天唱了歌，Ash 也唱了。"]],
+      qs: [
+        {s:"Mia drinks tea every night, and Ash ___, too.", o:["do","does","did"], a:1,
+         h1:"前面是現在式 drinks，後面的主詞是 Ash。", h2:"現在式單數第三人稱用對應的代動詞，不必重複 drinks tea。", ok:"Ash 是第三人稱單數，現在式用 does。"},
+        {s:"Robo played the piano last night, and Ben ___, too.", o:["did","do","does"], a:0,
+         h1:"last night 表示過去發生的事。", h2:"前面的 played 是過去式，後面要使用相同時間的代動詞。", ok:"過去式的動作可用 did 代替。"},
+        {s:"Mimi likes that song, and I ___, too.", o:["do","does","did"], a:0,
+         h1:"前面 likes 表示現在的喜好。", h2:"主詞 I 在現在簡單式中不用第三人稱單數形式。", ok:"I do, too 表示我也喜歡。"},
+        {s:"My sister reads before bed, and my brother ___, too.", o:["did","do","does"], a:2,
+         h1:"reads 是現在式，my brother 是單數。", h2:"要代替 reads before bed，選符合單數第三人稱的現在式代動詞。", ok:"my brother does 代替 reads before bed。"},
+        {s:"We visited the museum yesterday, and our friends ___, too.", o:["do","did","does"], a:1,
+         h1:"動作發生在 yesterday。", h2:"動詞 visited 是過去式；代動詞也要維持過去的時間。", ok:"did 代替 visited the museum。"}
+      ]
+    },
+    {
+      title: "觀念二｜so、neither、too、either：表達「我也是」",
+      rule: "同意肯定句可說 So＋助動詞／be＋主詞，或用主詞＋助動詞／be＋too。同意否定句可說 Neither＋助動詞／be＋主詞，或用否定句＋either。助動詞要與原句的時態、肯否定及主詞相配。",
+      examples: [["'I can swim.' 'So can I.'","「我會游泳。」「我也會。」"],["'I don't like rain.' 'Neither do I.'","「我不喜歡下雨。」「我也不喜歡。」"]],
+      qs: [
+        {s:"Ben: I can play the piano.\nMimi: ___ can I.", o:["So","Neither","Too"], a:0,
+         h1:"Ben 說的是肯定句：I can。", h2:"肯定附和句把表示『也一樣』的字放句首，再接原句的助動詞與主詞。", ok:"So can I 表示我也會。"},
+        {s:"Robo: I don't eat fish.\nMimi: ___ do I.", o:["Too","Neither","So"], a:1,
+         h1:"Robo 的句子有 don't，是否定句。", h2:"表示『我也不……』時，句首要選否定附和用語。", ok:"Neither do I 表示我也不吃魚。"},
+        {s:"Mia: I was tired yesterday.\nAsh: I was, ___.", o:["too","neither","either"], a:0,
+         h1:"Ash 同意的是肯定句 I was tired。", h2:"肯定句句尾表示『也』，用肯定附和的句尾詞。", ok:"I was, too 表示我昨天也累。"},
+        {s:"Mimi: I can't remember the words.\nBen: I can't, ___.", o:["too","either","so"], a:1,
+         h1:"Ben 的回應是 I can't，屬於否定句。", h2:"否定句句尾表示『也不』，不使用肯定句的句尾詞。", ok:"I can't, either 表示我也想不起來。"},
+        {s:"Ben: I didn't go to the game.\nRobo: ___ did I.", o:["So","Too","Neither"], a:2,
+         h1:"didn't 說明 Ben 沒有去。", h2:"表示過去也『沒有做』，使用否定附和句，助動詞保持過去式。", ok:"Neither did I 表示我也沒去。"}
+      ]
+    },
+    {
+      title: "觀念三｜附加問句：前肯後否、前否後肯",
+      rule: "附加問句用來確認事情：前面是肯定句，後面通常接否定的短問句；前面是否定句，後面接肯定的短問句。短問句的助動詞、時態和主詞要呼應前句，主詞通常改為代名詞。",
+      examples: [["You remember the song, don't you?","你記得那首歌，對吧？"],["She can't swim, can she?","她不會游泳，對吧？"]],
+      qs: [
+        {s:"Ben: Your grandma knows this song, ___?\nMia: Yes, she sings it every morning.", o:["does she","didn't she","isn't she","doesn't she"], a:3,
+         h1:"knows 是現在簡單式的肯定句，主詞是 Your grandma。", h2:"肯定句尾要加否定短問句；現在式第三人稱單數要選對助動詞。", ok:"knows 對應 doesn't she，形成前肯後否。"},
+        {s:"Ben: Robo didn't sing yesterday, ___?\nMimi: No, he was sick.", o:["didn't he","does he","did he","was he"], a:2,
+         h1:"didn't sing 是過去式否定句。", h2:"前句已經否定，尾巴要用肯定形式，並保留過去式助動詞。", ok:"didn't sing 對應 did he。"},
+        {s:"Robo: You can hear the music, ___?\nBen: Yes, I can hear it clearly.", o:["can't you","did you","can you","don't you"], a:0,
+         h1:"前句的助動詞是 can，而且句子是肯定的。", h2:"肯定句尾接否定形式，並沿用相同的情態助動詞。", ok:"can hear 對應 can't you。"},
+        {s:"Mia: The letters were on the table, ___?\nAsh: Yes, I saw them there.", o:["were they","didn't they","weren't they","don't they"], a:2,
+         h1:"前句使用 were，不是一般動作動詞。", h2:"be 動詞的過去式肯定句，尾巴要用對應的否定形式，主詞改成 they。", ok:"were 對應 weren't they。"},
+        {s:"Ben: Your friends haven't left yet, ___?\nRobo: No, they're still here.", o:["are they","haven't they","did they","have they"], a:3,
+         h1:"haven't left 是現在完成式的否定句。", h2:"完成式使用 have 作助動詞；前句否定，尾巴要肯定。", ok:"haven't left 對應 have they。"}
+      ]
+    }
+  ],
+  vocab: [
+    ["teacher","n.","老師","新"],
+    ["game","n.","遊戲；比賽","新"],
+    ["rule","n.","規則","複習"],
+    ["funny","adj.","好笑的","新"],
+    ["join","v.","參加","新"],
+    ["simple","adj.","簡單的","新"],
+    ["song","n.","歌曲","複習"],
+    ["music","n.","音樂","複習"],
+    ["door","n.","門","複習"],
+    ["picture","n.","照片；圖片","複習"]
+  ],
+  chunks: [
+    ["join a game","參加遊戲","At school, Robo and Ben both wanted to join a singing game."],
+    ["after school","放學後","After school, Mimi said, 'I wasn't brave this morning.'"],
+    ["look at","看著","Ash looked at her."]
+  ]
+};
+/* ===== 以下是版型，做新單元不用改（新增一夜時，把 SERIES_LAST 改成最新的單元號碼） ===== */
+const SERIES_LAST = 30;
+const L = ["A","B","C","D"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const storyHTML = lines => lines.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en">${esc(l.en)}</span><span class="zh">${esc(l.zh)}</span></button></div>`).join("");
+function conceptHTML(c, ci){
+  const kind = c.qs[0].o.length > 3 ? "long" : "short";
+  let h = `<section class="concept ${kind}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
+  c.qs.forEach((q,qi)=>{
+    h += `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+  });
+  return h + `</section>`;
+}
+function navHTML(pos){
+  const n = parseInt(UNIT.code.replace(/\D/g, ""), 10), local = location.pathname.endsWith(".html");
+  const href = k => { const id = "b" + String(k).padStart(2, "0"); return local ? id + ".html" : "../" + id + "/"; };
+  const home = local ? "../web/index.html" : "../";
+  const prev = n > 1 ? `<a href="${href(n - 1)}">← 第 ${n - 1} 夜</a>` : "";
+  const next = n < SERIES_LAST ? `<a href="${href(n + 1)}">第 ${n + 1} 夜 →</a>` : "";
+  return `<nav class="series-nav ${pos}">${prev}<span class="gap"></span><a href="${home}">月亮圖書館目錄</a><span class="gap"></span>${next}</nav>`;
+}
+function render(){
+  const u = UNIT;
+  const head = `<header><div class="eyebrow">${u.night}</div><h1>${u.code}｜${u.title}</h1><p class="title-zh">${u.storyTitle}｜${u.storyTitleZh}</p></header>`;
+  const front = `<section class="story"><div class="story-label">故事（上）<button type="button" class="playall">🔊 全部播放</button></div>${storyHTML(u.storyFront)}<p class="tap-tip">點一下英文句子可以看中文。</p></section>`;
+  const back = `<section class="story"><div class="story-label">故事（下）<button type="button" class="playall">🔊 全部播放</button></div>${storyHTML(u.storyBack)}</section><div class="think"><b>想一想：</b>${esc(u.think)}</div>`;
+  const vocab = `<h2>Vocabulary｜10 個單字</h2><div class="vocab">${u.vocab.map(v=>`<div class="word"><b>${v[0]}</b>${v[1]} ${v[2]} <span class="tag${v[3]==="複習"?" review":""}">${v[3]}</span></div>`).join("")}</div>`;
+  const chunks = `<h2>Chunks｜片語</h2><div class="chunks">${u.chunks.map(c=>`<div class="chunk"><b>${c[0]}</b> ${c[1]}<i>${esc(c[2])}</i></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2>${u.concepts.map((c,ci)=>`<b>練習 ${ci+1}</b><ol>${c.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>`).join("")}</section>`;
+  const anskey = `<div class="anskey"><b>答案</b>　${u.concepts.map((c,ci)=>`練習 ${ci+1}：${c.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join(" ")}`).join("　｜　")}</div>`;
+  document.getElementById("lesson").innerHTML =
+    `${navHTML("top")}<div class="page">${head}${front}${conceptHTML(u.concepts[0],0)}${conceptHTML(u.concepts[1],1)}</div>` +
+    `<div class="page">${conceptHTML(u.concepts[2],2)}${back}${vocab}${chunks}${answers}${anskey}</div>${navHTML("bottom")}`;
+}
+const total = UNIT.concepts.reduce((n,c)=>n+c.qs.length,0);
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `完成 ${done.size} / ${total} 題`; };
+document.addEventListener("click", e=>{
+  const say = e.target.closest(".say"), all = e.target.closest(".playall");
+  if(say){ speakRows([say.closest(".row")]); return; }
+  if(all){ speakRows([...all.closest(".story").querySelectorAll(".row")]); return; }
+  const line = e.target.closest(".line");
+  if(line){ line.classList.toggle("show"); line.setAttribute("aria-expanded", line.classList.contains("show")); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), ci = +qEl.dataset.c, qi = +qEl.dataset.q, key = ci+"-"+qi;
+  const q = UNIT.concepts[ci].qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){
+    btn.classList.add("correct"); done.add(key);
+    qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true);
+    fb.textContent = "✓ 對了。" + q.ok; updateProgress();
+  } else {
+    tries[key] = (tries[key]||0) + 1; btn.classList.add("wrong");
+    fb.textContent = tries[key] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2;
+  }
+});
+// 朗讀（手機、電腦內建語音，不用網路檔案）
+let slow = false;
+function speakRows(rows){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel(); document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing"));
+  const voice = speechSynthesis.getVoices().find(v=>/^en(-|_)US/i.test(v.lang)) || speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
+  rows.forEach(row=>{
+    const u = new SpeechSynthesisUtterance(row.querySelector(".en").textContent.replace(/[“”]/g,'"'));
+    u.lang = "en-US"; u.rate = slow ? 0.7 : 0.95; if(voice) u.voice = voice;
+    u.onstart = ()=>{ document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing")); row.classList.add("playing"); row.querySelector(".say").classList.add("playing"); };
+    u.onend = ()=>{ row.classList.remove("playing"); row.querySelector(".say").classList.remove("playing"); };
+    speechSynthesis.speak(u);
+  });
+}
+if(!("speechSynthesis" in window)) document.documentElement.classList.add("nospeech");
+document.getElementById("slowBtn").onclick = e=>{ slow = !slow; e.target.textContent = slow ? "🐇 正常速度" : "🐢 慢速朗讀"; };
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+// 列印時切換成雙面 A4 版面
+// 某一面快超出 A4 時，只收緊那一面的行距（不縮字）
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight","tight2");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom() > p.clientHeight - reserve - 12) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+render();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>

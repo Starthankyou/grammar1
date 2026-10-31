@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>B30｜總複習＋會考閱讀（最後一夜）</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:28px 32px 40px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 13px;cursor:pointer}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:25px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+.title-zh{color:var(--sub);margin:0}
+h2{font-size:19px;color:var(--accent);margin:26px 0 6px}
+.story{background:var(--moon);border-radius:12px;padding:8px 14px;margin:10px 0}
+.story-label{font-size:13px;color:var(--moonline);font-weight:700;margin:4px 0 2px}
+.line{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:7px 4px;cursor:pointer;color:inherit;font:inherit}
+.row{display:flex;align-items:flex-start;gap:2px}
+.row .line{flex:1;min-width:0}
+.row:last-of-type .line{border-bottom:0}
+.say{flex:none;border:0;background:none;cursor:pointer;font-size:15px;line-height:1;padding:9px 3px;opacity:.55;border-radius:6px}
+.say:hover,.say.playing{opacity:1;background:#e6dff5}
+.playall{float:right;font:inherit;font-size:12.5px;border:1px solid #cfc4ea;background:#fff;color:#5d4a8f;border-radius:12px;padding:1px 9px;cursor:pointer}
+.row.playing .line{background:#efe9fb}
+.line:hover{background:#ece7f6}
+.line:focus-visible{outline:3px solid #b5a8dc}
+.line .en{display:block;font:17px/1.55 Georgia,"Times New Roman",serif}
+.line.frame .en{font-style:italic;color:#4b3f75}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.think{background:#fff6e3;border-radius:10px;padding:8px 14px;margin:10px 0}
+.rule{margin:2px 0 6px}
+.examples{display:grid;gap:6px;margin:6px 0 8px}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--soft);border-radius:8px;padding:7px 12px}
+.ex .en{font:16px/1.45 Georgia,serif;font-weight:700;color:#234f6b}
+.ex .zh{font-size:14px;color:var(--sub)}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:7px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:7px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt:focus-visible{outline:3px solid #91c3dd}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+.vocab{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.word{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;line-height:1.4}
+.word b{font:16px Georgia,serif;margin-right:4px}
+.word .tag{display:inline-block;font-size:11px;border-radius:9px;padding:0 6px;background:#e4eef5;color:#38617a}
+.word .tag.review{background:#efe9f8;color:#5d4a8f}
+.chunks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chunk{background:var(--soft);border-radius:8px;padding:7px 10px;font-size:14px;line-height:1.45}
+.chunk b{font-family:Georgia,serif;font-size:15px}
+.chunk i{display:block;font-family:Georgia,serif;font-style:normal;color:#234f6b}
+#answers{margin-top:22px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0 10px}
+.anskey{display:none}
+.nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
+.series-nav{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin:0 0 14px}
+.series-nav.bottom{margin:28px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.series-nav a{color:var(--accent);text-decoration:none;border:1px solid #b9cfdc;border-radius:7px;padding:5px 11px}
+.series-nav a:hover{background:#edf7ff}
+.series-nav .gap{flex:1}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .ex{grid-template-columns:1fr;gap:2px}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .vocab{grid-template-columns:repeat(2,1fr)}
+  .chunks{grid-template-columns:1fr}
+  h1{font-size:21px}
+  .toolbar{padding:6px 10px;gap:4px}
+  .toolbar button{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+
+/* ===== 紙本：一張雙面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .say,body.paper .playall,body.paper .toolbar,body.paper .series-nav,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;break-after:page;display:flex;flex-direction:column}
+body.paper .page:last-child{break-after:auto}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16.5pt;margin:0 0 2px;padding-bottom:3px}
+body.paper .title-zh{font-size:9.5pt}
+body.paper h2{font-size:12pt;margin:7px 0 2px}
+body.paper .story{padding:3px 9px;margin:5px 0;border-radius:7px}
+body.paper .story-label{font-size:8.5pt;margin:2px 0 0}
+body.paper .line{display:grid;grid-template-columns:55% 1fr;gap:9px;padding:1.6px 0;border-bottom:1px dashed #e2dcef}
+body.paper .line .en{font-size:10.6pt;line-height:1.32}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.35;padding-top:1px}
+body.paper .think{padding:3px 9px;margin:4px 0;font-size:9.5pt}
+body.paper .rule{font-size:9.5pt;margin:0 0 3px}
+body.paper .examples{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:3px 0 2px}
+body.paper .ex{display:block;padding:3px 8px;border-radius:5px}
+body.paper .ex .en{display:block;font-size:10pt;line-height:1.3}
+body.paper .ex .zh{display:block;font-size:8.5pt;line-height:1.3}
+body.paper .q{padding:2.6px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .qnum{min-width:16px;font-size:10pt}
+body.paper .stem-text{font-size:10.4pt;line-height:1.32}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px;line-height:1.3}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+/* 觀念一、二：題目和選項同一行 */
+body.paper .short .q{display:grid;grid-template-columns:1fr 92mm;gap:6px;align-items:center;padding:5.5px 0}
+body.paper .short .stem-text{font-size:10.8pt}
+body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
+/* 觀念三：選項四欄 */
+body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .vocab{gap:4px}
+body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
+body.paper .word b{font-size:10.3pt}
+body.paper .word .tag{font-size:7.5pt;padding:0 4px}
+body.paper .chunks{gap:5px}
+body.paper .chunk{padding:3px 7px;font-size:8.8pt;border-radius:5px;line-height:1.35}
+body.paper .chunk b,body.paper .chunk i{font-size:9.8pt}
+body.paper .page.tight .short .q{padding:2.4px 0}
+body.paper .page.tight .q{padding:1.8px 0}
+body.paper .page.tight .line{padding:0.6px 0}
+body.paper .page.tight h2{margin:5px 0 1px}
+body.paper .page.tight .examples{margin:2px 0 1px}
+body.paper .page.tight2 .vocab{gap:3px}
+body.paper .page.tight2 .word{padding:1px 5px}
+body.paper .page.tight2 .chunks{gap:3px}
+body.paper .page.tight2 .chunk{padding:1.5px 6px}
+body.paper .page.tight2 .think{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 .story{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 h2{margin:3px 0 1px}
+body.paper .page.tight2 .examples{gap:3px}
+body.paper .page.tight2 .ex{padding:2px 7px}
+body.paper .page.tight2 .rule{margin:0 0 2px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.6pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span class="status" id="progress">完成 0 / 15 題</span>
+  <div class="btns">
+    <button type="button" id="slowBtn">🐢 慢速朗讀</button>
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="lesson"></main>
+
+<script>
+/* ===== 單元資料：做新單元時只改這一段 ===== */
+const UNIT = {
+  code: "B30",
+  names: ["Luna"],
+  title: "總複習＋會考閱讀（最後一夜）",
+  night: "月亮圖書館 · 第三十夜",
+  storyTitle: "The Night the Moon Had Rain",
+  storyTitleZh: "月亮下雨的那一夜",
+  // f:1 = 外框（Mia 和 Ash），其餘是 Mia 講的故事
+  storyFront: [
+    {f:1, en:"Ash held the final letter from the twenty-ninth door. It was for Mia, but the name inside was Luna.", zh:"Ash 拿著第二十九扇門後的最後一封信。信是寫給 Mia 的，但裡面出現的名字是 Luna。"},
+    {f:1, en:"Mia touched the picture of the girl and the dragon. “Grandma told me this story when I was little,” she said.", zh:"Mia 輕碰女孩與龍的照片。「我小時候，奶奶曾告訴我這個故事，」她說。"},
+    {en:"Long ago, a girl named Luna visited the moon every night. There she met a young dragon who could not sleep.", zh:"很久以前，一個叫 Luna 的女孩每晚都去月亮上。她在那裡遇見一條睡不著的小龍。"},
+    {en:"“I am the loneliest dragon here,” he said. “You are the only dragon here,” Luna answered, and both laughed.", zh:"「我是這裡最孤單的龍，」他說。「這裡也只有你一條龍啊，」Luna 回答，兩人都笑了。"},
+    {en:"Luna brought stories, and the dragon listened. While she was reading, he watched the stars through the window.", zh:"Luna 帶來故事，龍就靜靜聽著。她讀書時，他透過窗戶看著星星。"},
+    {en:"Years passed. Luna grew older, but she kept writing. “I have saved every story for you,” she told him.", zh:"多年過去了。Luna 漸漸長大，卻持續寫故事。「我把每個故事都替你留下來了，」她告訴他。"},
+    {en:"One night, Luna did not come. The dragon waited beside her chair, and then he forgot why he was waiting.", zh:"有一晚，Luna 沒有來。龍在她的椅子旁等待，後來卻忘了自己為什麼在等。"},
+    {f:1, en:"Ash looked at Mia. “Did she leave him forever?” Mia held the letter closer. “Three puzzles first.”", zh:"Ash 看著 Mia。「她永遠離開他了嗎？」Mia 把信拿得更近。「先解三道謎題。」"}
+  ],
+  storyBack: [
+    {en:"Luna could not return to the moon, but she never stopped telling stories. She told them to her granddaughter, Mia.", zh:"Luna 無法再回到月亮上，但她從未停止說故事。她把故事說給孫女 Mia 聽。"},
+    {en:"“If you find the dragon, please read to him,” Luna said. “He will remember when he hears your voice.”", zh:"「如果你找到那條龍，請念故事給他聽，」Luna 說。「他聽見你的聲音，就會想起來。」"},
+    {en:"Mia opened the letter. “Dear Mia, these books were written for a friend who made me laugh when I was afraid.”", zh:"Mia 打開信。「親愛的 Mia，這些書是為一位朋友而寫的。我害怕的時候，他總能逗我笑。」"},
+    {en:"“I don't know whether he remembers me. But if he does, tell him my name. And tell him to sleep.”", zh:"「我不知道他是否還記得我。但如果他記得，請告訴他我的名字，也請他好好睡一覺。」"},
+    {en:"Ash remembered the song, the two cups, and the umbrella. His memory returned. “Luna,” he whispered. “She was braver than I was.”", zh:"Ash 想起那首歌、兩個杯子，還有那把雨傘。他的記憶回來了。「Luna，」他低聲說。「她比我勇敢。」"},
+    {en:"He opened the thirtieth door. Behind it was Luna's old chair, and a small umbrella was waiting beside it.", zh:"他打開第三十扇門。門後是 Luna 的舊椅子，旁邊放著一把小雨傘。"},
+    {f:1, en:"A drop of rain touched Ash's nose. Then another fell. He smiled, closed his eyes, and finally fell asleep.", zh:"一滴雨碰到了 Ash 的鼻子，接著又落下一滴。他笑了，閉上眼睛，終於睡著了。"},
+    {f:1, en:"Mia sat in the other chair as the moon grew quiet. “Good night, Ash,” she said. “Tomorrow, I'll bring another story.”", zh:"月亮漸漸安靜下來，Mia 坐在另一張椅子上。「晚安，Ash，」她說。「明天，我會再帶一個故事來。」"}
+  ],
+  think: "如果一個人忘記了曾經陪伴自己的人，故事、物品或一句話，哪一種最可能幫助他重新想起？為什麼？",
+  concepts: [
+    {
+      title: "觀念一｜時態總複習：從時間與情境找線索",
+      rule: "先讀完整句和前後文，再選時態：習慣用現在簡單式、正在發生用現在進行式、過去完成的事用過去式。過去某刻正在做的事用過去進行式；未來計畫或預測用未來式；從過去連到現在則用現在完成式。不要只看單一時間字，還要看動作與上下文。",
+      examples: [["I was reading when Dad came home.","爸爸回家時，我正在看書。"],["She has kept that letter for years.","她已經保存那封信好多年了。"]],
+      qs: [
+        {s:"Listen! Someone ___ at the door right now.", o:["knocks","knocked","is knocking"], a:2,
+         h1:"Listen! 和 right now 都描述眼前發生的事。", h2:"現在正在發生，用 be 動詞加動詞的 -ing 形式。", ok:"is knocking 表示現在正有人敲門。"},
+        {s:"Mia usually ___ to her grandmother on Sundays.", o:["talks","is talking","talked"], a:0,
+         h1:"usually 和 on Sundays 表示固定習慣。", h2:"單數第三人稱的一般現在式，動詞要有對應字尾。", ok:"talks 表示平常的習慣。"},
+        {s:"When the phone rang last night, I ___ a book.", o:["read","am reading","was reading"], a:2,
+         h1:"電話在昨晚響起，當時另一個動作正在進行。", h2:"過去某個時刻正在做的事，用過去的 be 動詞加 -ing。", ok:"was reading 表示電話響時正在閱讀。"},
+        {s:"We ___ in this town since 2020, and we still live here.", o:["have lived","lived","are living"], a:0,
+         h1:"since 2020 和 still live here 表示過去開始、延續到現在。", h2:"這個時態用 have / has 加過去分詞。", ok:"have lived 表示從 2020 年住到現在。"},
+        {s:"The bus ___ at seven tomorrow morning. I bought my ticket yesterday.", o:["left","will leave","was leaving"], a:1,
+         h1:"tomorrow morning 是還沒發生的時間。", h2:"題目提供未來預定發生的事件，選可以表達未來的形式。", ok:"will leave 表示公車明天早上將出發。"}
+      ]
+    },
+    {
+      title: "觀念二｜句型總複習：看懂句子裡的關係",
+      rule: "先判斷空格在句子裡的工作：修飾人的關係子句可用 who；間接問句用直述句語序；被動式用 be＋過去分詞。動詞後面接 to V 或 V-ing 要看前面的動詞；比較兩者則注意比較級與 than。",
+      examples: [["This is the girl who helped me.","這就是幫助我的那個女孩。"],["I don't know where the letter was found.","我不知道那封信是在哪裡被找到的。"]],
+      qs: [
+        {s:"The woman ___ lives next door tells wonderful stories.", o:["where","which","who"], a:2,
+         h1:"空格後面描述的是住在隔壁的那位女士。", h2:"關係子句修飾人的主詞時，選用指人的關係代名詞。", ok:"who lives next door 修飾 the woman。"},
+        {s:"Mia: Do you know ___?\nAsh: Yes. It is behind the last door.", o:["where the letter is","where does the letter go","where is the letter"], a:0,
+         h1:"Do you know 後面接的是放進句子裡的疑問內容。", h2:"間接問句使用疑問詞＋主詞＋動詞的直述句語序。", ok:"where the letter is 是正確的間接問句語序。"},
+        {s:"The stories ___ by Luna many years ago.", o:["were written","have written","wrote"], a:0,
+         h1:"stories 是被寫出來的，不是自己寫故事。", h2:"過去時間的被動式，用過去式 be 動詞加過去分詞。", ok:"were written 表示故事是由 Luna 寫的。"},
+        {s:"Ben enjoys ___ stories to his little sister every night.", o:["tell","to tell","telling"], a:2,
+         h1:"空格前面是 enjoys，這個動詞有固定搭配。", h2:"表示喜歡做某事時，enjoy 後面接動名詞形式。", ok:"enjoys telling 是正確搭配。"},
+        {s:"This road is ___ than the old one, so we can arrive sooner.", o:["short","shorter","shortest"], a:1,
+         h1:"than 表示正在比較兩條路。", h2:"短形容詞比較兩個對象，通常使用比較級字尾。", ok:"shorter than 表示比舊路更短。"}
+      ]
+    },
+    {
+      title: "觀念三｜會考閱讀：讀懂最後一夜",
+      rule: "閱讀題不能只看到一個熟悉的字就作答，要回到故事找證據。主旨題看整個故事的變化，細節題找明確描述，推論題結合兩處線索；字義與心情題則要依上下文判斷。以下五題都根據本課的英文故事作答。",
+      examples: [["Why did Luna write the stories?","Luna 為什麼寫下那些故事？"],["How did Ash feel at the end?","故事結尾時，Ash 的心情如何？"]],
+      qs: [
+        {s:"What is the main idea of the story?", o:["A dragon learns to fly in the rain.","Winning a race is the best way to make friends.","A girl helps a dragon remember an old friendship.","A grandmother opens a new train station."], a:2,
+         h1:"想想最後一封信、Mia 和 Ash 找回的記憶。", h2:"主旨要涵蓋整個故事，不只是其中一個物品或場景。", ok:"整個故事的核心是 Mia 幫助 Ash 想起 Luna 與往日的友誼。"},
+        {s:"Why did Luna tell stories to Mia?", o:["She wanted Mia to find the dragon one day.","She wanted Mia to win a school prize.","She needed Mia to repair the moon.","She wanted Mia to sell her books."], a:0,
+         h1:"看 storyBack 裡 Luna 對 Mia 的請求。", h2:"奶奶交代 Mia 找到龍之後，要讀故事給他聽。", ok:"Luna 希望 Mia 有一天能找到 Ash，幫他想起往事。"},
+        {s:"What can we learn about the letters and books in the library?", o:["They were made to teach dragons to fly.","They helped Ash remember Luna.","Ash wrote all of them for Mia.","They were lost at a train station."], a:1,
+         h1:"注意 Ash 看完信之後想起了哪些東西。", h2:"信中提到那些故事是為一位朋友所寫，而 Ash 想起了她的名字。", ok:"書與信保留了 Luna 和 Ash 的共同回憶。"},
+        {s:"In the sentence “Luna could not return to the moon,” what does 'return' mean?", o:["grow older","write again","fall asleep","go back"], a:3,
+         h1:"她曾經每晚去月亮上，後來卻做不到。", h2:"這個動詞表示回到以前去過的地方。", ok:"return 在這裡是『回去；返回』。"},
+        {s:"How did Ash most likely feel when he finally fell asleep?", o:["Angry because Mia read his letter.","Worried because the rain was too heavy.","Excited because he won a race.","Peaceful because he remembered his friend."], a:3,
+         h1:"故事說他想起了 Luna，還微笑著閉上眼睛。", h2:"依照記起朋友、露出微笑和終於入睡的情節判斷心情。", ok:"Ash 找回回憶後安心地睡著了，最符合 peaceful。"}
+      ]
+    }
+  ],
+  vocab: [
+    ["memory","n.","記憶；回憶","新"],
+    ["granddaughter","n.","孫女；外孫女","新"],
+    ["return","v.","返回","複習"],
+    ["save","v.","保存","新"],
+    ["drop","n.","一滴","新"],
+    ["asleep","adj.","睡著的","新"],
+    ["picture","n.","照片；圖片","複習"],
+    ["song","n.","歌；歌曲","複習"],
+    ["brave","adj.","勇敢的","複習"],
+    ["umbrella","n.","雨傘","複習"]
+  ],
+  chunks: [
+    ["long ago","很久以前","Long ago, a girl named Luna visited the moon every night."],
+    ["fall asleep","入睡","He smiled, closed his eyes, and finally fell asleep."],
+    ["did not come","沒有來","One night, Luna did not come."]
+  ]
+};
+/* ===== 以下是版型，做新單元不用改（新增一夜時，把 SERIES_LAST 改成最新的單元號碼） ===== */
+const SERIES_LAST = 30;
+const L = ["A","B","C","D"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const storyHTML = lines => lines.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en">${esc(l.en)}</span><span class="zh">${esc(l.zh)}</span></button></div>`).join("");
+function conceptHTML(c, ci){
+  const kind = c.qs[0].o.length > 3 ? "long" : "short";
+  let h = `<section class="concept ${kind}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
+  c.qs.forEach((q,qi)=>{
+    h += `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+  });
+  return h + `</section>`;
+}
+function navHTML(pos){
+  const n = parseInt(UNIT.code.replace(/\D/g, ""), 10), local = location.pathname.endsWith(".html");
+  const href = k => { const id = "b" + String(k).padStart(2, "0"); return local ? id + ".html" : "../" + id + "/"; };
+  const home = local ? "../web/index.html" : "../";
+  const prev = n > 1 ? `<a href="${href(n - 1)}">← 第 ${n - 1} 夜</a>` : "";
+  const next = n < SERIES_LAST ? `<a href="${href(n + 1)}">第 ${n + 1} 夜 →</a>` : "";
+  return `<nav class="series-nav ${pos}">${prev}<span class="gap"></span><a href="${home}">月亮圖書館目錄</a><span class="gap"></span>${next}</nav>`;
+}
+function render(){
+  const u = UNIT;
+  const head = `<header><div class="eyebrow">${u.night}</div><h1>${u.code}｜${u.title}</h1><p class="title-zh">${u.storyTitle}｜${u.storyTitleZh}</p></header>`;
+  const front = `<section class="story"><div class="story-label">故事（上）<button type="button" class="playall">🔊 全部播放</button></div>${storyHTML(u.storyFront)}<p class="tap-tip">點一下英文句子可以看中文。</p></section>`;
+  const back = `<section class="story"><div class="story-label">故事（下）<button type="button" class="playall">🔊 全部播放</button></div>${storyHTML(u.storyBack)}</section><div class="think"><b>想一想：</b>${esc(u.think)}</div>`;
+  const vocab = `<h2>Vocabulary｜10 個單字</h2><div class="vocab">${u.vocab.map(v=>`<div class="word"><b>${v[0]}</b>${v[1]} ${v[2]} <span class="tag${v[3]==="複習"?" review":""}">${v[3]}</span></div>`).join("")}</div>`;
+  const chunks = `<h2>Chunks｜片語</h2><div class="chunks">${u.chunks.map(c=>`<div class="chunk"><b>${c[0]}</b> ${c[1]}<i>${esc(c[2])}</i></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2>${u.concepts.map((c,ci)=>`<b>練習 ${ci+1}</b><ol>${c.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>`).join("")}</section>`;
+  const anskey = `<div class="anskey"><b>答案</b>　${u.concepts.map((c,ci)=>`練習 ${ci+1}：${c.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join(" ")}`).join("　｜　")}</div>`;
+  document.getElementById("lesson").innerHTML =
+    `${navHTML("top")}<div class="page">${head}${front}${conceptHTML(u.concepts[0],0)}${conceptHTML(u.concepts[1],1)}</div>` +
+    `<div class="page">${conceptHTML(u.concepts[2],2)}${back}${vocab}${chunks}${answers}${anskey}</div>${navHTML("bottom")}`;
+}
+const total = UNIT.concepts.reduce((n,c)=>n+c.qs.length,0);
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `完成 ${done.size} / ${total} 題`; };
+document.addEventListener("click", e=>{
+  const say = e.target.closest(".say"), all = e.target.closest(".playall");
+  if(say){ speakRows([say.closest(".row")]); return; }
+  if(all){ speakRows([...all.closest(".story").querySelectorAll(".row")]); return; }
+  const line = e.target.closest(".line");
+  if(line){ line.classList.toggle("show"); line.setAttribute("aria-expanded", line.classList.contains("show")); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), ci = +qEl.dataset.c, qi = +qEl.dataset.q, key = ci+"-"+qi;
+  const q = UNIT.concepts[ci].qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){
+    btn.classList.add("correct"); done.add(key);
+    qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true);
+    fb.textContent = "✓ 對了。" + q.ok; updateProgress();
+  } else {
+    tries[key] = (tries[key]||0) + 1; btn.classList.add("wrong");
+    fb.textContent = tries[key] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2;
+  }
+});
+// 朗讀（手機、電腦內建語音，不用網路檔案）
+let slow = false;
+function speakRows(rows){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel(); document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing"));
+  const voice = speechSynthesis.getVoices().find(v=>/^en(-|_)US/i.test(v.lang)) || speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
+  rows.forEach(row=>{
+    const u = new SpeechSynthesisUtterance(row.querySelector(".en").textContent.replace(/[“”]/g,'"'));
+    u.lang = "en-US"; u.rate = slow ? 0.7 : 0.95; if(voice) u.voice = voice;
+    u.onstart = ()=>{ document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing")); row.classList.add("playing"); row.querySelector(".say").classList.add("playing"); };
+    u.onend = ()=>{ row.classList.remove("playing"); row.querySelector(".say").classList.remove("playing"); };
+    speechSynthesis.speak(u);
+  });
+}
+if(!("speechSynthesis" in window)) document.documentElement.classList.add("nospeech");
+document.getElementById("slowBtn").onclick = e=>{ slow = !slow; e.target.textContent = slow ? "🐇 正常速度" : "🐢 慢速朗讀"; };
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+// 列印時切換成雙面 A4 版面
+// 某一面快超出 A4 時，只收緊那一面的行距（不縮字）
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight","tight2");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom() > p.clientHeight - reserve - 12) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+render();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>

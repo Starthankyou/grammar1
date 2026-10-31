@@ -104,6 +104,7 @@ body.paper .who{font-size:8.6pt}
 body.paper .line .en{font-size:10.5pt;line-height:1.3}
 body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.3}
 body.paper .patterns{gap:5px}
+body.paper .patterns.many{grid-template-columns:1fr 1fr 1fr}
 body.paper .pat{padding:3px 8px;border-radius:6px}
 body.paper .pat .head{font-size:12pt}
 body.paper .pat .form{font-size:10pt;margin:0}
@@ -204,7 +205,7 @@ function render(){
   const T = Object.assign({scene:"情境｜這樣說", patterns:"句型｜一眼分辨", qs:"練習｜會考式", qs2:"題組練習", recall:"單字回想｜看中文寫英文"}, u.headings || {});
   let p1 = `<header><div class="eyebrow">${esc(u.kind)}</div><h1>${esc(u.code)}｜${esc(u.title)}</h1></header>`;
   if (u.scene?.length) p1 += `<h2>${esc(T.scene)}<button type="button" class="playall">🔊 全部播放</button></h2><section class="scene">${u.scene.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line"><span class="who">${esc(l.who)}</span><span><span class="en">${esc(l.en)}</span></span><span class="zh">${esc(l.zh)}</span></button></div>`).join("")}</section><p class="tap-tip">點一下句子可以看中文，按 🔊 聽英文。</p>`;
-  if (u.patterns?.length) p1 += `<h2>${esc(T.patterns)}</h2><div class="patterns">${u.patterns.map(p=>`<div class="pat"><div class="head">${esc(p.head)}</div><div class="form">${esc(p.form)}</div><div class="rule">${esc(p.rule)}</div><div class="en">${esc(p.en)}</div><div class="zh">${esc(p.zh)}</div></div>`).join("")}</div>`;
+  if (u.patterns?.length) p1 += `<h2>${esc(T.patterns)}</h2><div class="patterns${u.patterns.length > 4 ? " many" : ""}">${u.patterns.map(p=>`<div class="pat"><div class="head">${esc(p.head)}</div><div class="form">${esc(p.form)}</div><div class="rule">${esc(p.rule)}</div><div class="en">${esc(p.en)}</div><div class="zh">${esc(p.zh)}</div></div>`).join("")}</div>`;
   if (u.tip) p1 += `<div class="tip">💡 ${esc(u.tip)}</div>`;
   if (u.words?.length) p1 += `<div class="words">${u.words.map(w=>`<span><b>${esc(w[0])}</b> ${esc(w[1])}</span>`).join("")}</div>`;
   if (split > 0) p1 += `<h2>${esc(T.qs)}</h2>` + u.qs.slice(0, split).map((q,i)=>qHTML(q,i)).join("");

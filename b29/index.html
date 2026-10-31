@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>B29｜比較級與最高級</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:28px 32px 40px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 13px;cursor:pointer}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:25px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+.title-zh{color:var(--sub);margin:0}
+h2{font-size:19px;color:var(--accent);margin:26px 0 6px}
+.story{background:var(--moon);border-radius:12px;padding:8px 14px;margin:10px 0}
+.story-label{font-size:13px;color:var(--moonline);font-weight:700;margin:4px 0 2px}
+.line{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:7px 4px;cursor:pointer;color:inherit;font:inherit}
+.row{display:flex;align-items:flex-start;gap:2px}
+.row .line{flex:1;min-width:0}
+.row:last-of-type .line{border-bottom:0}
+.say{flex:none;border:0;background:none;cursor:pointer;font-size:15px;line-height:1;padding:9px 3px;opacity:.55;border-radius:6px}
+.say:hover,.say.playing{opacity:1;background:#e6dff5}
+.playall{float:right;font:inherit;font-size:12.5px;border:1px solid #cfc4ea;background:#fff;color:#5d4a8f;border-radius:12px;padding:1px 9px;cursor:pointer}
+.row.playing .line{background:#efe9fb}
+.line:hover{background:#ece7f6}
+.line:focus-visible{outline:3px solid #b5a8dc}
+.line .en{display:block;font:17px/1.55 Georgia,"Times New Roman",serif}
+.line.frame .en{font-style:italic;color:#4b3f75}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.think{background:#fff6e3;border-radius:10px;padding:8px 14px;margin:10px 0}
+.rule{margin:2px 0 6px}
+.examples{display:grid;gap:6px;margin:6px 0 8px}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--soft);border-radius:8px;padding:7px 12px}
+.ex .en{font:16px/1.45 Georgia,serif;font-weight:700;color:#234f6b}
+.ex .zh{font-size:14px;color:var(--sub)}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:7px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:7px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt:focus-visible{outline:3px solid #91c3dd}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+.vocab{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.word{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;line-height:1.4}
+.word b{font:16px Georgia,serif;margin-right:4px}
+.word .tag{display:inline-block;font-size:11px;border-radius:9px;padding:0 6px;background:#e4eef5;color:#38617a}
+.word .tag.review{background:#efe9f8;color:#5d4a8f}
+.chunks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chunk{background:var(--soft);border-radius:8px;padding:7px 10px;font-size:14px;line-height:1.45}
+.chunk b{font-family:Georgia,serif;font-size:15px}
+.chunk i{display:block;font-family:Georgia,serif;font-style:normal;color:#234f6b}
+#answers{margin-top:22px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0 10px}
+.anskey{display:none}
+.nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
+.series-nav{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin:0 0 14px}
+.series-nav.bottom{margin:28px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.series-nav a{color:var(--accent);text-decoration:none;border:1px solid #b9cfdc;border-radius:7px;padding:5px 11px}
+.series-nav a:hover{background:#edf7ff}
+.series-nav .gap{flex:1}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .ex{grid-template-columns:1fr;gap:2px}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .vocab{grid-template-columns:repeat(2,1fr)}
+  .chunks{grid-template-columns:1fr}
+  h1{font-size:21px}
+  .toolbar{padding:6px 10px;gap:4px}
+  .toolbar button{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+
+/* ===== 紙本：一張雙面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .say,body.paper .playall,body.paper .toolbar,body.paper .series-nav,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;break-after:page;display:flex;flex-direction:column}
+body.paper .page:last-child{break-after:auto}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16.5pt;margin:0 0 2px;padding-bottom:3px}
+body.paper .title-zh{font-size:9.5pt}
+body.paper h2{font-size:12pt;margin:7px 0 2px}
+body.paper .story{padding:3px 9px;margin:5px 0;border-radius:7px}
+body.paper .story-label{font-size:8.5pt;margin:2px 0 0}
+body.paper .line{display:grid;grid-template-columns:55% 1fr;gap:9px;padding:1.6px 0;border-bottom:1px dashed #e2dcef}
+body.paper .line .en{font-size:10.6pt;line-height:1.32}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.35;padding-top:1px}
+body.paper .think{padding:3px 9px;margin:4px 0;font-size:9.5pt}
+body.paper .rule{font-size:9.5pt;margin:0 0 3px}
+body.paper .examples{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:3px 0 2px}
+body.paper .ex{display:block;padding:3px 8px;border-radius:5px}
+body.paper .ex .en{display:block;font-size:10pt;line-height:1.3}
+body.paper .ex .zh{display:block;font-size:8.5pt;line-height:1.3}
+body.paper .q{padding:2.6px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .qnum{min-width:16px;font-size:10pt}
+body.paper .stem-text{font-size:10.4pt;line-height:1.32}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px;line-height:1.3}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+/* 觀念一、二：題目和選項同一行 */
+body.paper .short .q{display:grid;grid-template-columns:1fr 92mm;gap:6px;align-items:center;padding:5.5px 0}
+body.paper .short .stem-text{font-size:10.8pt}
+body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
+/* 觀念三：選項四欄 */
+body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .vocab{gap:4px}
+body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
+body.paper .word b{font-size:10.3pt}
+body.paper .word .tag{font-size:7.5pt;padding:0 4px}
+body.paper .chunks{gap:5px}
+body.paper .chunk{padding:3px 7px;font-size:8.8pt;border-radius:5px;line-height:1.35}
+body.paper .chunk b,body.paper .chunk i{font-size:9.8pt}
+body.paper .page.tight .short .q{padding:2.4px 0}
+body.paper .page.tight .q{padding:1.8px 0}
+body.paper .page.tight .line{padding:0.6px 0}
+body.paper .page.tight h2{margin:5px 0 1px}
+body.paper .page.tight .examples{margin:2px 0 1px}
+body.paper .page.tight2 .vocab{gap:3px}
+body.paper .page.tight2 .word{padding:1px 5px}
+body.paper .page.tight2 .chunks{gap:3px}
+body.paper .page.tight2 .chunk{padding:1.5px 6px}
+body.paper .page.tight2 .think{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 .story{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 h2{margin:3px 0 1px}
+body.paper .page.tight2 .examples{gap:3px}
+body.paper .page.tight2 .ex{padding:2px 7px}
+body.paper .page.tight2 .rule{margin:0 0 2px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.6pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span class="status" id="progress">完成 0 / 15 題</span>
+  <div class="btns">
+    <button type="button" id="slowBtn">🐢 慢速朗讀</button>
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="lesson"></main>
+
+<script>
+/* ===== 單元資料：做新單元時只改這一段 ===== */
+const UNIT = {
+  code: "B29",
+  names: ["Robo","Mimi","Ben"],
+  title: "比較級與最高級",
+  night: "月亮圖書館 · 第二十九夜",
+  storyTitle: "The Slowest Runner",
+  storyTitleZh: "跑得最慢的人",
+  // f:1 = 外框（Mia 和 Ash），其餘是 Mia 講的故事
+  storyFront: [
+    {f:1, en:"Ash held the two letters from the twenty-eighth door. Both began with the same name, but he could not read the rest.", zh:"Ash 拿著第二十八扇門後的兩封信。兩封信都以同一個名字開頭，但他看不清其餘的字。"},
+    {f:1, en:"“My grandmother tells the best stories in our family,” Mia said. “Here is one about a race.”", zh:"「我奶奶是我們家最會說故事的人，」Mia 說。「我講一個比賽的故事給你聽。」"},
+    {en:"At school, Ben was the fastest runner in his class. Robo was slower than Ben, and Mimi was the slowest of the three.", zh:"在學校裡，Ben 是班上跑得最快的人。Robo 比 Ben 慢，而 Mimi 是三個人裡最慢的。"},
+    {en:"Their teacher planned a race across the park. The prize was a small golden bell.", zh:"老師安排了一場穿越公園的賽跑。獎品是一個金色的小鈴鐺。"},
+    {en:"“I am not as fast as you,” Mimi told Ben. “Then run beside me,” Ben said.", zh:"「我沒有你跑得快，」Mimi 對 Ben 說。「那就跑在我旁邊，」Ben 說。"},
+    {en:"On Saturday, the path was wetter than usual. The bridge was narrow, and the river was high.", zh:"星期六，小路比平常更濕。橋很窄，河水也很高。"},
+    {en:"Ben ran ahead, but Mimi stopped near the bridge. She heard a small voice under it.", zh:"Ben 跑在前面，但 Mimi 在橋附近停了下來。她聽到橋下傳來微弱的聲音。"},
+    {f:1, en:"Ash raised his head. “Did the slowest runner lose?” Mia smiled. “Three puzzles first.”", zh:"Ash 抬起頭。「跑得最慢的人輸了嗎？」Mia 笑了。「先解三道謎題。」"}
+  ],
+  storyBack: [
+    {en:"A little dog was under the bridge. It was colder and weaker than the other dogs in the park.", zh:"一隻小狗待在橋下。牠比公園裡其他狗更冷，也更虛弱。"},
+    {en:"Mimi called Ben. “You are stronger than I am. Can you help?” Ben ran back immediately.", zh:"Mimi 叫住 Ben。「你比我有力氣。你能幫忙嗎？」Ben 立刻跑回來。"},
+    {en:"Robo found a longer path down to the river. It was safer than the bridge, although it took more time.", zh:"Robo 找到一條比較長、通往河邊的路。雖然比較花時間，但比走橋安全。"},
+    {en:"Together, they carried the dog to the teacher. Their clothes were dirty, and the race was over.", zh:"他們一起把狗抱到老師那裡。衣服弄髒了，比賽也結束了。"},
+    {en:"“We lost,” Ben said. The teacher shook her head. “The fastest runner finished first. But you three made the better choice.”", zh:"「我們輸了，」Ben 說。老師搖搖頭。「跑得最快的人第一個到終點，但你們三個做了更好的選擇。」"},
+    {en:"She gave the little bell to Mimi. “Sometimes the slowest person hears what others miss.” Mimi rang it once.", zh:"她把小鈴鐺交給 Mimi。「有時候，走得最慢的人反而聽見別人錯過的聲音。」Mimi 搖了一下鈴鐺。"},
+    {f:1, en:"Ash read a line in the old letter: “You were always braver than me.” Mia said, “Grandma once told me about the loneliest dragon on the moon.”", zh:"Ash 讀出舊信裡的一行字：「你一直都比我勇敢。」Mia 說：「奶奶曾跟我說過月亮上最孤單的龍。」"},
+    {f:1, en:"Ash opened the twenty-ninth door. Behind it was a picture of a girl and a dragon, and one final letter addressed to Mia.", zh:"Ash 打開第二十九扇門。門後有一張女孩與龍的照片，還有一封寫給 Mia 的最後一封信。"}
+  ],
+  think: "如果比賽的第一名和做出最好選擇的人不同，你覺得『贏』應該怎麼定義？",
+  concepts: [
+    {
+      title: "觀念一｜比較級：比另一個更……",
+      rule: "比較兩個人或東西，常用形容詞比較級＋than：短形容詞加 -er，較長的常用 more＋形容詞。不規則變化要記住 good → better、bad → worse；不能同時加 more 和 -er。",
+      examples: [["This road is longer than that road.","這條路比那條路長。"],["Today is better than yesterday.","今天比昨天更好。"]],
+      qs: [
+        {s:"The river is ___ than it was yesterday.", o:["highest","higher","high"], a:1,
+         h1:"than 表示正在比較兩個時候。", h2:"短形容詞比較兩者時，通常在字尾加上比較級字尾。", ok:"higher than 表示比昨天更高。"},
+        {s:"Mimi's bag is ___ than Ben's bag. She needs help carrying it.", o:["heavier","heaviest","heavy"], a:0,
+         h1:"than 指出兩個書包正在比較。", h2:"heavy 的字尾 y 要先改變再接比較級字尾。", ok:"heavy → heavier，表示比較重。"},
+        {s:"This question is ___ than the last one, so more students can answer it.", o:["easy","easiest","easier"], a:2,
+         h1:"現在和上一題比較，不是在選全部之中最容易的。", h2:"easy 是 y 結尾的形容詞，比較級會換掉 y。", ok:"easier than 表示比上一題容易。"},
+        {s:"My cold is getting ___. I should see a doctor.", o:["worst","bad","worse"], a:2,
+         h1:"後一句說他應該看醫生，表示狀況變得更不好。", h2:"bad 的比較級是不規則形式，不是加 -er。", ok:"getting worse 表示病況正在變糟。"},
+        {s:"This picture is ___ beautiful than that one.", o:["more","most","many"], a:0,
+         h1:"than 表示比較兩張照片。", h2:"beautiful 這種較長的形容詞，通常在前面加表示比較的字。", ok:"more beautiful than 表示比另一張更美。"}
+      ]
+    },
+    {
+      title: "觀念二｜最高級：一群之中最……",
+      rule: "在三個以上的人或物中找出『最……』，通常用 the＋形容詞最高級：短字加 -est，較長的字前面加 most。範圍可用 in＋地方，或 of＋群體；good 的最高級是 best。",
+      examples: [["Mimi is the slowest of the three.","Mimi 是三個之中最慢的。"],["This is the most interesting story in the book.","這是書中最有趣的故事。"]],
+      qs: [
+        {s:"Of the five boys, Kevin is the ___. He can reach the top shelf.", o:["taller","tallest","tall"], a:1,
+         h1:"Of the five boys 指的是五個人中的一個。", h2:"三個以上的人比較，選最突出的那一個，要用最高級。", ok:"the tallest 表示五個男孩中最高的。"},
+        {s:"This is the ___ room in our school. It has space for sixty students.", o:["largest","larger","large"], a:0,
+         h1:"in our school 表示比較範圍是整所學校。", h2:"前面已經有 the，句意是學校裡面積最大的教室。", ok:"the largest 表示全校最大的房間。"},
+        {s:"Of all the stories, this is the ___ interesting one.", o:["more","most","much"], a:1,
+         h1:"Of all the stories 表示是從全部故事中選一個。", h2:"interesting 是較長的形容詞，最高級通常把變化放在前面。", ok:"the most interesting 表示所有故事中最有趣的。"},
+        {s:"Three teams played today. The blue team was the ___. It won every game.", o:["best","good","better"], a:0,
+         h1:"三支隊伍中，藍隊每場都贏。", h2:"good 的最高級是不規則變化；這裡不是只比較兩隊。", ok:"the best 表示三隊中表現最好的。"},
+        {s:"Winter is the ___ season of the year in this town.", o:["colder","cold","coldest"], a:2,
+         h1:"一年有好幾個季節，正在找其中最冷的。", h2:"cold 是短形容詞，最高級加在字尾。", ok:"the coldest 表示一年中最冷的季節。"}
+      ]
+    },
+    {
+      title: "觀念三｜as…as：一樣……／沒有那麼……",
+      rule: "說兩者程度相同，用 as＋形容詞原級＋as；說『不如……』，用 not as＋形容詞原級＋as。比較時要確認兩邊比較的是同一類事物，別把人的身高拿去和房子本身比較。",
+      examples: [["My bag is as heavy as yours.","我的書包和你的一樣重。"],["This path is not as safe as the other one.","這條路沒有另一條那麼安全。"]],
+      qs: [
+        {s:"Amy: My sister is 160 cm tall. I'm 160 cm tall, too.\nBen: So you are ___ your sister.", o:["the tallest of","taller than","as tall as","not as tall as"], a:2,
+         h1:"兩個人的身高都是 160 公分。", h2:"兩者相同程度，使用兩個相同的字夾住形容詞原級。", ok:"as tall as 表示兩人一樣高。"},
+        {s:"Mia: This box weighs five kilos. That one weighs eight kilos.\nAsh: So this box is ___ that one.", o:["the heaviest of","heavier than","as heavy as","not as heavy as"], a:3,
+         h1:"第一個箱子五公斤，另一個八公斤。", h2:"較輕的箱子『沒有另一個那麼重』，用否定的同程度比較。", ok:"not as heavy as 表示沒有另一個那麼重。"},
+        {s:"Robo: Ben's bike is new. My bike is new, too. Both work well.\nMimi: Then Robo's bike is ___ Ben's.", o:["not as new as","as new as","the newest of","newer than"], a:1,
+         h1:"兩台腳踏車都說是新的，沒有哪台比較新。", h2:"要表示兩樣東西具有相同程度的特徵，使用 as…as。", ok:"as new as 表示兩台車一樣新。"},
+        {s:"Dad: Your brother is 12, and you are 15.\nMia: I know. He isn't ___ I am.", o:["as old as","oldest than","the oldest of","older than"], a:0,
+         h1:"弟弟比 Mia 小三歲，而且句中已有 isn't。", h2:"否定句表示他沒有跟 Mia 一樣大；空格後面已經有 I am。", ok:"isn't as old as 表示年紀沒有另一人那麼大。"},
+        {s:"Ben: My room is larger than Leo's room.\nMimi: Then Leo's room is ___ yours.", o:["the largest of","larger than","as large as","not as large as"], a:3,
+         h1:"第一句已經告訴你 Ben 的房間比較大。", h2:"反過來說，Leo 的房間就沒有 Ben 的房間那麼大。", ok:"not as large as 說明 Leo 的房間較小。"}
+      ]
+    }
+  ],
+  vocab: [
+    ["race","n.","賽跑；競賽","新"],
+    ["prize","n.","獎品","新"],
+    ["bridge","n.","橋","新"],
+    ["river","n.","河流","複習"],
+    ["path","n.","小路；路徑","新"],
+    ["weak","adj.","虛弱的","新"],
+    ["picture","n.","照片；圖片","複習"],
+    ["teacher","n.","老師","複習"],
+    ["brave","adj.","勇敢的","複習"],
+    ["voice","n.","聲音","複習"]
+  ],
+  chunks: [
+    ["run ahead","跑到前面","Ben ran ahead, but Mimi stopped near the bridge."],
+    ["run back","跑回來","Ben ran back immediately."],
+    ["of the three","三者之中","Robo was slower than Ben, and Mimi was the slowest of the three."]
+  ]
+};
+/* ===== 以下是版型，做新單元不用改（新增一夜時，把 SERIES_LAST 改成最新的單元號碼） ===== */
+const SERIES_LAST = 30;
+const L = ["A","B","C","D"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const storyHTML = lines => lines.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en">${esc(l.en)}</span><span class="zh">${esc(l.zh)}</span></button></div>`).join("");
+function conceptHTML(c, ci){
+  const kind = c.qs[0].o.length > 3 ? "long" : "short";
+  let h = `<section class="concept ${kind}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
+  c.qs.forEach((q,qi)=>{
+    h += `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+  });
+  return h + `</section>`;
+}
+function navHTML(pos){
+  const n = parseInt(UNIT.code.replace(/\D/g, ""), 10), local = location.pathname.endsWith(".html");
+  const href = k => { const id = "b" + String(k).padStart(2, "0"); return local ? id + ".html" : "../" + id + "/"; };
+  const home = local ? "../web/index.html" : "../";
+  const prev = n > 1 ? `<a href="${href(n - 1)}">← 第 ${n - 1} 夜</a>` : "";
+  const next = n < SERIES_LAST ? `<a href="${href(n + 1)}">第 ${n + 1} 夜 →</a>` : "";
+  return `<nav class="series-nav ${pos}">${prev}<span class="gap"></span><a href="${home}">月亮圖書館目錄</a><span class="gap"></span>${next}</nav>`;
+}
+function render(){
+  const u = UNIT;
+  const head = `<header><div class="eyebrow">${u.night}</div><h1>${u.code}｜${u.title}</h1><p class="title-zh">${u.storyTitle}｜${u.storyTitleZh}</p></header>`;
+  const front = `<section class="story"><div class="story-label">故事（上）<button type="button" class="playall">🔊 全部播放</button></div>${storyHTML(u.storyFront)}<p class="tap-tip">點一下英文句子可以看中文。</p></section>`;
+  const back = `<section class="story"><div class="story-label">故事（下）<button type="button" class="playall">🔊 全部播放</button></div>${storyHTML(u.storyBack)}</section><div class="think"><b>想一想：</b>${esc(u.think)}</div>`;
+  const vocab = `<h2>Vocabulary｜10 個單字</h2><div class="vocab">${u.vocab.map(v=>`<div class="word"><b>${v[0]}</b>${v[1]} ${v[2]} <span class="tag${v[3]==="複習"?" review":""}">${v[3]}</span></div>`).join("")}</div>`;
+  const chunks = `<h2>Chunks｜片語</h2><div class="chunks">${u.chunks.map(c=>`<div class="chunk"><b>${c[0]}</b> ${c[1]}<i>${esc(c[2])}</i></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2>${u.concepts.map((c,ci)=>`<b>練習 ${ci+1}</b><ol>${c.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>`).join("")}</section>`;
+  const anskey = `<div class="anskey"><b>答案</b>　${u.concepts.map((c,ci)=>`練習 ${ci+1}：${c.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join(" ")}`).join("　｜　")}</div>`;
+  document.getElementById("lesson").innerHTML =
+    `${navHTML("top")}<div class="page">${head}${front}${conceptHTML(u.concepts[0],0)}${conceptHTML(u.concepts[1],1)}</div>` +
+    `<div class="page">${conceptHTML(u.concepts[2],2)}${back}${vocab}${chunks}${answers}${anskey}</div>${navHTML("bottom")}`;
+}
+const total = UNIT.concepts.reduce((n,c)=>n+c.qs.length,0);
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `完成 ${done.size} / ${total} 題`; };
+document.addEventListener("click", e=>{
+  const say = e.target.closest(".say"), all = e.target.closest(".playall");
+  if(say){ speakRows([say.closest(".row")]); return; }
+  if(all){ speakRows([...all.closest(".story").querySelectorAll(".row")]); return; }
+  const line = e.target.closest(".line");
+  if(line){ line.classList.toggle("show"); line.setAttribute("aria-expanded", line.classList.contains("show")); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), ci = +qEl.dataset.c, qi = +qEl.dataset.q, key = ci+"-"+qi;
+  const q = UNIT.concepts[ci].qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){
+    btn.classList.add("correct"); done.add(key);
+    qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true);
+    fb.textContent = "✓ 對了。" + q.ok; updateProgress();
+  } else {
+    tries[key] = (tries[key]||0) + 1; btn.classList.add("wrong");
+    fb.textContent = tries[key] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2;
+  }
+});
+// 朗讀（手機、電腦內建語音，不用網路檔案）
+let slow = false;
+function speakRows(rows){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel(); document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing"));
+  const voice = speechSynthesis.getVoices().find(v=>/^en(-|_)US/i.test(v.lang)) || speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
+  rows.forEach(row=>{
+    const u = new SpeechSynthesisUtterance(row.querySelector(".en").textContent.replace(/[“”]/g,'"'));
+    u.lang = "en-US"; u.rate = slow ? 0.7 : 0.95; if(voice) u.voice = voice;
+    u.onstart = ()=>{ document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing")); row.classList.add("playing"); row.querySelector(".say").classList.add("playing"); };
+    u.onend = ()=>{ row.classList.remove("playing"); row.querySelector(".say").classList.remove("playing"); };
+    speechSynthesis.speak(u);
+  });
+}
+if(!("speechSynthesis" in window)) document.documentElement.classList.add("nospeech");
+document.getElementById("slowBtn").onclick = e=>{ slow = !slow; e.target.textContent = slow ? "🐇 正常速度" : "🐢 慢速朗讀"; };
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+// 列印時切換成雙面 A4 版面
+// 某一面快超出 A4 時，只收緊那一面的行距（不縮字）
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight","tight2");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom() > p.clientHeight - reserve - 12) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+render();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>

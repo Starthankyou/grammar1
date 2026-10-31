@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="分辨現在簡單式、現在進行式、規則與不規則過去式、did 問答，以及過去進行式。">
+<title>R2｜第 6–10 夜複習</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:26px 32px 36px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button,.toolbar a{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 12px;cursor:pointer;text-decoration:none}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:24px;margin:2px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+h2{font-size:18px;color:var(--accent);margin:22px 0 6px}
+.scene{background:var(--moon);border-radius:12px;padding:8px 14px}
+.line{display:grid;grid-template-columns:62px 1fr;gap:8px;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:6px 2px;cursor:pointer;color:inherit;font:inherit}
+.row{display:flex;align-items:flex-start;gap:2px}
+.row .line{flex:1;min-width:0}
+.row:last-child .line{border-bottom:0}
+.say{flex:none;border:0;background:none;cursor:pointer;font-size:15px;line-height:1;padding:8px 3px;opacity:.55;border-radius:6px}
+.say:hover,.say.playing{opacity:1;background:#e6dff5}
+.row.playing .line{background:#efe9fb}
+.playall{float:right;font:inherit;font-size:12.5px;border:1px solid #cfc4ea;background:#fff;color:#5d4a8f;border-radius:12px;padding:1px 9px;cursor:pointer}
+.passage{border:1.5px solid #9bb6c8;border-radius:10px;padding:10px 14px;background:#fbfdfe}
+.passage .ptype{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:4px;padding:0 7px;margin-right:6px}
+.passage .ptitle{font:700 17px Georgia,serif}
+.passage .ptext{font:15.5px/1.55 Georgia,serif;white-space:pre-line;margin-top:6px}
+.passage table{border-collapse:collapse;margin-top:8px;font:14.5px Georgia,serif;width:100%}
+.passage td,.passage th{border:1px solid #c8d6df;padding:4px 8px;text-align:left}
+.passage th{background:var(--soft);font-family:inherit}
+.recall{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px}
+.recall div{font-size:14.5px;border-bottom:1px solid var(--line);padding:4px 0}
+.recall span{display:inline-block;min-width:110px;border-bottom:1px solid #7f95a3;margin-left:6px}
+.nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
+.line:hover{background:#ece7f6}
+.who{font-weight:700;color:var(--moonline);font-size:14px}
+.line .en{font:16.5px/1.5 Georgia,serif}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.patterns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pat{border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.pat .head{font:700 19px Georgia,serif;color:var(--accent)}
+.pat .form{font-weight:700;margin:2px 0}
+.pat .rule{font-size:14px;color:var(--sub)}
+.pat .en{font:15px/1.45 Georgia,serif;color:#234f6b;margin-top:4px}
+.pat .zh{font-size:13.5px;color:var(--sub)}
+.tip{background:#fff6e3;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:14.5px}
+.words{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.words span{border:1px solid var(--line);border-radius:14px;padding:2px 10px;font-size:13.5px}
+.words b{font-family:Georgia,serif}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:6px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:6px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+#answers{margin-top:20px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0}
+.anskey{display:none}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .patterns{grid-template-columns:1fr}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .line{grid-template-columns:52px 1fr}
+  .toolbar button,.toolbar a{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+/* ===== 紙本：單面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.35;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .say,body.paper .playall,body.paper .toolbar,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;display:flex;flex-direction:column;break-after:page}
+body.paper .page:last-child{break-after:auto}
+body.paper .passage{padding:4px 9px;border-radius:6px}
+body.paper .passage .ptitle{font-size:11pt}
+body.paper .passage .ptext{font-size:10.3pt;line-height:1.35;margin-top:2px}
+body.paper .passage table{font-size:9.8pt;margin-top:3px}
+body.paper .passage td,body.paper .passage th{padding:1px 5px}
+body.paper .recall{gap:2px 14px}
+body.paper .recall div{font-size:9.8pt;padding:2px 0}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16pt;margin:0 0 4px;padding-bottom:3px}
+body.paper h2{font-size:12pt;margin:7px 0 3px}
+body.paper .scene{padding:3px 9px;border-radius:7px}
+body.paper .line{grid-template-columns:11mm 58% 1fr;gap:5px;padding:1.2px 0;align-items:baseline}
+body.paper .who{font-size:8.6pt}
+body.paper .line .en{font-size:10.5pt;line-height:1.3}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.3}
+body.paper .patterns{gap:5px}
+body.paper .patterns.many{grid-template-columns:1fr 1fr 1fr}
+body.paper .pat{padding:3px 8px;border-radius:6px}
+body.paper .pat .head{font-size:12pt}
+body.paper .pat .form{font-size:10pt;margin:0}
+body.paper .pat .rule{font-size:8.8pt}
+body.paper .pat .en{font-size:9.8pt;margin-top:1px;line-height:1.3}
+body.paper .pat .zh{font-size:8.6pt}
+body.paper .tip{padding:3px 8px;margin-top:5px;font-size:9.2pt}
+body.paper .words{gap:4px;margin-top:4px}
+body.paper .words span{font-size:8.8pt;padding:0 7px}
+body.paper .q{padding:3px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .stem-text{font-size:10.4pt;line-height:1.3}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+body.paper .page.tight .q{padding:1.5px 0}
+body.paper .page.tight .line{padding:0.5px 0}
+body.paper .page.tight h2{margin:4px 0 2px}
+body.paper .page.tight .pat{padding:2px 7px}
+body.paper .page.tight .tip{padding:2px 8px;margin-top:3px}
+body.paper .page.tight .words{margin-top:3px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.8pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div class="btns"><a id="home" href="../">← 目錄</a><span class="status" id="progress"></span></div>
+  <div class="btns">
+    <button type="button" id="slowBtn">🐢 慢速朗讀</button>
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="sheet"></main>
+<script>
+/* ===== 單張資料：做新的補給站時只改這一段 ===== */
+const SHEET = {
+  code: "R2",
+  title: "第 6–10 夜複習",
+  kind: "月亮圖書館 · 複習夜",
+  desc: "分辨現在簡單式、現在進行式、規則與不規則過去式、did 問答，以及過去進行式。",
+  headings: {scene: "前情提要", patterns: "文法重點"},
+  split: 6,
+  pages: 2,
+  names: ["Ash", "Robo", "Mimi"],
+  scene: [
+    {who: "第 6 夜", en: "The key moved, and a small door appeared under the tree.", zh: "鑰匙動了，樹下出現了一扇小門。"},
+    {who: "第 7 夜", en: "The old clock remembered yesterday, and Ash remembered a song.", zh: "老時鐘記得昨天，Ash 也想起了一首歌。"},
+    {who: "第 8 夜", en: "Ash saw a face in a picture and remembered a friend.", zh: "Ash 在照片裡看見一張臉，想起了一位朋友。"},
+    {who: "第 9 夜", en: "A letter asked, 'Did you remember our song?'", zh: "一封信問道：「你記得我們的歌嗎？」"},
+    {who: "第 10 夜", en: "Ash heard the song and remembered a girl reading to him.", zh: "Ash 聽見那首歌，想起一個曾唸書給他聽的女孩。"}
+  ],
+  patterns: [
+    {head: "B6", form: "習慣：S + V(s/es)｜此刻：S + am/is/are + V-ing", rule: "平常習慣用現在簡單式；正在發生的事用現在進行式，還要看上下文。", en: "Mimi reads every night, but now she's sleeping.", zh: "Mimi 每晚閱讀，但現在她正在睡覺。"},
+    {head: "B7", form: "S + 規則動詞過去式（-ed / -d / -ied / 雙寫 + -ed）", rule: "昨天或已結束的過去事件用過去式；留意字尾拼字變化。", en: "Robo stopped and opened the door yesterday.", zh: "Robo 昨天停下腳步，打開了門。"},
+    {head: "B8", form: "S + 不規則動詞過去式（go→went；see→saw）", rule: "不規則動詞不能一律加 -ed；先從上下文判斷時間。", en: "Ash saw a picture and felt sad.", zh: "Ash 看見一張照片，感到難過。"},
+    {head: "B9", form: "S + didn't + 原形｜Did + S + 原形?", rule: "did 或 didn't 已表過去，後面的動詞用原形；簡答用 did／didn't。", en: "Did Mimi find it? No, she didn't.", zh: "Mimi 找到了嗎？不，她沒有。"},
+    {head: "B10", form: "S + was/were (+ not) + V-ing｜Was/Were + S + V-ing?", rule: "過去某時正在進行的動作用過去進行式；另一件事可在此時發生。", en: "Ash was reading when the clock stopped.", zh: "時鐘停下時，Ash 正在閱讀。"}
+  ],
+  tip: "先找時間與上下文：平常→現在簡單式；現在正在→am/is/are + V-ing；昨天已完成→過去式（規則或不規則）；did／didn't 後用原形；過去當時正在→was/were + V-ing。",
+  words: [],
+  qs: [
+    {s: "Robo: Where is Mimi?\nAsh: She ___ a book in the library right now.", o: ["reads", "read", "is reading", "was reading"], a: 2,
+     h1: "看看 right now，說的是哪個時間？", h2: "描述現在正在進行的動作，需要 be 動詞加上 V-ing。", ok: "is reading：right now 表示此刻正在閱讀。"},
+    {s: "Ben usually ___ to school, but today he's taking the bus.", o: ["walks", "is walking", "walked", "was walking"], a: 0,
+     h1: "usually 和 today 告訴你兩種不同情境。", h2: "usually 表示習慣；主詞 Ash 是第三人稱單數。", ok: "walks：平常走路上學，今天才改搭公車。"},
+    {s: "Mimi: Why is the floor wet?\nRobo: I ___ it ten minutes ago.", o: ["clean", "am cleaning", "cleans", "cleaned"], a: 3,
+     h1: "ten minutes ago 表示什麼時間？", h2: "過去已完成的動作；clean 是規則動詞。", ok: "cleaned：十分鐘前擦過地板，動詞用過去式。"},
+    {s: "The clock was on the table yesterday. Ash ___ it near the window.", o: ["carry", "carrying", "carried", "carries"], a: 2,
+     h1: "上一句的 yesterday 是時間線索。", h2: "carry 是子音字母 + y 結尾；過去式拼字要改變。", ok: "carried：carry 的過去式為 carried。"},
+    {s: "Mimi: Is that your new picture?\nAsh: No. I ___ it last winter.", o: ["drew", "draw", "draws", "am drawing"], a: 0,
+     h1: "last winter 表示事情發生在過去。", h2: "draw 是不規則動詞，過去式不是加 -ed。", ok: "drew：draw 的過去式為 drew。"},
+    {s: "Robo: Did you see the note last night?\nMimi: Yes, I ___, but I lost it later.", o: ["do", "was", "did", "saw"], a: 2,
+     h1: "問句一開始使用了哪個助動詞？", h2: "Did 開頭的 Yes/No 問句，要用相同助動詞簡答。", ok: "Yes, I did.：Did 問，就用 did 回答。"},
+    {s: "Ash ___ the song yesterday. He couldn't remember its name.", o: ["doesn't know", "didn't knew", "wasn't know", "didn't know"], a: 3,
+     h1: "yesterday 和 couldn't 都指向過去。", h2: "否定句已有 didn't，後面的動詞要恢復原形。", ok: "didn't know：didn't 後接原形 know，不用 knew。"},
+    {s: "Mimi: What ___ you doing when the lights went out?\nRobo: I was looking for the key.", o: ["did", "were", "are", "do"], a: 1,
+     h1: "答句的 was looking 指的是過去某時正在做的事。", h2: "問句是過去進行式；主詞 you 要搭配哪個 be 動詞？", ok: "were：What were you doing ...? 是過去進行式問句。"},
+    {s: "The children ___ outside when the wind blew the door open.", o: ["were playing", "played", "play", "are playing"], a: 0,
+     h1: "門突然被風吹開時，孩子們原本正在做什麼？", h2: "背景中的持續動作用過去進行式；children 是複數。", ok: "were playing：過去正在玩的背景動作，遇上風吹開門的事件。"},
+    {s: "Ash: ___ you visit the shop yesterday?\nMimi: No, I stayed home.", o: ["Were", "Do", "Did", "Are"], a: 2,
+     h1: "yesterday 和 stayed home 是過去時間線索。", h2: "一般動詞 visit 的過去式疑問句，用助動詞開頭，再接原形。", ok: "Did：Did you visit ...? 後面的 visit 保持原形。"},
+    {s: "What is the email mainly about?", o: ["A new school bus", "A lost library book", "Mimi's birthday", "A strange evening at the library"], a: 3,
+     h1: "先看信件開頭與結尾提到的主要事件。", h2: "比較整封信反覆出現的地點與事件，不要只選單一物品。", ok: "這封信主要描述昨晚圖書館發生的奇怪事情。"},
+    {s: "What was Robo doing when the lights went out?", o: ["Reading a note", "Looking for a box", "Opening the door", "Walking home"], a: 1,
+     h1: "找出 when the lights went out 所在的句子。", h2: "留意 was + V-ing，表示停電那一刻原本正在進行的動作。", ok: "Robo was looking for a small box when the lights went out."},
+    {s: "Which is TRUE about the picture?", o: ["Mimi found it at school.", "Robo painted it yesterday.", "It showed a woman near a tree.", "The old man put it in his bag."], a: 2,
+     h1: "找信中描述 picture 的兩個句子。", h2: "確認照片裡有誰、在哪裡；不要把其他角色的行動混在一起。", ok: "照片裡是一位站在樹旁的女人。"},
+    {s: "Why did the old man stop talking?", o: ["He heard a song he knew.", "He wanted to take the bus.", "He lost his school bag.", "He was angry with Robo."], a: 0,
+     h1: "閱讀信件最後幾句，找 Ash 聽見什麼。", h2: "把 Ash 的反應和他聽到的聲音連起來。", ok: "Ash 聽見熟悉的歌，因此停下說話。"},
+    {s: "In the email, what does 'empty' mean?", o: ["Very old", "Full of books", "Hard to open", "With nothing inside"], a: 3,
+     h1: "找到 empty 修飾的名詞與前後文。", h2: "文中提到打開盒子後，裡面沒有東西。", ok: "empty 表示『空的』，也就是裡面沒有東西。"}
+  ],
+  passage: {
+    type: "email",
+    title: "A Strange Night at the Library",
+    text: "To: Ben\nFrom: Mia\nSubject: Last Night at the Library\nHi Ben,\nSomething strange happened at the library last night. Mimi and I were reading when we heard a song. Robo was looking for a small box when the lights went out. We waited near the door. Then an old man came in with an old picture. It showed a woman near a tree.\nRobo found the box under a chair and opened it, but it was empty. The old man looked at the picture. He was talking about the woman when the song started again. He stopped talking because he knew that song.\nWe didn't find out who the woman was. Did you hear that song before?\nYour friend,\nMia"
+  },
+  recall: [
+    ["聲音", "sound"],
+    ["盒子", "box"],
+    ["椅子", "chair"],
+    ["奇怪的", "strange"],
+    ["歌曲", "song"],
+    ["照片；圖片", "picture"],
+    ["臉", "face"],
+    ["紙條", "note"],
+    ["空的", "empty"],
+    ["記得", "remember"]
+  ]
+};
+/* ===== 以下是版型，不用改 ===== */
+const L = ["A","B","C","D"];
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function qHTML(q,qi){
+  return `<div class="q" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+}
+function passageHTML(p){
+  if(!p) return "";
+  const rows = p.rows ? `<table>${p.rows.map((r,i)=>`<tr>${r.map(c=>i===0?`<th>${esc(c)}</th>`:`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</table>` : "";
+  return `<h2>${esc(p.heading || "會考題組｜讀一讀")}</h2><section class="passage"><span class="ptype">${esc(p.type || "短文")}</span><span class="ptitle">${esc(p.title || "")}</span>${p.text ? `<div class="ptext">${esc(p.text)}</div>` : ""}${rows}</section>`;
+}
+function render(){
+  const u = SHEET, split = u.split || u.qs.length;
+  const T = Object.assign({scene:"情境｜這樣說", patterns:"句型｜一眼分辨", qs:"練習｜會考式", qs2:"題組練習", recall:"單字回想｜看中文寫英文"}, u.headings || {});
+  let p1 = `<header><div class="eyebrow">${esc(u.kind)}</div><h1>${esc(u.code)}｜${esc(u.title)}</h1></header>`;
+  if (u.scene?.length) p1 += `<h2>${esc(T.scene)}<button type="button" class="playall">🔊 全部播放</button></h2><section class="scene">${u.scene.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line"><span class="who">${esc(l.who)}</span><span><span class="en">${esc(l.en)}</span></span><span class="zh">${esc(l.zh)}</span></button></div>`).join("")}</section><p class="tap-tip">點一下句子可以看中文，按 🔊 聽英文。</p>`;
+  if (u.patterns?.length) p1 += `<h2>${esc(T.patterns)}</h2><div class="patterns${u.patterns.length > 4 ? " many" : ""}">${u.patterns.map(p=>`<div class="pat"><div class="head">${esc(p.head)}</div><div class="form">${esc(p.form)}</div><div class="rule">${esc(p.rule)}</div><div class="en">${esc(p.en)}</div><div class="zh">${esc(p.zh)}</div></div>`).join("")}</div>`;
+  if (u.tip) p1 += `<div class="tip">💡 ${esc(u.tip)}</div>`;
+  if (u.words?.length) p1 += `<div class="words">${u.words.map(w=>`<span><b>${esc(w[0])}</b> ${esc(w[1])}</span>`).join("")}</div>`;
+  if (split > 0) p1 += `<h2>${esc(T.qs)}</h2>` + u.qs.slice(0, split).map((q,i)=>qHTML(q,i)).join("");
+  let p2 = "";
+  if (split < u.qs.length || u.passage) {
+    p2 += passageHTML(u.passage);
+    if (split < u.qs.length) p2 += `<h2>${esc(T.qs2)}</h2>` + u.qs.slice(split).map((q,i)=>qHTML(q, split + i)).join("");
+  }
+  let recall = "";
+  if (u.recall?.length) recall = `<h2>${esc(T.recall)}</h2><div class="recall">${u.recall.map((r,i)=>`<div>${i+1}. ${esc(r[0])}<span>&nbsp;</span></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2><ol>${u.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>${u.recall?.length ? `<p>單字：${u.recall.map((r,i)=>`${i+1}. ${esc(r[1])}`).join("　")}</p>` : ""}</section>`;
+  const key = `<div class="anskey"><b>答案</b>　${u.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join("　")}${u.recall?.length ? `｜單字：${u.recall.map((r,i)=>`${i+1}.${esc(r[1])}`).join(" ")}` : ""}</div>`;
+  const html = p2 || (u.pages === 2)
+    ? `<div class="page">${p1}</div><div class="page">${p2}${recall}${answers}${key}</div>`
+    : `<div class="page">${p1}${recall}${answers}${key}</div>`;
+  document.getElementById("sheet").innerHTML = html;
+}
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `　完成 ${done.size} / ${SHEET.qs.length} 題`; };
+document.addEventListener("click", e=>{
+  const say = e.target.closest(".say"), all = e.target.closest(".playall");
+  if(say){ speakRows([say.closest(".row")]); return; }
+  if(all){ speakRows([...document.querySelectorAll(".scene .row")]); return; }
+  const line = e.target.closest(".line"); if(line){ line.classList.toggle("show"); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), qi = +qEl.dataset.q, q = SHEET.qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){ btn.classList.add("correct"); done.add(qi); qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true); fb.textContent = "✓ 對了。" + q.ok; updateProgress(); }
+  else { tries[qi] = (tries[qi]||0) + 1; btn.classList.add("wrong"); fb.textContent = tries[qi] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2; }
+});
+let slow = false;
+function speakRows(rows){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel(); document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing"));
+  const voice = speechSynthesis.getVoices().find(v=>/^en(-|_)US/i.test(v.lang)) || speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
+  rows.forEach(row=>{
+    const u = new SpeechSynthesisUtterance(row.querySelector(".en").textContent.replace(/[“”]/g,'"'));
+    u.lang = "en-US"; u.rate = slow ? 0.7 : 0.95; if(voice) u.voice = voice;
+    u.onstart = ()=>{ document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing")); row.classList.add("playing"); row.querySelector(".say").classList.add("playing"); };
+    u.onend = ()=>{ row.classList.remove("playing"); row.querySelector(".say").classList.remove("playing"); };
+    speechSynthesis.speak(u);
+  });
+}
+if(!("speechSynthesis" in window)) document.documentElement.classList.add("nospeech");
+document.getElementById("slowBtn").onclick = e=>{ slow = !slow; e.target.textContent = slow ? "🐇 正常速度" : "🐢 慢速朗讀"; };
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom > p.clientHeight - reserve) p.classList.add("tight");
+    const b2 = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+if (location.pathname.endsWith(".html")) document.getElementById("home").href = "../web/index.html";
+render(); updateProgress();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>
