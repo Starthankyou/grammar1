@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="70 個常見不規則動詞，分四型、依發音規律分組；附規則動詞 -ed 拼法">
+<title>T1｜動詞三態表</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#8a7bb5}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:15px/1.5 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:900px;margin:0 auto 50px;background:#fff;padding:24px 28px 30px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:6px;justify-content:space-between;align-items:center;max-width:900px;margin:0 auto;padding:9px 14px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:6px}
+.toolbar button,.toolbar a{font:inherit;font-size:13.5px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:6px 11px;cursor:pointer;text-decoration:none}
+.toolbar button.on{background:var(--accent);color:#fff}
+.eyebrow{color:var(--moon);font-weight:700;letter-spacing:.08em;font-size:12.5px}
+h1{font-size:23px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:6px}
+.lead{color:var(--sub);margin:0 0 10px;font-size:14px}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+.type{break-inside:avoid}
+.type h2{font-size:16px;color:var(--accent);margin:6px 0 2px}
+.type h2 small{color:var(--sub);font-weight:400;font-size:12.5px}
+.tip{font-size:12.5px;color:#4b3f75;background:#f4f1fa;border-radius:6px;padding:3px 8px;margin:2px 0 4px;font-style:italic}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-size:11.5px;color:var(--sub);font-weight:400;text-align:left;padding:1px 4px;border-bottom:1px solid var(--line)}
+td{padding:1.5px 4px;border-bottom:1px solid #eef2f5}
+td.en{font-family:Georgia,"Times New Roman",serif}
+td.zh{color:var(--sub);font-size:12.5px;white-space:nowrap}
+tr.group td{background:var(--soft);color:var(--accent);font-size:11.5px;font-weight:700;padding:2px 4px;border:0}
+.regular{margin-top:12px;border:1px dashed #9bb6c8;border-radius:8px;padding:6px 10px;font-size:13px}
+.regular b{color:var(--accent)}
+.regular ul{margin:3px 0 0;padding-left:18px;columns:3;column-gap:20px}
+.regular li{margin:1px 0}
+.how{font-size:12.5px;color:var(--sub);margin-top:8px}
+/* 自我測驗：遮住的欄位 */
+body.hide1 td.c1, body.hide2 td.c2, body.hidez td.zh{color:transparent;background:repeating-linear-gradient(45deg,#eef2f5,#eef2f5 4px,#f8fafb 4px,#f8fafb 8px);cursor:pointer}
+body.hide1 td.c1.show, body.hide2 td.c2.show, body.hidez td.zh.show{color:var(--ink);background:#fff7e0}
+@media (max-width:700px){main{padding:16px 14px 24px}.types{grid-template-columns:1fr}.regular ul{columns:1}}
+@page{size:A4;margin:8mm 10mm}
+@media print{
+  body{background:#fff;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .toolbar{display:none!important}
+  main{max-width:none;padding:0;box-shadow:none}
+  h1{font-size:15pt;margin:0 0 2px;padding-bottom:3px}
+  .lead{font-size:9pt;margin:0 0 4px}
+  .types{gap:4px 14px}
+  .type h2{font-size:11pt;margin:3px 0 1px}
+  .type h2 small{font-size:8.5pt}
+  .tip{font-size:8.5pt;padding:1px 6px;margin:1px 0 2px}
+  table{font-size:9.6pt;line-height:1.2}
+  .type{line-height:1.25}
+  .types{align-items:start}
+  th{font-size:7.8pt}
+  td{padding:0.3px 3px}
+  td.zh{font-size:8.6pt}
+  tr.group td{font-size:7.8pt;padding:0.3px 3px;line-height:1.15}
+  .regular{margin-top:5px;padding:3px 8px;font-size:8.8pt}
+  .how{font-size:8.5pt;margin-top:3px}
+  body.hide1 td.c1,body.hide2 td.c2,body.hidez td.zh{color:inherit!important;background:none!important}
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div class="btns">
+    <a id="home" href="../">← 月亮圖書館目錄</a>
+  </div>
+  <div class="btns">
+    <span style="font-size:13px;color:#5f7282;align-self:center">自我測驗：</span>
+    <button type="button" data-hide="hide1">遮住過去式</button>
+    <button type="button" data-hide="hide2">遮住過去分詞</button>
+    <button type="button" data-hide="hidez">遮住中文</button>
+    <button type="button" onclick="window.print()">列印</button>
+  </div>
+</div>
+<main id="card"></main>
+<script>
+// [原形, 過去式, 過去分詞, 中文]；字串以 # 開頭是小組標題
+const TYPES = [
+  { name: "AAA 型", note: "三個都一樣", tip: "Robo put the key on the table. It hit the floor. (put、hit 過去式長一樣)", rows: [
+    "#三態完全相同",
+    ["put","put","put","放"],["cut","cut","cut","切；剪"],["hit","hit","hit","打；撞"],["let","let","let","讓"],
+    ["cost","cost","cost","花費（錢）"],["hurt","hurt","hurt","傷害；痛"],["shut","shut","shut","關上"],
+    ["read","read","read","讀（過去式唸 /rɛd/）"]
+  ]},
+  { name: "ABA 型", note: "第一、三個一樣", tip: "Mia came back. She has come back every night. (come 繞一圈回來)", rows: [
+    "#過去分詞＝原形",
+    ["come","came","come","來"],["become","became","become","變成"],["run","ran","run","跑"]
+  ]},
+  { name: "ABB 型", note: "後兩個一樣（最多，先背）", tip: "Ash bought a book and thought about it all night. (-ought 組)", rows: [
+    "#-ought／-aught",
+    ["buy","bought","bought","買"],["bring","brought","brought","帶來"],["think","thought","thought","想"],
+    ["fight","fought","fought","打架；奮鬥"],["catch","caught","caught","接住；抓"],["teach","taught","taught","教"],
+    "#-ept／-elt／-eft",
+    ["keep","kept","kept","保持；留著"],["sleep","slept","slept","睡"],["feel","felt","felt","感覺"],["leave","left","left","離開"],
+    "#-ent／-ilt",
+    ["send","sent","sent","寄；送"],["spend","spent","spent","花費（時間、錢）"],["build","built","built","建造"],
+    "#-old／-aid",
+    ["sell","sold","sold","賣"],["tell","told","told","告訴"],["say","said","said","說"],["pay","paid","paid","付錢"],
+    "#-ood／-ound",
+    ["stand","stood","stood","站"],["understand","understood","understood","了解"],["find","found","found","找到"],
+    "#其他",
+    ["have","had","had","有；吃"],["make","made","made","做；製作"],["hear","heard","heard","聽到"],["meet","met","met","遇見"],
+    ["lose","lost","lost","遺失；輸"],["sit","sat","sat","坐"],["get","got","got","得到"],["win","won","won","贏"],["hold","held","held","握著；舉辦"]
+  ]},
+  { name: "ABC 型", note: "三個都不同", tip: "Mimi sang a song. Robo has sung it, too. (i-a-u 組)", rows: [
+    "#-ew／-own（過去分詞 -n）",
+    ["know","knew","known","知道"],["grow","grew","grown","生長"],["throw","threw","thrown","丟"],
+    ["fly","flew","flown","飛"],["draw","drew","drawn","畫"],["show","showed","shown","展示"],
+    "#o — o — oken／osen／olen",
+    ["speak","spoke","spoken","說（語言）"],["break","broke","broken","打破"],["choose","chose","chosen","選擇"],
+    ["steal","stole","stolen","偷"],["wake","woke","woken","醒來"],["forget","forgot","forgotten","忘記"],
+    "#i — o — iden／itten",
+    ["drive","drove","driven","開車"],["ride","rode","ridden","騎"],["write","wrote","written","寫"],["hide","hid","hidden","躲藏"],
+    "#i — a — u",
+    ["sing","sang","sung","唱"],["swim","swam","swum","游泳"],["drink","drank","drunk","喝"],["begin","began","begun","開始"],["ring","rang","rung","（鈴）響"],
+    "#其他（最常用，一定要會）",
+    ["be","was / were","been","是；在"],["go","went","gone","去"],["see","saw","seen","看見"],["eat","ate","eaten","吃"],
+    ["take","took","taken","拿；搭乘"],["give","gave","given","給"],["do","did","done","做"],["fall","fell","fallen","掉落"],["wear","wore","worn","穿戴"]
+  ]}
+];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+let count = 0;
+const table = t => `<section class="type"><h2>${t.name} <small>${t.note}</small></h2><div class="tip">${esc(t.tip)}</div><table><thead><tr><th>原形</th><th>過去式</th><th>過去分詞</th><th>中文</th></tr></thead><tbody>${
+  t.rows.map(r => typeof r === "string" ? `<tr class="group"><td colspan="4">${esc(r.slice(1))}</td></tr>` : (count++, `<tr><td class="en">${r[0]}</td><td class="en c1">${r[1]}</td><td class="en c2">${r[2]}</td><td class="zh">${r[3]}</td></tr>`)).join("")
+}</tbody></table></section>`;
+const left = table(TYPES[0]) + table(TYPES[2]);
+const right = table(TYPES[3]) + table(TYPES[1]);
+document.getElementById("card").innerHTML = `
+<div class="eyebrow">月亮圖書館 · 工具卡</div>
+<h1>T1｜動詞三態表：原形 → 過去式 → 過去分詞</h1>
+<p class="lead">過去式：B7–B10（昨天的事）｜過去分詞：B16 現在完成式（have／has＋p.p.）、B25 被動式｜依發音規律分組背</p>
+<div class="types"><div>${left}</div><div>${right}</div></div>
+<div class="regular"><b>規則動詞：過去式＝過去分詞，加 -ed</b>
+<ul>
+<li>一般加 -ed：play → played、walk → walked</li>
+<li>字尾 e 只加 -d：live → lived、close → closed</li>
+<li>子音＋y：去 y 加 -ied：study → studied、carry → carried</li>
+<li>母音＋y 直接加：stay → stayed、play → played</li>
+<li>短母音＋一個子音：重複字尾：stop → stopped、plan → planned</li>
+<li>-ed 唸法：/t/ walked、/d/ played、/ɪd/ wanted</li>
+</ul></div>
+<p class="how">背法：一天一型；先遮住過去式唸一遍，再遮住過去分詞唸一遍。不規則動詞共 COUNT 個。</p>`.replace("COUNT", count);
+document.querySelectorAll("[data-hide]").forEach(b => b.onclick = () => {
+  const on = document.body.classList.toggle(b.dataset.hide); b.classList.toggle("on", on);
+  document.querySelectorAll("td.show").forEach(td => td.classList.remove("show"));
+});
+document.addEventListener("click", e => { const td = e.target.closest("td.c1,td.c2,td.zh"); if (td) td.classList.toggle("show"); });
+if (location.pathname.endsWith(".html")) document.getElementById("home").href = "../web/index.html";
+</script>
+</body>
+</html>
