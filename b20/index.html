@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>B20｜代名詞 I：主格、受格、所有格，it 和 one</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:28px 32px 40px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 13px;cursor:pointer}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:25px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+.title-zh{color:var(--sub);margin:0}
+h2{font-size:19px;color:var(--accent);margin:26px 0 6px}
+.story{background:var(--moon);border-radius:12px;padding:8px 14px;margin:10px 0}
+.story-label{font-size:13px;color:var(--moonline);font-weight:700;margin:4px 0 2px}
+.line{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:7px 4px;cursor:pointer;color:inherit;font:inherit}
+.line:last-of-type{border-bottom:0}
+.line:hover{background:#ece7f6}
+.line:focus-visible{outline:3px solid #b5a8dc}
+.line .en{display:block;font:17px/1.55 Georgia,"Times New Roman",serif}
+.line.frame .en{font-style:italic;color:#4b3f75}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.think{background:#fff6e3;border-radius:10px;padding:8px 14px;margin:10px 0}
+.rule{margin:2px 0 6px}
+.examples{display:grid;gap:6px;margin:6px 0 8px}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--soft);border-radius:8px;padding:7px 12px}
+.ex .en{font:16px/1.45 Georgia,serif;font-weight:700;color:#234f6b}
+.ex .zh{font-size:14px;color:var(--sub)}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:7px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:7px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt:focus-visible{outline:3px solid #91c3dd}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+.vocab{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.word{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;line-height:1.4}
+.word b{font:16px Georgia,serif;margin-right:4px}
+.word .tag{display:inline-block;font-size:11px;border-radius:9px;padding:0 6px;background:#e4eef5;color:#38617a}
+.word .tag.review{background:#efe9f8;color:#5d4a8f}
+.chunks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chunk{background:var(--soft);border-radius:8px;padding:7px 10px;font-size:14px;line-height:1.45}
+.chunk b{font-family:Georgia,serif;font-size:15px}
+.chunk i{display:block;font-family:Georgia,serif;font-style:normal;color:#234f6b}
+#answers{margin-top:22px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0 10px}
+.anskey{display:none}
+.series-nav{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin:0 0 14px}
+.series-nav.bottom{margin:28px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.series-nav a{color:var(--accent);text-decoration:none;border:1px solid #b9cfdc;border-radius:7px;padding:5px 11px}
+.series-nav a:hover{background:#edf7ff}
+.series-nav .gap{flex:1}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .ex{grid-template-columns:1fr;gap:2px}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .vocab{grid-template-columns:repeat(2,1fr)}
+  .chunks{grid-template-columns:1fr}
+  h1{font-size:21px}
+  .toolbar{padding:6px 10px;gap:4px}
+  .toolbar button{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+
+/* ===== 紙本：一張雙面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .toolbar,body.paper .series-nav,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;break-after:page;display:flex;flex-direction:column}
+body.paper .page:last-child{break-after:auto}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16.5pt;margin:0 0 2px;padding-bottom:3px}
+body.paper .title-zh{font-size:9.5pt}
+body.paper h2{font-size:12pt;margin:7px 0 2px}
+body.paper .story{padding:3px 9px;margin:5px 0;border-radius:7px}
+body.paper .story-label{font-size:8.5pt;margin:2px 0 0}
+body.paper .line{display:grid;grid-template-columns:55% 1fr;gap:9px;padding:1.6px 0;border-bottom:1px dashed #e2dcef}
+body.paper .line .en{font-size:10.6pt;line-height:1.32}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.35;padding-top:1px}
+body.paper .think{padding:3px 9px;margin:4px 0;font-size:9.5pt}
+body.paper .rule{font-size:9.5pt;margin:0 0 3px}
+body.paper .examples{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:3px 0 2px}
+body.paper .ex{display:block;padding:3px 8px;border-radius:5px}
+body.paper .ex .en{display:block;font-size:10pt;line-height:1.3}
+body.paper .ex .zh{display:block;font-size:8.5pt;line-height:1.3}
+body.paper .q{padding:2.6px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .qnum{min-width:16px;font-size:10pt}
+body.paper .stem-text{font-size:10.4pt;line-height:1.32}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px;line-height:1.3}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+/* 觀念一、二：題目和選項同一行 */
+body.paper .short .q{display:grid;grid-template-columns:1fr 92mm;gap:6px;align-items:center;padding:5.5px 0}
+body.paper .short .stem-text{font-size:10.8pt}
+body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
+/* 觀念三：選項四欄 */
+body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .vocab{gap:4px}
+body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
+body.paper .word b{font-size:10.3pt}
+body.paper .word .tag{font-size:7.5pt;padding:0 4px}
+body.paper .chunks{gap:5px}
+body.paper .chunk{padding:3px 7px;font-size:8.8pt;border-radius:5px;line-height:1.35}
+body.paper .chunk b,body.paper .chunk i{font-size:9.8pt}
+body.paper .page.tight .short .q{padding:2.4px 0}
+body.paper .page.tight .q{padding:1.8px 0}
+body.paper .page.tight .line{padding:0.6px 0}
+body.paper .page.tight h2{margin:5px 0 1px}
+body.paper .page.tight .examples{margin:2px 0 1px}
+body.paper .page.tight2 .vocab{gap:3px}
+body.paper .page.tight2 .word{padding:1px 5px}
+body.paper .page.tight2 .chunks{gap:3px}
+body.paper .page.tight2 .chunk{padding:1.5px 6px}
+body.paper .page.tight2 .think{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 .story{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 h2{margin:3px 0 1px}
+body.paper .page.tight2 .examples{gap:3px}
+body.paper .page.tight2 .ex{padding:2px 7px}
+body.paper .page.tight2 .rule{margin:0 0 2px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.6pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span class="status" id="progress">完成 0 / 15 題</span>
+  <div class="btns">
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="lesson"></main>
+
+<script>
+/* ===== 單元資料：做新單元時只改這一段 ===== */
+const UNIT = {
+  code: "B20",
+  names: ["Ben","May"],
+  title: "代名詞 I：主格、受格、所有格，it 和 one",
+  night: "月亮圖書館 · 第二十夜",
+  storyTitle: "The Umbrella That Wasn't Mine",
+  storyTitleZh: "那把不是我的雨傘",
+  // f:1 = 外框（Mia 和 Ash），其餘是 Mia 講的故事
+  storyFront: [
+    {f:1, en:"A lamp was shining beside the empty chair behind the nineteenth door. A sign said, “Please sit here.”", zh:"第十九扇門後，空椅子旁亮著一盞燈。牌子上寫著：「請坐在這裡。」"},
+    {f:1, en:"Ash shook his head. “That chair isn't mine.” Mia asked, “Then whose is it?”", zh:"Ash 搖搖頭。「那不是我的椅子。」Mia 問：「那它是誰的？」"},
+    {en:"After a storm, Ben found a blue umbrella on the wet floor of a small shop. His own umbrella was red.", zh:"暴風雨過後，Ben 在小店濕濕的地板上發現一把藍色雨傘。他自己的雨傘是紅色的。"},
+    {en:"“This isn't mine,” he told the shop owner. “Can you help me find its owner?”", zh:"「這不是我的，」他告訴店老闆。「你能幫我找到它的主人嗎？」"},
+    {en:"A girl named May came inside. “I lost my blue umbrella. Is that one yours?” she asked Ben.", zh:"一個叫 May 的女孩走進來。「我弄丟了藍色雨傘。那把是你的嗎？」她問 Ben。"},
+    {en:"“No, mine is red. Maybe this one is yours,” Ben said. May opened it and saw a name inside.", zh:"「不是，我的是紅色的。也許這把是你的，」Ben 說。May 撐開雨傘，看見裡面有個名字。"},
+    {en:"“It says ‘Dad.’ But my father's umbrella is black!” May said. She looked worried.", zh:"「上面寫著『爸爸』。可是我爸爸的雨傘是黑色的！」May 說。她看起來很擔心。"},
+    {f:1, en:"Ash looked at the empty chair again. “So whose umbrella is it?” Mia smiled. “Three puzzles first.”", zh:"Ash 又看了看那張空椅子。「所以那到底是誰的雨傘？」Mia 笑了。「先解三道謎題。」"}
+  ],
+  storyBack: [
+    {en:"The shop owner took the umbrella. “I know this umbrella,” she said. “A doctor lives next door. Let's ask him.”", zh:"店老闆接過雨傘。「我認得這把傘，」她說。「隔壁住著一位醫生，我們去問他吧。」"},
+    {en:"The doctor looked at it. “It isn't mine, but I know its owner. My neighbor made it for her son.”", zh:"醫生看了看。「這不是我的，但我知道它的主人。我的鄰居為她兒子做了這把傘。」"},
+    {en:"“Why did she write ‘Dad’ inside?” Ben asked. The doctor smiled. “Her son wrote it. His father was sick.”", zh:"「她為什麼在裡面寫『爸爸』？」Ben 問。醫生笑了。「是她兒子寫的。他爸爸生病了。」"},
+    {en:"“He wanted a blue umbrella for his father. He said, ‘One day, Dad will walk outside with me.’”", zh:"「他想給爸爸一把藍色雨傘。他說：『有一天，爸爸會和我一起走到外面。』」"},
+    {en:"Just then, a little boy came into the shop with his father. “There it is!” he shouted. “It's ours!”", zh:"就在這時，一個小男孩和爸爸走進店裡。「就在那裡！」他喊道。「那是我們的！」"},
+    {en:"The father took the umbrella, but he gave it to Ben. “You kept it safe. Thank you.”", zh:"爸爸接過雨傘，卻把它交給 Ben。「你幫我們把它保管好。謝謝你。」"},
+    {en:"Ben smiled and gave it back. “It's yours. I have my own.” The boy held his father's hand.", zh:"Ben 笑著把它還回去。「這是你們的。我有自己的傘。」男孩牽起爸爸的手。"},
+    {f:1, en:"Ash finally sat beside the lamp. On the chair was a small note: “Not mine. Hers.” He opened the twentieth door and found a box of old names.", zh:"Ash 終於在燈旁坐下。椅子上有張小紙條：「不是我的。是她的。」他打開第二十扇門，發現一盒舊名字。"}
+  ],
+  think: "Ben 為什麼堅持把雨傘還回去？如果你是他，你會怎麼做？",
+  concepts: [
+    {
+      title: "觀念一｜主格、受格與兩種所有格",
+      rule: "主格當主詞，受格放在動詞或介系詞後。所有格形容詞（my、your、his、her、its、our、their）後面接名詞；所有格代名詞（mine、yours、his、hers、ours、theirs）可以單獨使用。it 的所有格形容詞是 its，沒有常用的獨立所有格代名詞。",
+      examples: [["She gave me her book.","她把她的書給我。"],["This umbrella is mine, not yours.","這把雨傘是我的，不是你的。"]],
+      qs: [
+        {s:"May is my friend. ___ gave me her umbrella.", o:["She","Her","Hers"], a:0,
+         h1:"空格位於動詞 gave 前面，是句子的主詞。", h2:"要用能獨立當主詞的形式，不是受格或所有格形式。", ok:"She 是主格，可以當 gave 的主詞。"},
+        {s:"Ben helped ___. I thanked him after the storm.", o:["his","him","he"], a:1,
+         h1:"空格在 helped 後，表示被幫助的人。", h2:"動詞後表示動作對象，要使用受格。", ok:"helped him 中的 him 是受格。"},
+        {s:"This is my bag. That blue bag is ___.", o:["hers","she","her"], a:0,
+         h1:"空格後沒有名詞，這裡表示『她的那個』。", h2:"能獨立表示所有權的是所有格代名詞，不是接名詞的形式。", ok:"hers 可單獨表示 her bag。"},
+        {s:"We left ___ coats at school.", o:["ours","us","our"], a:2,
+         h1:"空格後面是 coats，這裡要修飾名詞。", h2:"名詞前要用所有格形容詞，不用獨立所有格代名詞。", ok:"our coats 表示我們的外套。"},
+        {s:"That seat isn't yours. It's ___.", o:["my","mine","me"], a:1,
+         h1:"空格後沒有名詞，而且表示『我的位子』。", h2:"這裡要用可以獨立出現的所有格形式。", ok:"mine 可代替 my seat。"}
+      ]
+    },
+    {
+      title: "觀念二｜it：就是前面提到的那個",
+      rule: "it 指前面說過的同一個特定物品或事物；不是換一個同類的。注意先找出 it 代替哪個名詞，再確認動詞或介系詞後要用哪個形式。",
+      examples: [["I lost my key. I can't find it.","我弄丟鑰匙了。我找不到它。"],["This is Ben's bag. Please give it to him.","這是 Ben 的包包。請把它交給他。"]],
+      qs: [
+        {s:"I found my old ticket. I put ___ in my bag.", o:["its","one","it"], a:2,
+         h1:"第二句指的是第一句找到的那張車票。", h2:"要代替同一件特定物品，不是另外拿一張同類物品。", ok:"it 指同一張已經找到的車票。"},
+        {s:"This umbrella is wet. Can you open ___ outside?", o:["it","its","one"], a:0,
+         h1:"要打開的是剛才說的這把濕雨傘。", h2:"這裡需要受格代名詞，指前面那一件特定物品。", ok:"open it 指打開同一把雨傘。"},
+        {s:"My phone is on the table. Please bring ___ to me.", o:["one","it","its"], a:1,
+         h1:"說話的人要的不是任意一支手機。", h2:"已經指定桌上的那支手機，所以代名詞必須指向同一個。", ok:"it 指桌上那支特定的手機。"},
+        {s:"The shop has a blue umbrella. May wants to look at ___ before buying anything.", o:["it","its","one"], a:0,
+         h1:"May 想看的是店裡剛提到的那把藍色雨傘。", h2:"指已知的同一個物品時，要用代替特定物品的代名詞。", ok:"look at it 指看那把已經提到的藍色雨傘。"},
+        {s:"Ben saw a name inside the umbrella. He read ___ aloud.", o:["one","its","it"], a:2,
+         h1:"他唸的是剛剛看到的名字。", h2:"前一句已經指明一個特定的 name，後一句用受格代替它。", ok:"read it 指讀出剛看到的那個名字。"}
+      ]
+    },
+    {
+      title: "觀念三｜one / ones 與 it / them 的差別",
+      rule: "one 表示同一類的另一個或任意一個；ones 是複數。it 指前面提到的同一個特定東西，them 指前面提到的那些特定東西。先看情境要『同一個』還是『另外一個同類的』。",
+      examples: [["I lost my pen. Can I borrow one?","我弄丟筆了，可以借一支嗎？"],["I found my pens. I put them in my bag.","我找到那些筆了，把它們放進包包。"]],
+      qs: [
+        {s:"May: My umbrella is broken. Can I buy ___?\nOwner: Yes, we have many umbrellas here.", o:["them","its","one","it"], a:2,
+         h1:"May 的舊傘壞了，現在想買新的。", h2:"不是指原本壞掉的那把，而是同類的另一把；句中需要單數形式。", ok:"one 表示另買一把雨傘。"},
+        {s:"Dad: Where are the two tickets I gave you?\nBen: I put ___ in my schoolbag.", o:["ones","one","it","them"], a:3,
+         h1:"爸爸問的是他交給 Ben 的那兩張特定車票。", h2:"複數，而且是前面提到的同一批物品，不是另外幾張。", ok:"them 指爸爸給的那兩張車票。"},
+        {s:"Leo: This chair is dirty. Can we borrow ___?\nMia: Yes, there's a clean chair by the window.", o:["one","them","it","its"], a:0,
+         h1:"窗邊有另一張乾淨的椅子。", h2:"需要另一個同類的單數物品，而不是繼續用髒的那張。", ok:"one 指另一張椅子。"},
+        {s:"May: I can't find the red shoes I wore yesterday.\nBen: Your mom put ___ by the door.", o:["them","ones","it","one"], a:0,
+         h1:"指的是 May 昨天穿的那雙特定鞋子。", h2:"shoes 是複數，而且說的是同一雙鞋，不是其他鞋。", ok:"them 指前面提到的那雙紅鞋。"},
+        {s:"Ben: These blue bags are too small.\nOwner: Then try the larger ___ on that shelf.", o:["one","it","ones","them"], a:2,
+         h1:"店員要 Ben 試架上較大的幾個包包。", h2:"要用複數形式，代替同一類的其他包包，而非前面那些太小的包包。", ok:"ones 指架上較大的其他包包。"}
+      ]
+    }
+  ],
+  vocab: [
+    ["own","adj.","自己的","新"],
+    ["owner","n.","主人；物主","新"],
+    ["borrow","v.","借入","新"],
+    ["coat","n.","外套","新"],
+    ["safe","adj.","安全的","新"],
+    ["shout","v.","大喊","新"],
+    ["storm","n.","暴風雨","複習"],
+    ["wet","adj.","濕的","複習"],
+    ["doctor","n.","醫生","複習"],
+    ["sign","n.","牌子；標示","複習"]
+  ],
+  chunks: [
+    ["next door","隔壁","A doctor lives next door."],
+    ["give it back","把它還回去","Ben smiled and gave it back."],
+    ["Just then","就在那時","Just then, a little boy came into the shop with his father."]
+  ]
+};
+/* ===== 以下是版型，做新單元不用改（新增一夜時，把 SERIES_LAST 改成最新的單元號碼） ===== */
+const SERIES_LAST = 20;
+const L = ["A","B","C","D"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const storyHTML = lines => lines.map(l=>`<button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en">${esc(l.en)}</span><span class="zh">${esc(l.zh)}</span></button>`).join("");
+function conceptHTML(c, ci){
+  const kind = c.qs[0].o.length > 3 ? "long" : "short";
+  let h = `<section class="concept ${kind}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
+  c.qs.forEach((q,qi)=>{
+    h += `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+  });
+  return h + `</section>`;
+}
+function navHTML(pos){
+  const n = parseInt(UNIT.code.replace(/\D/g, ""), 10), local = location.pathname.endsWith(".html");
+  const href = k => { const id = "b" + String(k).padStart(2, "0"); return local ? id + ".html" : "../" + id + "/"; };
+  const home = local ? "../web/index.html" : "../";
+  const prev = n > 1 ? `<a href="${href(n - 1)}">← 第 ${n - 1} 夜</a>` : "";
+  const next = n < SERIES_LAST ? `<a href="${href(n + 1)}">第 ${n + 1} 夜 →</a>` : "";
+  return `<nav class="series-nav ${pos}">${prev}<span class="gap"></span><a href="${home}">月亮圖書館目錄</a><span class="gap"></span>${next}</nav>`;
+}
+function render(){
+  const u = UNIT;
+  const head = `<header><div class="eyebrow">${u.night}</div><h1>${u.code}｜${u.title}</h1><p class="title-zh">${u.storyTitle}｜${u.storyTitleZh}</p></header>`;
+  const front = `<section class="story"><div class="story-label">故事（上）</div>${storyHTML(u.storyFront)}<p class="tap-tip">點一下英文句子可以看中文。</p></section>`;
+  const back = `<section class="story"><div class="story-label">故事（下）</div>${storyHTML(u.storyBack)}</section><div class="think"><b>想一想：</b>${esc(u.think)}</div>`;
+  const vocab = `<h2>Vocabulary｜10 個單字</h2><div class="vocab">${u.vocab.map(v=>`<div class="word"><b>${v[0]}</b>${v[1]} ${v[2]} <span class="tag${v[3]==="複習"?" review":""}">${v[3]}</span></div>`).join("")}</div>`;
+  const chunks = `<h2>Chunks｜片語</h2><div class="chunks">${u.chunks.map(c=>`<div class="chunk"><b>${c[0]}</b> ${c[1]}<i>${esc(c[2])}</i></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2>${u.concepts.map((c,ci)=>`<b>練習 ${ci+1}</b><ol>${c.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>`).join("")}</section>`;
+  const anskey = `<div class="anskey"><b>答案</b>　${u.concepts.map((c,ci)=>`練習 ${ci+1}：${c.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join(" ")}`).join("　｜　")}</div>`;
+  document.getElementById("lesson").innerHTML =
+    `${navHTML("top")}<div class="page">${head}${front}${conceptHTML(u.concepts[0],0)}${conceptHTML(u.concepts[1],1)}</div>` +
+    `<div class="page">${conceptHTML(u.concepts[2],2)}${back}${vocab}${chunks}${answers}${anskey}</div>${navHTML("bottom")}`;
+}
+const total = UNIT.concepts.reduce((n,c)=>n+c.qs.length,0);
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `完成 ${done.size} / ${total} 題`; };
+document.addEventListener("click", e=>{
+  const line = e.target.closest(".line");
+  if(line){ line.classList.toggle("show"); line.setAttribute("aria-expanded", line.classList.contains("show")); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), ci = +qEl.dataset.c, qi = +qEl.dataset.q, key = ci+"-"+qi;
+  const q = UNIT.concepts[ci].qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){
+    btn.classList.add("correct"); done.add(key);
+    qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true);
+    fb.textContent = "✓ 對了。" + q.ok; updateProgress();
+  } else {
+    tries[key] = (tries[key]||0) + 1; btn.classList.add("wrong");
+    fb.textContent = tries[key] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2;
+  }
+});
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+// 列印時切換成雙面 A4 版面
+// 某一面快超出 A4 時，只收緊那一面的行距（不縮字）
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight","tight2");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom() > p.clientHeight - reserve - 12) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+render();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>
