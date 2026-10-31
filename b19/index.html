@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>B19｜條件句 if 與時態總整理</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:28px 32px 40px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 13px;cursor:pointer}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:25px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+.title-zh{color:var(--sub);margin:0}
+h2{font-size:19px;color:var(--accent);margin:26px 0 6px}
+.story{background:var(--moon);border-radius:12px;padding:8px 14px;margin:10px 0}
+.story-label{font-size:13px;color:var(--moonline);font-weight:700;margin:4px 0 2px}
+.line{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:7px 4px;cursor:pointer;color:inherit;font:inherit}
+.line:last-of-type{border-bottom:0}
+.line:hover{background:#ece7f6}
+.line:focus-visible{outline:3px solid #b5a8dc}
+.line .en{display:block;font:17px/1.55 Georgia,"Times New Roman",serif}
+.line.frame .en{font-style:italic;color:#4b3f75}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.think{background:#fff6e3;border-radius:10px;padding:8px 14px;margin:10px 0}
+.rule{margin:2px 0 6px}
+.examples{display:grid;gap:6px;margin:6px 0 8px}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--soft);border-radius:8px;padding:7px 12px}
+.ex .en{font:16px/1.45 Georgia,serif;font-weight:700;color:#234f6b}
+.ex .zh{font-size:14px;color:var(--sub)}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:7px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:7px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt:focus-visible{outline:3px solid #91c3dd}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+.vocab{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.word{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;line-height:1.4}
+.word b{font:16px Georgia,serif;margin-right:4px}
+.word .tag{display:inline-block;font-size:11px;border-radius:9px;padding:0 6px;background:#e4eef5;color:#38617a}
+.word .tag.review{background:#efe9f8;color:#5d4a8f}
+.chunks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chunk{background:var(--soft);border-radius:8px;padding:7px 10px;font-size:14px;line-height:1.45}
+.chunk b{font-family:Georgia,serif;font-size:15px}
+.chunk i{display:block;font-family:Georgia,serif;font-style:normal;color:#234f6b}
+#answers{margin-top:22px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0 10px}
+.anskey{display:none}
+.series-nav{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin:0 0 14px}
+.series-nav.bottom{margin:28px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.series-nav a{color:var(--accent);text-decoration:none;border:1px solid #b9cfdc;border-radius:7px;padding:5px 11px}
+.series-nav a:hover{background:#edf7ff}
+.series-nav .gap{flex:1}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .ex{grid-template-columns:1fr;gap:2px}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .vocab{grid-template-columns:repeat(2,1fr)}
+  .chunks{grid-template-columns:1fr}
+  h1{font-size:21px}
+  .toolbar{padding:6px 10px;gap:4px}
+  .toolbar button{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+
+/* ===== 紙本：一張雙面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .toolbar,body.paper .series-nav,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;break-after:page;display:flex;flex-direction:column}
+body.paper .page:last-child{break-after:auto}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16.5pt;margin:0 0 2px;padding-bottom:3px}
+body.paper .title-zh{font-size:9.5pt}
+body.paper h2{font-size:12pt;margin:7px 0 2px}
+body.paper .story{padding:3px 9px;margin:5px 0;border-radius:7px}
+body.paper .story-label{font-size:8.5pt;margin:2px 0 0}
+body.paper .line{display:grid;grid-template-columns:55% 1fr;gap:9px;padding:1.6px 0;border-bottom:1px dashed #e2dcef}
+body.paper .line .en{font-size:10.6pt;line-height:1.32}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.35;padding-top:1px}
+body.paper .think{padding:3px 9px;margin:4px 0;font-size:9.5pt}
+body.paper .rule{font-size:9.5pt;margin:0 0 3px}
+body.paper .examples{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:3px 0 2px}
+body.paper .ex{display:block;padding:3px 8px;border-radius:5px}
+body.paper .ex .en{display:block;font-size:10pt;line-height:1.3}
+body.paper .ex .zh{display:block;font-size:8.5pt;line-height:1.3}
+body.paper .q{padding:2.6px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .qnum{min-width:16px;font-size:10pt}
+body.paper .stem-text{font-size:10.4pt;line-height:1.32}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px;line-height:1.3}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+/* 觀念一、二：題目和選項同一行 */
+body.paper .short .q{display:grid;grid-template-columns:1fr 92mm;gap:6px;align-items:center;padding:5.5px 0}
+body.paper .short .stem-text{font-size:10.8pt}
+body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
+/* 觀念三：選項四欄 */
+body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .vocab{gap:4px}
+body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
+body.paper .word b{font-size:10.3pt}
+body.paper .word .tag{font-size:7.5pt;padding:0 4px}
+body.paper .chunks{gap:5px}
+body.paper .chunk{padding:3px 7px;font-size:8.8pt;border-radius:5px;line-height:1.35}
+body.paper .chunk b,body.paper .chunk i{font-size:9.8pt}
+body.paper .page.tight .short .q{padding:2.4px 0}
+body.paper .page.tight .q{padding:1.8px 0}
+body.paper .page.tight .line{padding:0.6px 0}
+body.paper .page.tight h2{margin:5px 0 1px}
+body.paper .page.tight .examples{margin:2px 0 1px}
+body.paper .page.tight2 .vocab{gap:3px}
+body.paper .page.tight2 .word{padding:1px 5px}
+body.paper .page.tight2 .chunks{gap:3px}
+body.paper .page.tight2 .chunk{padding:1.5px 6px}
+body.paper .page.tight2 .think{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 .story{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 h2{margin:3px 0 1px}
+body.paper .page.tight2 .examples{gap:3px}
+body.paper .page.tight2 .ex{padding:2px 7px}
+body.paper .page.tight2 .rule{margin:0 0 2px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.6pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span class="status" id="progress">完成 0 / 15 題</span>
+  <div class="btns">
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="lesson"></main>
+
+<script>
+/* ===== 單元資料：做新單元時只改這一段 ===== */
+const UNIT = {
+  code: "B19",
+  names: ["Ben","May","Lee"],
+  title: "條件句 if 與時態總整理",
+  night: "月亮圖書館 · 第十九夜",
+  storyTitle: "The Last Umbrella",
+  storyTitleZh: "最後一把雨傘",
+  // f:1 = 外框（Mia 和 Ash），其餘是 Mia 講的故事
+  storyFront: [
+    {f:1, en:"Ash stood before the sign behind the eighteenth door: “IF YOU REMEMBER, COME INSIDE.” He touched the word IF but did not enter.", zh:"Ash 站在第十八扇門後的牌子前，上面寫著：「如果你記得，就進來。」他摸了摸 IF 這個字，卻沒有走進去。"},
+    {f:1, en:"“What if I don't remember?” he asked. Mia sat beside him. “Here is a story about a choice.”", zh:"「如果我不記得呢？」他問。Mia 坐到他身旁。「我來說一個關於選擇的故事。」"},
+    {en:"A storm was coming. Ben and May worked at a shop near the station.", zh:"暴風雨就要來了。Ben 和 May 在車站附近的一家店工作。"},
+    {en:"“If the rain gets worse, we will close early,” May said. Ben looked at the last umbrella on the wall.", zh:"「如果雨變得更大，我們就提早關門，」May 說。Ben 看了看牆上最後一把雨傘。"},
+    {en:"Their neighbor Mr. Lee came in. “My wife is at home. She is sick,” he said.", zh:"他們的鄰居 Lee 先生走了進來。「我太太在家，她生病了。」他說。"},
+    {en:"“If you need help, you can take this umbrella,” Ben said. But Mr. Lee shook his head.", zh:"「如果你需要幫忙，你可以拿這把雨傘，」Ben 說。但 Lee 先生搖了搖頭。"},
+    {en:"“A little girl is waiting outside,” he said. “She has no umbrella. Please give it to her first.”", zh:"「有個小女孩正在外面等，」他說。「她沒有雨傘。請先把雨傘給她。」"},
+    {f:1, en:"Ash looked up. “If they give it to the girl, what will happen to the old man?” Mia smiled. “Three puzzles first.”", zh:"Ash 抬起頭。「如果他們把雨傘給女孩，那老人怎麼辦？」Mia 笑了。「先解三道謎題。」"}
+  ],
+  storyBack: [
+    {en:"May opened the door. The girl was sitting beside a box. Rain was falling on her shoes.", zh:"May 打開門。女孩坐在一個盒子旁，雨正落在她的鞋子上。"},
+    {en:"“If you are cold, come inside,” May said. The girl pointed at the box. “I can't leave it.”", zh:"「如果你覺得冷，就進來吧，」May 說。女孩指著盒子。「我不能把它留在這裡。」"},
+    {en:"Inside the box was a small dog. “I found him near the road,” she said. “He has waited here with me for an hour.”", zh:"盒子裡有一隻小狗。「我在路邊發現牠，」女孩說。「牠已經在這裡陪我等了一個小時。」"},
+    {en:"Ben gave the umbrella to Mr. Lee. “If you take her home, we will carry the box,” he said.", zh:"Ben 把雨傘交給 Lee 先生。「如果你送她回家，我們就幫忙搬盒子，」他說。"},
+    {en:"The old man smiled. “My wife is a doctor. If we bring the dog to her, she can help him.”", zh:"老人笑了。「我太太是醫生。如果我們把狗帶去給她，她就能幫牠。」"},
+    {en:"They walked together under the umbrella. The storm did not stop, but nobody walked home alone.", zh:"他們一起走在雨傘下。暴風雨沒有停，但沒有人獨自走回家。"},
+    {f:1, en:"Ash watched the closed door. “If I remember her, will she come back?” he whispered. Mia did not answer.", zh:"Ash 看著關上的門。「如果我記得她，她會回來嗎？」他低聲問。Mia 沒有回答。"},
+    {f:1, en:"He opened the nineteenth door. A lamp was beside an empty chair. A note said, “Please sit here.”", zh:"他打開第十九扇門。一盞小燈在空椅子旁亮著，一張紙條寫著：「請坐在這裡。」"}
+  ],
+  think: "如果你只有一把雨傘，你會先幫誰？你做決定時最重視什麼？",
+  concepts: [
+    {
+      title: "觀念一｜if＋現在式，主句用 will",
+      rule: "談未來可能發生的事，可以用 If＋現在簡單式，主句＋will＋原形動詞。即使 if 子句談的是明天，也通常不用 will；兩個子句也可以交換位置。",
+      examples: [["If it rains tomorrow, we will stay home.","如果明天下雨，我們就待在家。"],["We will leave early if the storm gets worse.","如果暴風雨變大，我們就提早離開。"]],
+      qs: [
+        {s:"If the rain ___ harder tonight, we will close the shop.", o:["will get","got","gets"], a:2,
+         h1:"看 if 後面的子句；它在談今晚可能發生的情況。", h2:"未來的真實條件句，if 子句用現在簡單式，不另外加未來助動詞。", ok:"if 子句用現在簡單式；rain 是單數，因此用 gets。"},
+        {s:"If Ben finds the dog, he ___ May right away.", o:["will call","calling","called"], a:0,
+         h1:"前半句是假設 Ben 找到狗，後半句說之後會採取什麼行動。", h2:"主句談未來的結果，應使用未來助動詞加原形動詞。", ok:"主句用 will call 表示條件成立後會打電話。"},
+        {s:"We will stay inside if the wind ___ too strong.", o:["was","will be","is"], a:2,
+         h1:"if 後面講的是風變得太強這個條件。", h2:"談未來條件時，if 子句用現在式；主詞 wind 搭配現在式 be 動詞。", ok:"if the wind is too strong 表示未來可能成立的條件。"},
+        {s:"If my sister ___ home early, we will eat together.", o:["came","comes","will come"], a:1,
+         h1:"第一句的 will eat 已經表示未來結果。", h2:"if 引導的條件子句用現在簡單式；第三人稱單數動詞須變化。", ok:"my sister 是單數，因此 if 子句用 comes。"},
+        {s:"If you help me now, I ___ the work before dinner.", o:["will finish","finished","was finishing"], a:0,
+         h1:"句子前半提出條件，後半預告完成工作的結果。", h2:"條件成立後的未來結果，用助動詞加原形動詞。", ok:"will finish 表示在幫助之下，晚餐前會完成。"}
+      ]
+    },
+    {
+      title: "觀念二｜if＋祈使句、can、should",
+      rule: "if 也可以接建議或指示：If you are tired, take a rest.（祈使句）。主句也可以用 can 表示能力或選擇，用 should 表示建議；不要認為每個 if 句都一定要搭配 will。",
+      examples: [["If you feel cold, close the window.","如果你覺得冷，就把窗戶關上。"],["If you need a ride, you can call me.","如果你需要有人載你，可以打電話給我。"]],
+      qs: [
+        {s:"If you see the little dog outside, ___ it some water.", o:["giving","give","gave"], a:1,
+         h1:"這句是在指示對方看見狗時該做什麼。", h2:"祈使句通常直接以原形動詞開頭，不加過去式或 -ing。", ok:"give 是原形動詞，可用於祈使句。"},
+        {s:"May: I don't know the way to the station.\nBen: If you need help, you ___ ask the driver.", o:["can","had","couldn't"], a:0,
+         h1:"May 說自己不知道路，Ben 在提供可行的辦法。", h2:"表達現在可以採取的選項，用情態助動詞加原形動詞。", ok:"can ask 表示可以詢問司機。"},
+        {s:"If your brother is sick, he ___ stay home and rest.", o:["is","stayed","should"], a:2,
+         h1:"生病的人需要休息，這句是在提供建議。", h2:"提出建議時，可用情態助動詞加原形動詞，而不是直接改成過去式。", ok:"should stay 表示建議待在家休息。"},
+        {s:"The road is very wet. If you go outside, ___ careful.", o:["being","were","be"], a:2,
+         h1:"前句提到路很濕，後句提醒出門的人小心。", h2:"祈使句如果要表達『小心』，應使用 be 動詞的原形開頭。", ok:"Be careful 是常見的提醒語。"},
+        {s:"If you want to finish before six, you ___ start now.", o:["should","started","are"], a:0,
+         h1:"這句提出如何在六點前完成的建議。", h2:"主句要用表示『應該』的情態助動詞，再接原形動詞。", ok:"should start 表示現在就開始比較好。"}
+      ]
+    },
+    {
+      title: "觀念三｜時態總整理：讀懂前後句再選",
+      rule: "遇到 if、when、before、after、until，先找事件發生的時間，再看動作是否已完成或正在進行。談未來時，時間或條件子句通常用現在式；如果明確指出過去時間，則要依過去情境選擇時態。",
+      examples: [["I'll wait here until the rain stops.","我會在這裡等到雨停。"],["When I arrived, May was talking to Ben.","當我抵達時，May 正在跟 Ben 說話。"]],
+      qs: [
+        {s:"Ben: Can we go home now?\nMay: Not yet. We will wait until the rain ___.", o:["will stop","stopped","stops","is stopping"], a:2,
+         h1:"May 說會一直等，直到雨停；等雨停是尚未發生的條件。", h2:"談未來時，until 引導的時間子句通常用現在簡單式。", ok:"until the rain stops 使用現在簡單式表達未來的終點。"},
+        {s:"Mia: Where was Ash when you entered?\nBen: He ___ by the window. He didn't hear me come in.", o:["has read","will read","was reading","is reading"], a:2,
+         h1:"問句是過去時間，第二句說 Ash 沒聽見有人進門。", h2:"描寫過去某一刻正在進行的背景動作，使用過去的 be 動詞加 -ing。", ok:"was reading 表示進門時 Ash 正在閱讀。"},
+        {s:"May: Did Mr. Lee arrive yesterday?\nBen: Yes. He ___ the shop at five yesterday afternoon.", o:["has entered","entered","will enter","is entering"], a:1,
+         h1:"第二句有明確的 yesterday afternoon 和時間 five。", h2:"已結束且時間明確的過去事件，使用一般過去式。", ok:"entered 描述昨天下午五點進店裡的事。"},
+        {s:"Ben: The girl came here on Monday. Is she still here?\nMay: Yes. She ___ for her father since Monday.", o:["has waited","waited","is waiting","will wait"], a:0,
+         h1:"女孩星期一來，現在還在；等待從過去延續至今。", h2:"since 後接起點，若動作持續到現在，使用 have/has 加過去分詞。", ok:"has waited since Monday 表示從星期一等到現在。"},
+        {s:"Mia: What will you do when the door opens tomorrow?\nAsh: I ___ inside after it opens.", o:["will go","was going","went","have gone"], a:0,
+         h1:"Mia 問 tomorrow，Ash 說的是門打開後才要做的事。", h2:"after 引導的時間子句已用現在式；主句應描述未來將做的動作。", ok:"will go 是主句的未來動作，after it opens 用現在式。"}
+      ]
+    }
+  ],
+  vocab: [
+    ["storm","n.","暴風雨","新"],
+    ["choice","n.","選擇","新"],
+    ["neighbor","n.","鄰居","新"],
+    ["road","n.","道路","複習"],
+    ["doctor","n.","醫生","新"],
+    ["sick","adj.","生病的","新"],
+    ["sign","n.","標示牌","複習"],
+    ["station","n.","車站","複習"],
+    ["wet","adj.","濕的","複習"],
+    ["wind","n.","風","複習"]
+  ],
+  chunks: [
+    ["near the station","在車站附近","Ben and May worked at a shop near the station."],
+    ["look at","看著","Ben looked at the last umbrella on the wall."],
+    ["under the umbrella","在雨傘下","They walked together under the umbrella."]
+  ]
+};
+/* ===== 以下是版型，做新單元不用改（新增一夜時，把 SERIES_LAST 改成最新的單元號碼） ===== */
+const SERIES_LAST = 19;
+const L = ["A","B","C","D"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const storyHTML = lines => lines.map(l=>`<button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en">${esc(l.en)}</span><span class="zh">${esc(l.zh)}</span></button>`).join("");
+function conceptHTML(c, ci){
+  const kind = c.qs[0].o.length > 3 ? "long" : "short";
+  let h = `<section class="concept ${kind}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
+  c.qs.forEach((q,qi)=>{
+    h += `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+  });
+  return h + `</section>`;
+}
+function navHTML(pos){
+  const n = parseInt(UNIT.code.replace(/\D/g, ""), 10), local = location.pathname.endsWith(".html");
+  const href = k => { const id = "b" + String(k).padStart(2, "0"); return local ? id + ".html" : "../" + id + "/"; };
+  const home = local ? "../web/index.html" : "../";
+  const prev = n > 1 ? `<a href="${href(n - 1)}">← 第 ${n - 1} 夜</a>` : "";
+  const next = n < SERIES_LAST ? `<a href="${href(n + 1)}">第 ${n + 1} 夜 →</a>` : "";
+  return `<nav class="series-nav ${pos}">${prev}<span class="gap"></span><a href="${home}">月亮圖書館目錄</a><span class="gap"></span>${next}</nav>`;
+}
+function render(){
+  const u = UNIT;
+  const head = `<header><div class="eyebrow">${u.night}</div><h1>${u.code}｜${u.title}</h1><p class="title-zh">${u.storyTitle}｜${u.storyTitleZh}</p></header>`;
+  const front = `<section class="story"><div class="story-label">故事（上）</div>${storyHTML(u.storyFront)}<p class="tap-tip">點一下英文句子可以看中文。</p></section>`;
+  const back = `<section class="story"><div class="story-label">故事（下）</div>${storyHTML(u.storyBack)}</section><div class="think"><b>想一想：</b>${esc(u.think)}</div>`;
+  const vocab = `<h2>Vocabulary｜10 個單字</h2><div class="vocab">${u.vocab.map(v=>`<div class="word"><b>${v[0]}</b>${v[1]} ${v[2]} <span class="tag${v[3]==="複習"?" review":""}">${v[3]}</span></div>`).join("")}</div>`;
+  const chunks = `<h2>Chunks｜片語</h2><div class="chunks">${u.chunks.map(c=>`<div class="chunk"><b>${c[0]}</b> ${c[1]}<i>${esc(c[2])}</i></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2>${u.concepts.map((c,ci)=>`<b>練習 ${ci+1}</b><ol>${c.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>`).join("")}</section>`;
+  const anskey = `<div class="anskey"><b>答案</b>　${u.concepts.map((c,ci)=>`練習 ${ci+1}：${c.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join(" ")}`).join("　｜　")}</div>`;
+  document.getElementById("lesson").innerHTML =
+    `${navHTML("top")}<div class="page">${head}${front}${conceptHTML(u.concepts[0],0)}${conceptHTML(u.concepts[1],1)}</div>` +
+    `<div class="page">${conceptHTML(u.concepts[2],2)}${back}${vocab}${chunks}${answers}${anskey}</div>${navHTML("bottom")}`;
+}
+const total = UNIT.concepts.reduce((n,c)=>n+c.qs.length,0);
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `完成 ${done.size} / ${total} 題`; };
+document.addEventListener("click", e=>{
+  const line = e.target.closest(".line");
+  if(line){ line.classList.toggle("show"); line.setAttribute("aria-expanded", line.classList.contains("show")); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), ci = +qEl.dataset.c, qi = +qEl.dataset.q, key = ci+"-"+qi;
+  const q = UNIT.concepts[ci].qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){
+    btn.classList.add("correct"); done.add(key);
+    qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true);
+    fb.textContent = "✓ 對了。" + q.ok; updateProgress();
+  } else {
+    tries[key] = (tries[key]||0) + 1; btn.classList.add("wrong");
+    fb.textContent = tries[key] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2;
+  }
+});
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+// 列印時切換成雙面 A4 版面
+// 某一面快超出 A4 時，只收緊那一面的行距（不縮字）
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight","tight2");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom() > p.clientHeight - reserve - 12) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+render();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>
