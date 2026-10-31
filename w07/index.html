@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="從家裡的小事件，分辨 case、cover、plate、train、ring、sign 的不同意思。">
+<title>W7｜一字多義：家裡</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:26px 32px 36px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button,.toolbar a{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 12px;cursor:pointer;text-decoration:none}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:24px;margin:2px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+h2{font-size:18px;color:var(--accent);margin:22px 0 6px}
+.scene{background:var(--moon);border-radius:12px;padding:8px 14px}
+.line{display:grid;grid-template-columns:62px 1fr;gap:8px;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:6px 2px;cursor:pointer;color:inherit;font:inherit}
+.row{display:flex;align-items:flex-start;gap:2px}
+.row .line{flex:1;min-width:0}
+.row:last-child .line{border-bottom:0}
+.say{flex:none;border:0;background:none;cursor:pointer;font-size:15px;line-height:1;padding:8px 3px;opacity:.55;border-radius:6px}
+.say:hover,.say.playing{opacity:1;background:#e6dff5}
+.row.playing .line{background:#efe9fb}
+.playall{float:right;font:inherit;font-size:12.5px;border:1px solid #cfc4ea;background:#fff;color:#5d4a8f;border-radius:12px;padding:1px 9px;cursor:pointer}
+.passage{border:1.5px solid #9bb6c8;border-radius:10px;padding:10px 14px;background:#fbfdfe}
+.passage .ptype{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:4px;padding:0 7px;margin-right:6px}
+.passage .ptitle{font:700 17px Georgia,serif}
+.passage .ptext{font:15.5px/1.55 Georgia,serif;white-space:pre-line;margin-top:6px}
+.passage table{border-collapse:collapse;margin-top:8px;font:14.5px Georgia,serif;width:100%}
+.passage td,.passage th{border:1px solid #c8d6df;padding:4px 8px;text-align:left}
+.passage th{background:var(--soft);font-family:inherit}
+.recall{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px}
+.recall div{font-size:14.5px;border-bottom:1px solid var(--line);padding:4px 0}
+.recall span{display:inline-block;min-width:110px;border-bottom:1px solid #7f95a3;margin-left:6px}
+.nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
+.wordlist{display:grid;grid-template-columns:repeat(4,1fr);gap:3px 12px}
+.wordlist div{font-size:14px;border-bottom:1px solid var(--line);padding:3px 0}
+.wordlist b{font-family:Georgia,serif;font-size:15px}
+.wordlist i{color:var(--sub);font-size:12px;font-style:normal;margin:0 3px}
+.wordlist .hard b::before{content:"★";color:#d98a2b;font-size:12px;margin-right:2px}
+.wordlist .hard b{color:#8a4b12}
+@media (max-width:640px){.wordlist{grid-template-columns:repeat(2,1fr)}}
+.line:hover{background:#ece7f6}
+.who{font-weight:700;color:var(--moonline);font-size:14px}
+.line .en{font:16.5px/1.5 Georgia,serif}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.patterns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pat{border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.pat .head{font:700 19px Georgia,serif;color:var(--accent)}
+.pat .form{font-weight:700;margin:2px 0}
+.pat .rule{font-size:14px;color:var(--sub)}
+.pat .en{font:15px/1.45 Georgia,serif;color:#234f6b;margin-top:4px}
+.pat .zh{font-size:13.5px;color:var(--sub)}
+.tip{background:#fff6e3;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:14.5px}
+.words{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.words span{border:1px solid var(--line);border-radius:14px;padding:2px 10px;font-size:13.5px}
+.words b{font-family:Georgia,serif}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:6px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:6px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+#answers{margin-top:20px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0}
+.anskey{display:none}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .patterns{grid-template-columns:1fr}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .line{grid-template-columns:52px 1fr}
+  .toolbar button,.toolbar a{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+/* ===== 紙本：單面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.35;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .say,body.paper .playall,body.paper .toolbar,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;display:flex;flex-direction:column;break-after:page}
+body.paper .page:last-child{break-after:auto}
+body.paper .passage{padding:4px 9px;border-radius:6px}
+body.paper .passage .ptitle{font-size:11pt}
+body.paper .passage .ptext{font-size:10.3pt;line-height:1.35;margin-top:2px}
+body.paper .passage table{font-size:9.8pt;margin-top:3px}
+body.paper .passage td,body.paper .passage th{padding:1px 5px}
+body.paper .recall{gap:2px 14px}
+body.paper .wordlist{gap:1px 10px}
+body.paper .wordlist div{font-size:9.6pt;padding:1.5px 0}
+body.paper .wordlist b{font-size:10.4pt}
+body.paper .wordlist i{font-size:8pt}
+body.paper .recall div{font-size:9.8pt;padding:2px 0}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16pt;margin:0 0 4px;padding-bottom:3px}
+body.paper h2{font-size:12pt;margin:7px 0 3px}
+body.paper .scene{padding:3px 9px;border-radius:7px}
+body.paper .line{grid-template-columns:11mm 58% 1fr;gap:5px;padding:1.2px 0;align-items:baseline}
+body.paper .who{font-size:8.6pt}
+body.paper .line .en{font-size:10.5pt;line-height:1.3}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.3}
+body.paper .patterns{gap:5px}
+body.paper .patterns.many{grid-template-columns:1fr 1fr 1fr}
+body.paper .pat{padding:3px 8px;border-radius:6px}
+body.paper .pat .head{font-size:12pt}
+body.paper .pat .form{font-size:10pt;margin:0}
+body.paper .pat .rule{font-size:8.8pt}
+body.paper .pat .en{font-size:9.8pt;margin-top:1px;line-height:1.3}
+body.paper .pat .zh{font-size:8.6pt}
+body.paper .tip{padding:3px 8px;margin-top:5px;font-size:9.2pt}
+body.paper .words{gap:4px;margin-top:4px}
+body.paper .words span{font-size:8.8pt;padding:0 7px}
+body.paper .q{padding:3px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .stem-text{font-size:10.4pt;line-height:1.3}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+body.paper .page.tight .q{padding:1.5px 0}
+body.paper .page.tight .line{padding:0.5px 0}
+body.paper .page.tight h2{margin:4px 0 2px}
+body.paper .page.tight .pat{padding:2px 7px}
+body.paper .page.tight .tip{padding:2px 8px;margin-top:3px}
+body.paper .page.tight .words{margin-top:3px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.8pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div class="btns"><a id="home" href="../">← 目錄</a><span class="status" id="progress"></span></div>
+  <div class="btns">
+    <button type="button" id="slowBtn">🐢 慢速朗讀</button>
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="sheet"></main>
+<script>
+/* ===== 單張資料：做新的補給站時只改這一段 ===== */
+const SHEET = {
+  code: "W7",
+  title: "一字多義：家裡",
+  kind: "月亮圖書館 · 白天篇",
+  desc: "從家裡的小事件，分辨 case、cover、plate、train、ring、sign 的不同意思。",
+  names: [
+    "Robo",
+    "Mimi"
+  ],
+  scene: [
+    {
+      who: "Mia",
+      en: "The rain washed six words away. Look! There is a strange case on our table.",
+      zh: "雨把六個字沖走了。看！我們桌上有個奇怪的盒子。"
+    },
+    {
+      who: "Robo",
+      en: "In that case, should I open it? There is a book with no cover inside!",
+      zh: "既然這樣，我該打開它嗎？裡面有一本沒有封面的書！"
+    },
+    {
+      who: "Mimi",
+      en: "Cover the book with this plate. The rain is coming in!",
+      zh: "用這個盤子蓋住書。雨正飄進來！"
+    },
+    {
+      who: "Mia",
+      en: "A plate of cookies is under the table, too. Who put it there?",
+      zh: "桌子下面還有一盤餅乾。誰把它放在那裡的？"
+    },
+    {
+      who: "Robo",
+      en: "I want to train Mimi to find the missing words before the train leaves.",
+      zh: "我想訓練 Mimi 在火車離開前找到不見的字。"
+    },
+    {
+      who: "Mimi",
+      en: "Meow! I found a ring! Wait—why is the doorbell ringing?",
+      zh: "喵！我找到一枚戒指！等等——門鈴為什麼在響？"
+    },
+    {
+      who: "Mia",
+      en: "The sign outside says “Please sign your name before you come in.”",
+      zh: "外面的告示牌寫著：「進來之前請先簽名。」"
+    },
+    {
+      who: "Robo",
+      en: "I can sign my name! But the box says “Do not open.” Is that a bad sign?",
+      zh: "我會簽名！但是盒子上寫著「請勿打開」。那是不好的徵兆嗎？"
+    },
+    {
+      who: "Mimi",
+      en: "The doorbell is still ringing. Robo, stop training me and open the door. The cookies are for the cat!",
+      zh: "門鈴還在響。Robo，別再訓練我了，去開門。餅乾是給貓的！"
+    }
+  ],
+  patterns: [
+    {
+      head: "case",
+      form: "名 盒子／箱子｜名 情況",
+      rule: "a case 可以是裝東西的容器；in that case 是「既然如此」。",
+      en: "Put the glasses in the case. ／ In that case, let’s go home.",
+      zh: "把眼鏡放進盒子裡。／ 既然如此，我們回家吧。"
+    },
+    {
+      head: "cover",
+      form: "名 封面｜動 覆蓋、蓋住",
+      rule: "a book cover 指書的封面；cover＋物品 指把它蓋住。",
+      en: "The book has a blue cover. ／ Cover the food with a plate.",
+      zh: "這本書有藍色封面。／ 用盤子把食物蓋住。"
+    },
+    {
+      head: "plate",
+      form: "名 盤子｜名 一盤的量",
+      rule: "a plate 是盤子本身；a plate of＋食物 表示「一盤……」。",
+      en: "Wash this plate, please. ／ I ate a plate of rice.",
+      zh: "請洗這個盤子。／ 我吃了一盤飯。"
+    },
+    {
+      head: "train",
+      form: "名 火車｜動 訓練",
+      rule: "take a train 說交通工具；train＋人／動物＋to V 說訓練。",
+      en: "The train leaves at six. ／ She trains her dog to sit.",
+      zh: "火車六點開。／ 她訓練狗坐下。"
+    },
+    {
+      head: "ring",
+      form: "名 戒指｜動 （鈴）響",
+      rule: "wear a ring 是戴戒指；the bell rings 是鈴聲響起。",
+      en: "My mom wears a ring. ／ The bell rings at eight.",
+      zh: "我媽媽戴著一枚戒指。／ 鈴在八點響。"
+    },
+    {
+      head: "sign",
+      form: "名 標誌／告示牌｜動 簽名",
+      rule: "a sign 可指標誌或告示牌；sign your name 指簽上名字。",
+      en: "Read the sign on the door. ／ Please sign your name here.",
+      zh: "讀一下門上的告示牌。／ 請在這裡簽名。"
+    }
+  ],
+  tip: "一字多義先看詞性，再看前後字：a case／in that case、book cover／cover the book、a plate／a plate of、the train／train a dog、a ring／bell rings、a sign／sign your name。",
+  words: [],
+  qs: [
+    {
+      s: "Mia: My glasses are in a small case.\nRobo: Is it a difficult case?\nWhat does the first “case” mean?",
+      o: [
+        "盒子",
+        "理由",
+        "課程",
+        "情況"
+      ],
+      a: 0,
+      h1: "眼鏡會放在哪種東西裡？",
+      h2: "留意 in a small ...，這裡是可放進物品的名詞，不是抽象的情況。",
+      ok: "a small case 指小盒子或眼鏡盒。"
+    },
+    {
+      s: "Mimi: The book is wet!\nMia: Cover it with this towel.\nWhat does “cover” mean here?",
+      o: [
+        "閱讀",
+        "購買",
+        "蓋住",
+        "畫畫"
+      ],
+      a: 2,
+      h1: "書濕了，毛巾可以做什麼？",
+      h2: "這裡 cover 後面直接接受詞 it，表示一個動作。",
+      ok: "Cover it with a towel. 就是用毛巾把它蓋住。"
+    },
+    {
+      s: "Robo: I found a plate of cookies!\nMimi: Great! Please put the cookies on the table.\nWhat does “a plate of cookies” mean?",
+      o: [
+        "一個餅乾盒",
+        "一種餅乾味道",
+        "一張餅乾圖片",
+        "一盤餅乾"
+      ],
+      a: 3,
+      h1: "cookies 是複數，前面的 plate of 表示盛裝的量。",
+      h2: "a＋容器＋of＋食物，常用來表示「一容器的食物」。",
+      ok: "a plate of cookies 是一盤餅乾。"
+    },
+    {
+      s: "Mia: We have a new dog.\nRobo: I can train it to open the door!\nWhat does “train” mean?",
+      o: [
+        "讓位",
+        "搭火車",
+        "追趕",
+        "訓練"
+      ],
+      a: 3,
+      h1: "新養的狗可以學習做動作嗎？",
+      h2: "train＋受詞＋to V 表示教某人或動物學會做某事。",
+      ok: "train it to open the door 指訓練牠開門。"
+    },
+    {
+      s: "Mia: Your phone is ringing.\nRobo: But I left it in my room!\nWhich word has the same meaning as “ringing” here?",
+      o: [
+        "running",
+        "wearing a ring",
+        "making a sound",
+        "breaking"
+      ],
+      a: 2,
+      h1: "手機在房間裡，它正在發出什麼？",
+      h2: "現在進行式 be＋ringing，主詞是 phone，描述手機的狀態。",
+      ok: "The phone is ringing. 指手機正在響。"
+    },
+    {
+      s: "Robo: The sign says “Keep out.”\nMimi: Then why are you opening the door?\nWhat is “sign” in the first sentence?",
+      o: [
+        "告示牌",
+        "一枚戒指",
+        "一張車票",
+        "簽名動作"
+      ],
+      a: 0,
+      h1: "它上面寫著 Keep out，是什麼東西？",
+      h2: "The sign says ... 中 sign 是名詞，通常是能讀到文字的標示。",
+      ok: "The sign says ... 指告示牌上寫著……。"
+    },
+    {
+      s: "Mia: The train is late, so we can stay at home longer.\nRobo: Good! I can train Mimi to sit.\nWhich sentence uses “train” as a verb?",
+      o: [
+        "We have more time.",
+        "The train is late.",
+        "We can stay at home.",
+        "I can train Mimi to sit."
+      ],
+      a: 3,
+      h1: "看看 train 後面是否直接接著 Mimi。",
+      h2: "can 後面接動詞原形；train＋人或動物＋to V 是常見結構。",
+      ok: "I can train Mimi to sit. 的 train 是「訓練」。"
+    },
+    {
+      s: "Mimi: Is that a ring in the box?\nMia: Yes. Please sign your name before you take it.\nWhat does “sign” mean?",
+      o: [
+        "簽名",
+        "發出聲音",
+        "戴上戒指",
+        "看標誌"
+      ],
+      a: 0,
+      h1: "name 出現在 sign 後面，表示要對名字做什麼？",
+      h2: "動詞＋your name，常見於表格、收據或領取物品時。",
+      ok: "sign your name 是「簽名」，不是名詞「標誌」。"
+    }
+  ],
+  split: 2,
+  pages: 2,
+  headings: {
+    qs2: "練習｜會考式（續）"
+  }
+};
+/* ===== 以下是版型，不用改 ===== */
+const L = ["A","B","C","D"];
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function qHTML(q,qi){
+  return `<div class="q" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+}
+function passageHTML(p){
+  if(!p) return "";
+  const rows = p.rows ? `<table>${p.rows.map((r,i)=>`<tr>${r.map(c=>i===0?`<th>${esc(c)}</th>`:`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</table>` : "";
+  return `<h2>${esc(p.heading || "會考題組｜讀一讀")}</h2><section class="passage"><span class="ptype">${esc(p.type || "短文")}</span><span class="ptitle">${esc(p.title || "")}</span>${p.text ? `<div class="ptext">${esc(p.text)}</div>` : ""}${rows}</section>`;
+}
+function render(){
+  const u = SHEET, split = (u.split ?? u.qs.length);
+  const T = Object.assign({scene:"情境｜這樣說", patterns:"句型｜一眼分辨", qs:"練習｜會考式", qs2:"題組練習", recall:"單字回想｜看中文寫英文"}, u.headings || {});
+  let p1 = `<header><div class="eyebrow">${esc(u.kind)}</div><h1>${esc(u.code)}｜${esc(u.title)}</h1></header>`;
+  if (u.scene?.length) p1 += `<h2>${esc(T.scene)}<button type="button" class="playall">🔊 全部播放</button></h2><section class="scene">${u.scene.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line"><span class="who">${esc(l.who)}</span><span><span class="en">${esc(l.en)}</span></span><span class="zh">${esc(l.zh)}</span></button></div>`).join("")}</section><p class="tap-tip">點一下句子可以看中文，按 🔊 聽英文。</p>`;
+  if (u.patterns?.length) p1 += `<h2>${esc(T.patterns)}</h2><div class="patterns${u.patterns.length > 4 ? " many" : ""}">${u.patterns.map(p=>`<div class="pat"><div class="head">${esc(p.head)}</div><div class="form">${esc(p.form)}</div><div class="rule">${esc(p.rule)}</div><div class="en">${esc(p.en)}</div><div class="zh">${esc(p.zh)}</div></div>`).join("")}</div>`;
+  if (u.tip) p1 += `<div class="tip">💡 ${esc(u.tip)}</div>`;
+  if (u.wordlist?.length) p1 += `<h2>${esc(T.wordlist || "主題字表｜★＝最多人錯")}</h2><div class="wordlist">${u.wordlist.map(w=>`<div class="${w[3] ? "hard" : ""}"><b>${esc(w[0])}</b><i>${esc(w[1])}</i>${esc(w[2])}</div>`).join("")}</div>`;
+  if (u.words?.length) p1 += `<div class="words">${u.words.map(w=>`<span><b>${esc(w[0])}</b> ${esc(w[1])}</span>`).join("")}</div>`;
+  if (split > 0) p1 += `<h2>${esc(T.qs)}</h2>` + u.qs.slice(0, split).map((q,i)=>qHTML(q,i)).join("");
+  let p2 = "";
+  if (split < u.qs.length || u.passage) {
+    p2 += passageHTML(u.passage);
+    if (split < u.qs.length) p2 += `<h2>${esc(T.qs2)}</h2>` + u.qs.slice(split).map((q,i)=>qHTML(q, split + i)).join("");
+  }
+  let recall = "";
+  if (u.recall?.length) recall = `<h2>${esc(T.recall)}</h2><div class="recall">${u.recall.map((r,i)=>`<div>${i+1}. ${esc(r[0])}<span>&nbsp;</span></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2><ol>${u.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>${u.recall?.length ? `<p>單字：${u.recall.map((r,i)=>`${i+1}. ${esc(r[1])}`).join("　")}</p>` : ""}</section>`;
+  const key = `<div class="anskey"><b>答案</b>　${u.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join("　")}${u.recall?.length ? `｜單字：${u.recall.map((r,i)=>`${i+1}.${esc(r[1])}`).join(" ")}` : ""}</div>`;
+  const html = p2 || (u.pages === 2)
+    ? `<div class="page">${p1}</div><div class="page">${p2}${recall}${answers}${key}</div>`
+    : `<div class="page">${p1}${recall}${answers}${key}</div>`;
+  document.getElementById("sheet").innerHTML = html;
+}
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `　完成 ${done.size} / ${SHEET.qs.length} 題`; };
+document.addEventListener("click", e=>{
+  const say = e.target.closest(".say"), all = e.target.closest(".playall");
+  if(say){ speakRows([say.closest(".row")]); return; }
+  if(all){ speakRows([...document.querySelectorAll(".scene .row")]); return; }
+  const line = e.target.closest(".line"); if(line){ line.classList.toggle("show"); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), qi = +qEl.dataset.q, q = SHEET.qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){ btn.classList.add("correct"); done.add(qi); qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true); fb.textContent = "✓ 對了。" + q.ok; updateProgress(); }
+  else { tries[qi] = (tries[qi]||0) + 1; btn.classList.add("wrong"); fb.textContent = tries[qi] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2; }
+});
+let slow = false;
+function speakRows(rows){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel(); document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing"));
+  const voice = speechSynthesis.getVoices().find(v=>/^en(-|_)US/i.test(v.lang)) || speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
+  rows.forEach(row=>{
+    const u = new SpeechSynthesisUtterance(row.querySelector(".en").textContent.replace(/[“”]/g,'"'));
+    u.lang = "en-US"; u.rate = slow ? 0.7 : 0.95; if(voice) u.voice = voice;
+    u.onstart = ()=>{ document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing")); row.classList.add("playing"); row.querySelector(".say").classList.add("playing"); };
+    u.onend = ()=>{ row.classList.remove("playing"); row.querySelector(".say").classList.remove("playing"); };
+    speechSynthesis.speak(u);
+  });
+}
+if(!("speechSynthesis" in window)) document.documentElement.classList.add("nospeech");
+document.getElementById("slowBtn").onclick = e=>{ slow = !slow; e.target.textContent = slow ? "🐇 正常速度" : "🐢 慢速朗讀"; };
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom > p.clientHeight - reserve) p.classList.add("tight");
+    const b2 = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+if (location.pathname.endsWith(".html")) document.getElementById("home").href = "../web/index.html";
+render(); updateProgress();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>

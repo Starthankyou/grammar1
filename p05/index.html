@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="分辨聽說過、得知事件、收到某人消息，以及查明、處理、等待和擔心的說法。">
+<title>P5｜片語：消息與處理</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:26px 32px 36px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button,.toolbar a{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 12px;cursor:pointer;text-decoration:none}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:24px;margin:2px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+h2{font-size:18px;color:var(--accent);margin:22px 0 6px}
+.scene{background:var(--moon);border-radius:12px;padding:8px 14px}
+.line{display:grid;grid-template-columns:62px 1fr;gap:8px;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:6px 2px;cursor:pointer;color:inherit;font:inherit}
+.row{display:flex;align-items:flex-start;gap:2px}
+.row .line{flex:1;min-width:0}
+.row:last-child .line{border-bottom:0}
+.say{flex:none;border:0;background:none;cursor:pointer;font-size:15px;line-height:1;padding:8px 3px;opacity:.55;border-radius:6px}
+.say:hover,.say.playing{opacity:1;background:#e6dff5}
+.row.playing .line{background:#efe9fb}
+.playall{float:right;font:inherit;font-size:12.5px;border:1px solid #cfc4ea;background:#fff;color:#5d4a8f;border-radius:12px;padding:1px 9px;cursor:pointer}
+.passage{border:1.5px solid #9bb6c8;border-radius:10px;padding:10px 14px;background:#fbfdfe}
+.passage .ptype{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:4px;padding:0 7px;margin-right:6px}
+.passage .ptitle{font:700 17px Georgia,serif}
+.passage .ptext{font:15.5px/1.55 Georgia,serif;white-space:pre-line;margin-top:6px}
+.passage table{border-collapse:collapse;margin-top:8px;font:14.5px Georgia,serif;width:100%}
+.passage td,.passage th{border:1px solid #c8d6df;padding:4px 8px;text-align:left}
+.passage th{background:var(--soft);font-family:inherit}
+.recall{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px}
+.recall div{font-size:14.5px;border-bottom:1px solid var(--line);padding:4px 0}
+.recall span{display:inline-block;min-width:110px;border-bottom:1px solid #7f95a3;margin-left:6px}
+.nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
+.wordlist{display:grid;grid-template-columns:repeat(4,1fr);gap:3px 12px}
+.wordlist div{font-size:14px;border-bottom:1px solid var(--line);padding:3px 0}
+.wordlist b{font-family:Georgia,serif;font-size:15px}
+.wordlist i{color:var(--sub);font-size:12px;font-style:normal;margin:0 3px}
+.wordlist .hard b::before{content:"★";color:#d98a2b;font-size:12px;margin-right:2px}
+.wordlist .hard b{color:#8a4b12}
+@media (max-width:640px){.wordlist{grid-template-columns:repeat(2,1fr)}}
+.line:hover{background:#ece7f6}
+.who{font-weight:700;color:var(--moonline);font-size:14px}
+.line .en{font:16.5px/1.5 Georgia,serif}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.patterns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pat{border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.pat .head{font:700 19px Georgia,serif;color:var(--accent)}
+.pat .form{font-weight:700;margin:2px 0}
+.pat .rule{font-size:14px;color:var(--sub)}
+.pat .en{font:15px/1.45 Georgia,serif;color:#234f6b;margin-top:4px}
+.pat .zh{font-size:13.5px;color:var(--sub)}
+.tip{background:#fff6e3;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:14.5px}
+.words{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.words span{border:1px solid var(--line);border-radius:14px;padding:2px 10px;font-size:13.5px}
+.words b{font-family:Georgia,serif}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:6px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:6px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+#answers{margin-top:20px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0}
+.anskey{display:none}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .patterns{grid-template-columns:1fr}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .line{grid-template-columns:52px 1fr}
+  .toolbar button,.toolbar a{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+/* ===== 紙本：單面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.35;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .say,body.paper .playall,body.paper .toolbar,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;display:flex;flex-direction:column;break-after:page}
+body.paper .page:last-child{break-after:auto}
+body.paper .passage{padding:4px 9px;border-radius:6px}
+body.paper .passage .ptitle{font-size:11pt}
+body.paper .passage .ptext{font-size:10.3pt;line-height:1.35;margin-top:2px}
+body.paper .passage table{font-size:9.8pt;margin-top:3px}
+body.paper .passage td,body.paper .passage th{padding:1px 5px}
+body.paper .recall{gap:2px 14px}
+body.paper .wordlist{gap:1px 10px}
+body.paper .wordlist div{font-size:9.6pt;padding:1.5px 0}
+body.paper .wordlist b{font-size:10.4pt}
+body.paper .wordlist i{font-size:8pt}
+body.paper .recall div{font-size:9.8pt;padding:2px 0}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16pt;margin:0 0 4px;padding-bottom:3px}
+body.paper h2{font-size:12pt;margin:7px 0 3px}
+body.paper .scene{padding:3px 9px;border-radius:7px}
+body.paper .line{grid-template-columns:11mm 58% 1fr;gap:5px;padding:1.2px 0;align-items:baseline}
+body.paper .who{font-size:8.6pt}
+body.paper .line .en{font-size:10.5pt;line-height:1.3}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.3}
+body.paper .patterns{gap:5px}
+body.paper .patterns.many{grid-template-columns:1fr 1fr 1fr}
+body.paper .pat{padding:3px 8px;border-radius:6px}
+body.paper .pat .head{font-size:12pt}
+body.paper .pat .form{font-size:10pt;margin:0}
+body.paper .pat .rule{font-size:8.8pt}
+body.paper .pat .en{font-size:9.8pt;margin-top:1px;line-height:1.3}
+body.paper .pat .zh{font-size:8.6pt}
+body.paper .tip{padding:3px 8px;margin-top:5px;font-size:9.2pt}
+body.paper .words{gap:4px;margin-top:4px}
+body.paper .words span{font-size:8.8pt;padding:0 7px}
+body.paper .q{padding:3px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .stem-text{font-size:10.4pt;line-height:1.3}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+body.paper .page.tight .q{padding:1.5px 0}
+body.paper .page.tight .line{padding:0.5px 0}
+body.paper .page.tight h2{margin:4px 0 2px}
+body.paper .page.tight .pat{padding:2px 7px}
+body.paper .page.tight .tip{padding:2px 8px;margin-top:3px}
+body.paper .page.tight .words{margin-top:3px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.8pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div class="btns"><a id="home" href="../">← 目錄</a><span class="status" id="progress"></span></div>
+  <div class="btns">
+    <button type="button" id="slowBtn">🐢 慢速朗讀</button>
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="sheet"></main>
+<script>
+/* ===== 單張資料：做新的補給站時只改這一段 ===== */
+const SHEET = {
+  code: "P5",
+  title: "片語：消息與處理",
+  kind: "月亮圖書館 · 白天篇",
+  desc: "分辨聽說過、得知事件、收到某人消息，以及查明、處理、等待和擔心的說法。",
+  names: [
+    "Robo",
+    "Mimi"
+  ],
+  scene: [
+    {
+      who: "Mia",
+      en: "Have you heard of the old post office near our school?",
+      zh: "你們聽說過學校附近那間舊郵局嗎？"
+    },
+    {
+      who: "Robo",
+      en: "I heard about some missing words there this morning.",
+      zh: "我今天早上聽說那裡有些字不見了。"
+    },
+    {
+      who: "Mimi",
+      en: "Did you hear from the postman? He knows this town well.",
+      zh: "你有收到郵差的消息嗎？他很熟悉這個小鎮。"
+    },
+    {
+      who: "Robo",
+      en: "No. Let's find out where the words went.",
+      zh: "沒有。我們來查明那些字去了哪裡吧。"
+    },
+    {
+      who: "Mia",
+      en: "I'll deal with the letters. Please wait for me outside.",
+      zh: "我來處理那些信。請在外面等我。"
+    },
+    {
+      who: "Mimi",
+      en: "Don't worry about the rain. I brought an umbrella.",
+      zh: "別擔心下雨。我帶了一把傘。"
+    },
+    {
+      who: "Robo",
+      en: "I just heard from the postman! He found a wet book.",
+      zh: "我剛收到郵差的消息！他找到一本濕掉的書。"
+    },
+    {
+      who: "Mia",
+      en: "Let's find out what's inside before we take it home.",
+      zh: "我們帶它回家前，先查明裡面有什麼吧。"
+    },
+    {
+      who: "Mimi",
+      en: "Look! The missing word is WORRY. Robo, please stop worrying about it!",
+      zh: "看！不見的字是 WORRY。Robo，請別再擔心它了！"
+    }
+  ],
+  patterns: [
+    {
+      head: "hear of",
+      form: "hear of＋人／事物",
+      rule: "表示聽說過某人或某事物、知道它的存在；不強調事件的詳細內容。hear–heard–heard。",
+      en: "Have you heard of this singer?",
+      zh: "你聽說過這位歌手嗎？"
+    },
+    {
+      head: "hear about",
+      form: "hear about＋事件／消息",
+      rule: "表示聽到、得知某件事情的消息或情況；重點在事件本身。",
+      en: "I heard about the school trip.",
+      zh: "我聽說了學校旅行的事。"
+    },
+    {
+      head: "hear from",
+      form: "hear from＋人",
+      rule: "表示收到某人的來信、電話或消息；from 後面接消息來源的人。",
+      en: "Did you hear from your sister?",
+      zh: "你收到姊姊的消息了嗎？"
+    },
+    {
+      head: "find out",
+      form: "find out＋資訊／find＋資訊＋out",
+      rule: "表示透過調查或詢問查明真相；若受詞是 it，需說 find it out；接疑問詞子句可說 find out why…。",
+      en: "Let's find out who took it.",
+      zh: "我們來查明是誰拿走它的吧。"
+    },
+    {
+      head: "deal with",
+      form: "deal with＋問題／事情",
+      rule: "表示面對並處理問題；with 不可省略，也不可說 deal it with。deal–dealt–dealt。",
+      en: "We can deal with this problem.",
+      zh: "我們能處理這個問題。"
+    },
+    {
+      head: "wait for",
+      form: "wait for＋人／物",
+      rule: "表示等待某人或某物；若後面有等待對象，要加 for。",
+      en: "Please wait for me here.",
+      zh: "請在這裡等我。"
+    },
+    {
+      head: "worry about",
+      form: "worry about＋人／事情",
+      rule: "表示擔心某人或某事；don't worry about it 是常見的安慰說法。",
+      en: "Don't worry about the test.",
+      zh: "別擔心考試。"
+    }
+  ],
+  tip: "hear of＝聽說過『有這回事』；hear about＝得知『發生什麼事』；hear from＝收到『某人的消息』。find out 查明、deal with 處理、wait for 等待、worry about 擔心。",
+  words: [],
+  qs: [
+    {
+      s: "Mia: Do you know the writer of this book?\nRobo: I've never ___ her, but I'd like to read her stories.",
+      o: [
+        "heard of",
+        "waited for",
+        "dealt with",
+        "heard from"
+      ],
+      a: 0,
+      h1: "Robo 不認識這位作家，連她的名字都沒聽過。",
+      h2: "這裡是問是否知道某人存在，不是問有沒有收到她的來信。",
+      ok: "heard of 表示聽說過某人或某事物。"
+    },
+    {
+      s: "Mimi: There was a fire at the market yesterday.\nMia: Yes, I ___ it on the radio.",
+      o: [
+        "dealt with",
+        "waited for",
+        "heard from",
+        "heard about"
+      ],
+      a: 3,
+      h1: "收音機播的是市場發生火災這件事。",
+      h2: "這裡的受詞 it 指一個事件，不是寄消息給你的某個人。",
+      ok: "heard about 表示得知某個事件或消息。"
+    },
+    {
+      s: "Robo checked his phone and smiled. He finally ___ his brother overseas.",
+      o: [
+        "worried about",
+        "heard of",
+        "heard from",
+        "found out"
+      ],
+      a: 2,
+      h1: "Robo 看了手機後笑了，暗示有人傳消息來。",
+      h2: "這裡說的是收到一位親人的消息，介系詞後面接消息來源的人。",
+      ok: "heard from his brother 表示收到哥哥或弟弟的消息。"
+    },
+    {
+      s: "Mia: Who moved the wet books?\nMimi: I don't know. Let's ___!",
+      o: [
+        "find out",
+        "wait for",
+        "hear from",
+        "worry about"
+      ],
+      a: 0,
+      h1: "他們不知道移動書本的人是誰。",
+      h2: "要選表示透過調查把未知答案弄清楚的片語。",
+      ok: "find out 表示查明真相。"
+    },
+    {
+      s: "The post office has too many letters today. The workers must ___ them before noon.",
+      o: [
+        "worry about",
+        "wait for",
+        "hear of",
+        "deal with"
+      ],
+      a: 3,
+      h1: "郵局有太多信件，工作人員中午前必須完成工作。",
+      h2: "這裡要表示處理手上的事情，而非只是擔心它們。",
+      ok: "deal with 表示處理問題或事務。"
+    },
+    {
+      s: "Mimi: I'm still buying tickets.\nRobo: OK, I'll ___ you by the station door.",
+      o: [
+        "find out",
+        "hear of",
+        "deal with",
+        "wait for"
+      ],
+      a: 3,
+      h1: "Mimi 還在買票，Robo 會在門口做什麼？",
+      h2: "後面有等待的對象 you，需要使用帶介系詞的等待片語。",
+      ok: "wait for someone 表示等待某人。"
+    },
+    {
+      s: "Robo: I'm afraid the rain will ruin our books.\nMia: Don't ___. They're in a dry bag.",
+      o: [
+        "hear from them",
+        "worry about them",
+        "deal them with",
+        "wait them for"
+      ],
+      a: 1,
+      h1: "Mia 說書放在乾燥的袋子裡，想讓 Robo 放心。",
+      h2: "要選表示『別擔心那些書』的自然說法；介系詞後面可以接受詞代名詞。",
+      ok: "Don't worry about them 表示別擔心那些書。"
+    },
+    {
+      s: "Mia: The sign is missing again.\nMimi: Let's ___ who took it before we tell the teacher.",
+      o: [
+        "worry about",
+        "hear from",
+        "find out",
+        "wait for"
+      ],
+      a: 2,
+      h1: "他們想先知道是誰拿走告示牌。",
+      h2: "後面接 who took it，表示要把一個疑問查清楚。",
+      ok: "find out who took it 表示查明是誰拿走它。"
+    }
+  ],
+  headings: {
+    qs2: "練習｜會考式（續）"
+  },
+  split: 4,
+  pages: 2
+};
+/* ===== 以下是版型，不用改 ===== */
+const L = ["A","B","C","D"];
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function qHTML(q,qi){
+  return `<div class="q" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+}
+function passageHTML(p){
+  if(!p) return "";
+  const rows = p.rows ? `<table>${p.rows.map((r,i)=>`<tr>${r.map(c=>i===0?`<th>${esc(c)}</th>`:`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</table>` : "";
+  return `<h2>${esc(p.heading || "會考題組｜讀一讀")}</h2><section class="passage"><span class="ptype">${esc(p.type || "短文")}</span><span class="ptitle">${esc(p.title || "")}</span>${p.text ? `<div class="ptext">${esc(p.text)}</div>` : ""}${rows}</section>`;
+}
+function render(){
+  const u = SHEET, split = (u.split ?? u.qs.length);
+  const T = Object.assign({scene:"情境｜這樣說", patterns:"句型｜一眼分辨", qs:"練習｜會考式", qs2:"題組練習", recall:"單字回想｜看中文寫英文"}, u.headings || {});
+  let p1 = `<header><div class="eyebrow">${esc(u.kind)}</div><h1>${esc(u.code)}｜${esc(u.title)}</h1></header>`;
+  if (u.scene?.length) p1 += `<h2>${esc(T.scene)}<button type="button" class="playall">🔊 全部播放</button></h2><section class="scene">${u.scene.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line"><span class="who">${esc(l.who)}</span><span><span class="en">${esc(l.en)}</span></span><span class="zh">${esc(l.zh)}</span></button></div>`).join("")}</section><p class="tap-tip">點一下句子可以看中文，按 🔊 聽英文。</p>`;
+  if (u.patterns?.length) p1 += `<h2>${esc(T.patterns)}</h2><div class="patterns${u.patterns.length > 4 ? " many" : ""}">${u.patterns.map(p=>`<div class="pat"><div class="head">${esc(p.head)}</div><div class="form">${esc(p.form)}</div><div class="rule">${esc(p.rule)}</div><div class="en">${esc(p.en)}</div><div class="zh">${esc(p.zh)}</div></div>`).join("")}</div>`;
+  if (u.tip) p1 += `<div class="tip">💡 ${esc(u.tip)}</div>`;
+  if (u.wordlist?.length) p1 += `<h2>${esc(T.wordlist || "主題字表｜★＝最多人錯")}</h2><div class="wordlist">${u.wordlist.map(w=>`<div class="${w[3] ? "hard" : ""}"><b>${esc(w[0])}</b><i>${esc(w[1])}</i>${esc(w[2])}</div>`).join("")}</div>`;
+  if (u.words?.length) p1 += `<div class="words">${u.words.map(w=>`<span><b>${esc(w[0])}</b> ${esc(w[1])}</span>`).join("")}</div>`;
+  if (split > 0) p1 += `<h2>${esc(T.qs)}</h2>` + u.qs.slice(0, split).map((q,i)=>qHTML(q,i)).join("");
+  let p2 = "";
+  if (split < u.qs.length || u.passage) {
+    p2 += passageHTML(u.passage);
+    if (split < u.qs.length) p2 += `<h2>${esc(T.qs2)}</h2>` + u.qs.slice(split).map((q,i)=>qHTML(q, split + i)).join("");
+  }
+  let recall = "";
+  if (u.recall?.length) recall = `<h2>${esc(T.recall)}</h2><div class="recall">${u.recall.map((r,i)=>`<div>${i+1}. ${esc(r[0])}<span>&nbsp;</span></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2><ol>${u.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>${u.recall?.length ? `<p>單字：${u.recall.map((r,i)=>`${i+1}. ${esc(r[1])}`).join("　")}</p>` : ""}</section>`;
+  const key = `<div class="anskey"><b>答案</b>　${u.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join("　")}${u.recall?.length ? `｜單字：${u.recall.map((r,i)=>`${i+1}.${esc(r[1])}`).join(" ")}` : ""}</div>`;
+  const html = p2 || (u.pages === 2)
+    ? `<div class="page">${p1}</div><div class="page">${p2}${recall}${answers}${key}</div>`
+    : `<div class="page">${p1}${recall}${answers}${key}</div>`;
+  document.getElementById("sheet").innerHTML = html;
+}
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `　完成 ${done.size} / ${SHEET.qs.length} 題`; };
+document.addEventListener("click", e=>{
+  const say = e.target.closest(".say"), all = e.target.closest(".playall");
+  if(say){ speakRows([say.closest(".row")]); return; }
+  if(all){ speakRows([...document.querySelectorAll(".scene .row")]); return; }
+  const line = e.target.closest(".line"); if(line){ line.classList.toggle("show"); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), qi = +qEl.dataset.q, q = SHEET.qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){ btn.classList.add("correct"); done.add(qi); qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true); fb.textContent = "✓ 對了。" + q.ok; updateProgress(); }
+  else { tries[qi] = (tries[qi]||0) + 1; btn.classList.add("wrong"); fb.textContent = tries[qi] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2; }
+});
+let slow = false;
+function speakRows(rows){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel(); document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing"));
+  const voice = speechSynthesis.getVoices().find(v=>/^en(-|_)US/i.test(v.lang)) || speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
+  rows.forEach(row=>{
+    const u = new SpeechSynthesisUtterance(row.querySelector(".en").textContent.replace(/[“”]/g,'"'));
+    u.lang = "en-US"; u.rate = slow ? 0.7 : 0.95; if(voice) u.voice = voice;
+    u.onstart = ()=>{ document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing")); row.classList.add("playing"); row.querySelector(".say").classList.add("playing"); };
+    u.onend = ()=>{ row.classList.remove("playing"); row.querySelector(".say").classList.remove("playing"); };
+    speechSynthesis.speak(u);
+  });
+}
+if(!("speechSynthesis" in window)) document.documentElement.classList.add("nospeech");
+document.getElementById("slowBtn").onclick = e=>{ slow = !slow; e.target.textContent = slow ? "🐇 正常速度" : "🐢 慢速朗讀"; };
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom > p.clientHeight - reserve) p.classList.add("tight");
+    const b2 = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+if (location.pathname.endsWith(".html")) document.getElementById("home").href = "../web/index.html";
+render(); updateProgress();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>

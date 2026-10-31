@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="用搭車、下車、抵達與跌落等生活情境，分辨移動方向和交通片語。">
+<title>P6｜片語：移動與交通</title>
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:26px 32px 36px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button,.toolbar a{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 12px;cursor:pointer;text-decoration:none}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:24px;margin:2px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+h2{font-size:18px;color:var(--accent);margin:22px 0 6px}
+.scene{background:var(--moon);border-radius:12px;padding:8px 14px}
+.line{display:grid;grid-template-columns:62px 1fr;gap:8px;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:6px 2px;cursor:pointer;color:inherit;font:inherit}
+.row{display:flex;align-items:flex-start;gap:2px}
+.row .line{flex:1;min-width:0}
+.row:last-child .line{border-bottom:0}
+.say{flex:none;border:0;background:none;cursor:pointer;font-size:15px;line-height:1;padding:8px 3px;opacity:.55;border-radius:6px}
+.say:hover,.say.playing{opacity:1;background:#e6dff5}
+.row.playing .line{background:#efe9fb}
+.playall{float:right;font:inherit;font-size:12.5px;border:1px solid #cfc4ea;background:#fff;color:#5d4a8f;border-radius:12px;padding:1px 9px;cursor:pointer}
+.passage{border:1.5px solid #9bb6c8;border-radius:10px;padding:10px 14px;background:#fbfdfe}
+.passage .ptype{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:4px;padding:0 7px;margin-right:6px}
+.passage .ptitle{font:700 17px Georgia,serif}
+.passage .ptext{font:15.5px/1.55 Georgia,serif;white-space:pre-line;margin-top:6px}
+.passage table{border-collapse:collapse;margin-top:8px;font:14.5px Georgia,serif;width:100%}
+.passage td,.passage th{border:1px solid #c8d6df;padding:4px 8px;text-align:left}
+.passage th{background:var(--soft);font-family:inherit}
+.recall{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px}
+.recall div{font-size:14.5px;border-bottom:1px solid var(--line);padding:4px 0}
+.recall span{display:inline-block;min-width:110px;border-bottom:1px solid #7f95a3;margin-left:6px}
+.nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
+.wordlist{display:grid;grid-template-columns:repeat(4,1fr);gap:3px 12px}
+.wordlist div{font-size:14px;border-bottom:1px solid var(--line);padding:3px 0}
+.wordlist b{font-family:Georgia,serif;font-size:15px}
+.wordlist i{color:var(--sub);font-size:12px;font-style:normal;margin:0 3px}
+.wordlist .hard b::before{content:"★";color:#d98a2b;font-size:12px;margin-right:2px}
+.wordlist .hard b{color:#8a4b12}
+@media (max-width:640px){.wordlist{grid-template-columns:repeat(2,1fr)}}
+.line:hover{background:#ece7f6}
+.who{font-weight:700;color:var(--moonline);font-size:14px}
+.line .en{font:16.5px/1.5 Georgia,serif}
+.line .zh{display:none;font-size:14px;color:var(--sub)}
+.line.show .zh,body.allzh .line .zh{display:block}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.patterns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pat{border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.pat .head{font:700 19px Georgia,serif;color:var(--accent)}
+.pat .form{font-weight:700;margin:2px 0}
+.pat .rule{font-size:14px;color:var(--sub)}
+.pat .en{font:15px/1.45 Georgia,serif;color:#234f6b;margin-top:4px}
+.pat .zh{font-size:13.5px;color:var(--sub)}
+.tip{background:#fff6e3;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:14.5px}
+.words{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.words span{border:1px solid var(--line);border-radius:14px;padding:2px 10px;font-size:13.5px}
+.words b{font-family:Georgia,serif}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:6px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:6px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+#answers{margin-top:20px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0}
+.anskey{display:none}
+@media (max-width:640px){
+  main{padding:18px 16px 30px}
+  .patterns{grid-template-columns:1fr}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .line{grid-template-columns:52px 1fr}
+  .toolbar button,.toolbar a{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+/* ===== 紙本：單面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.35;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .say,body.paper .playall,body.paper .toolbar,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;display:flex;flex-direction:column;break-after:page}
+body.paper .page:last-child{break-after:auto}
+body.paper .passage{padding:4px 9px;border-radius:6px}
+body.paper .passage .ptitle{font-size:11pt}
+body.paper .passage .ptext{font-size:10.3pt;line-height:1.35;margin-top:2px}
+body.paper .passage table{font-size:9.8pt;margin-top:3px}
+body.paper .passage td,body.paper .passage th{padding:1px 5px}
+body.paper .recall{gap:2px 14px}
+body.paper .wordlist{gap:1px 10px}
+body.paper .wordlist div{font-size:9.6pt;padding:1.5px 0}
+body.paper .wordlist b{font-size:10.4pt}
+body.paper .wordlist i{font-size:8pt}
+body.paper .recall div{font-size:9.8pt;padding:2px 0}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16pt;margin:0 0 4px;padding-bottom:3px}
+body.paper h2{font-size:12pt;margin:7px 0 3px}
+body.paper .scene{padding:3px 9px;border-radius:7px}
+body.paper .line{grid-template-columns:11mm 58% 1fr;gap:5px;padding:1.2px 0;align-items:baseline}
+body.paper .who{font-size:8.6pt}
+body.paper .line .en{font-size:10.5pt;line-height:1.3}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.3}
+body.paper .patterns{gap:5px}
+body.paper .patterns.many{grid-template-columns:1fr 1fr 1fr}
+body.paper .pat{padding:3px 8px;border-radius:6px}
+body.paper .pat .head{font-size:12pt}
+body.paper .pat .form{font-size:10pt;margin:0}
+body.paper .pat .rule{font-size:8.8pt}
+body.paper .pat .en{font-size:9.8pt;margin-top:1px;line-height:1.3}
+body.paper .pat .zh{font-size:8.6pt}
+body.paper .tip{padding:3px 8px;margin-top:5px;font-size:9.2pt}
+body.paper .words{gap:4px;margin-top:4px}
+body.paper .words span{font-size:8.8pt;padding:0 7px}
+body.paper .q{padding:3px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .stem-text{font-size:10.4pt;line-height:1.3}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+body.paper .page.tight .q{padding:1.5px 0}
+body.paper .page.tight .line{padding:0.5px 0}
+body.paper .page.tight h2{margin:4px 0 2px}
+body.paper .page.tight .pat{padding:2px 7px}
+body.paper .page.tight .tip{padding:2px 8px;margin-top:3px}
+body.paper .page.tight .words{margin-top:3px}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.8pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div class="btns"><a id="home" href="../">← 目錄</a><span class="status" id="progress"></span></div>
+  <div class="btns">
+    <button type="button" id="slowBtn">🐢 慢速朗讀</button>
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="sheet"></main>
+<script>
+/* ===== 單張資料：做新的補給站時只改這一段 ===== */
+const SHEET = {
+  code: "P6",
+  title: "片語：移動與交通",
+  kind: "月亮圖書館 · 白天篇",
+  desc: "用搭車、下車、抵達與跌落等生活情境，分辨移動方向和交通片語。",
+  names: [
+    "Robo",
+    "Mimi",
+    "Driver"
+  ],
+  scene: [
+    {
+      who: "Mia",
+      en: "Let's get on the bus and look for the missing words.",
+      zh: "我們上公車，去找不見的字吧。"
+    },
+    {
+      who: "Robo",
+      en: "Where do we get off? I can't see the station.",
+      zh: "我們在哪裡下車？我看不到車站。"
+    },
+    {
+      who: "Driver",
+      en: "I'll drop you off near the park. Don't worry.",
+      zh: "我會讓你們在公園附近下車。別擔心。"
+    },
+    {
+      who: "Mimi",
+      en: "We leave for the market at nine, right?",
+      zh: "我們九點出發去市場，對吧？"
+    },
+    {
+      who: "Mia",
+      en: "Yes. Then we'll head for the old library.",
+      zh: "對。然後我們會朝舊圖書館前進。"
+    },
+    {
+      who: "Robo",
+      en: "We arrived at the park, but the sign fell down!",
+      zh: "我們到了公園，但告示牌倒下了！"
+    },
+    {
+      who: "Mimi",
+      en: "The word fell off the sign and landed on my tail!",
+      zh: "那個字從告示牌上掉下來，落到我的尾巴上了！"
+    },
+    {
+      who: "Driver",
+      en: "Did you arrive in Moon Town just to find one word?",
+      zh: "你們來到月亮鎮，就為了找一個字嗎？"
+    },
+    {
+      who: "Robo",
+      en: "Yes! Now please drop me off at a sandwich shop!",
+      zh: "對！現在請讓我在三明治店下車！"
+    }
+  ],
+  patterns: [
+    {
+      head: "get on / get off",
+      form: "get on＋公車／火車；get off＋公車／火車",
+      rule: "搭上或離開公車、火車等交通工具；on 與 off 表示相反方向。",
+      en: "Get off the bus at the next stop.",
+      zh: "在下一站下公車。"
+    },
+    {
+      head: "drop off",
+      form: "drop＋人＋off／drop off＋人",
+      rule: "開車讓某人在某處下車；受詞是代名詞時放中間：drop me off。",
+      en: "Dad will drop me off at school.",
+      zh: "爸爸會開車送我到學校下車。"
+    },
+    {
+      head: "leave for",
+      form: "leave for＋目的地",
+      rule: "表示出發前往某地；和 leave＋地點（離開某地）不同。leave–left–left。",
+      en: "We leave for Taipei tomorrow morning.",
+      zh: "我們明天早上出發去台北。"
+    },
+    {
+      head: "head for",
+      form: "head for＋目的地",
+      rule: "表示朝某個地點前進；重點是移動方向，不一定已經抵達。",
+      en: "Let's head for the train station.",
+      zh: "我們往火車站走吧。"
+    },
+    {
+      head: "arrive at / in",
+      form: "arrive at＋小地點；arrive in＋城市／國家",
+      rule: "抵達車站、學校常用 at；抵達城市或國家常用 in。",
+      en: "We arrived in Taiwan on Friday.",
+      zh: "我們星期五抵達台灣。"
+    },
+    {
+      head: "fall down",
+      form: "fall down（倒下／跌倒）",
+      rule: "強調人或物往下倒；不一定是從某個表面掉落。fall–fell–fallen。",
+      en: "The old man fell down on the street.",
+      zh: "那位老人跌倒在街上。"
+    },
+    {
+      head: "fall off",
+      form: "fall off＋表面／交通工具",
+      rule: "表示從某物的表面掉落，後面常接 bike、chair、table 等。",
+      en: "His hat fell off the bike.",
+      zh: "他的帽子從腳踏車上掉了下來。"
+    }
+  ],
+  tip: "get on／off 是上下車；drop someone off 是載人到某處下車；leave for／head for 是朝目的地出發；arrive at／in 才是抵達。fall down 是倒下，fall off 是從某物掉落。",
+  words: [],
+  qs: [
+    {
+      s: "Mia: The bus is here, and the doors are open!\nRobo: Great! Let's ___ before it leaves.",
+      o: [
+        "get on",
+        "get off",
+        "fall down",
+        "leave for"
+      ],
+      a: 0,
+      h1: "公車剛到，門開著，大家還站在車外。",
+      h2: "要選表示進入交通工具的片語，而不是離開車廂。",
+      ok: "get on the bus 表示上公車。"
+    },
+    {
+      s: "Robo: Is this our stop?\nMia: Yes. We should ___ now.",
+      o: [
+        "get on",
+        "arrive in",
+        "get off",
+        "head for"
+      ],
+      a: 2,
+      h1: "他們已經坐在車上，現在到了要下車的站。",
+      h2: "要選表示離開公車或火車的片語。",
+      ok: "get off 表示下車。"
+    },
+    {
+      s: "Mom: It's raining. I'll drive you to school.\nBen: Thanks! Please ___ at the front gate.",
+      o: [
+        "drop off me",
+        "leave me for",
+        "get me on",
+        "drop me off"
+      ],
+      a: 3,
+      h1: "媽媽開車載 Ben，Ben 希望在校門口下車。",
+      h2: "載某人到目的地讓他下車時，受詞代名詞必須放在動詞與副詞中間。",
+      ok: "drop me off 的代名詞位置正確，表示讓我下車。"
+    },
+    {
+      s: "Mimi: Our train is at seven tomorrow morning.\nMia: Then we must ___ the city before six.",
+      o: [
+        "arrive at",
+        "leave for",
+        "get off",
+        "fall off"
+      ],
+      a: 1,
+      h1: "他們明天七點要搭火車，六點前就得動身。",
+      h2: "後面是要去的城市，這裡要表達出發前往目的地。",
+      ok: "leave for the city 表示出發前往那座城市。"
+    },
+    {
+      s: "The children reached the park and saw a sign for the library. They decided to ___ the library.",
+      o: [
+        "arrive in",
+        "fall down",
+        "get off",
+        "head for"
+      ],
+      a: 3,
+      h1: "他們看見圖書館的指標後，決定往那裡走。",
+      h2: "這裡強調朝目的地前進，不是已經到達。",
+      ok: "head for the library 表示朝圖書館前進。"
+    },
+    {
+      s: "Mia: The train has stopped at Taipei Main Station.\nRobo: We have finally ___ the station!",
+      o: [
+        "left for",
+        "arrived in",
+        "headed for",
+        "arrived at"
+      ],
+      a: 3,
+      h1: "火車已經停在特定車站；句子要表示抵達。",
+      h2: "抵達一個明確的小地點，例如車站，使用特定的地點介系詞。",
+      ok: "arrived at the station 表示抵達車站。"
+    },
+    {
+      s: "Robo was carrying too many books. He couldn't see the steps and suddenly ___.",
+      o: [
+        "fell off",
+        "dropped off",
+        "fell down",
+        "got on"
+      ],
+      a: 2,
+      h1: "他看不見階梯，突然失去平衡。",
+      h2: "這裡描述整個人跌倒，沒有指定從哪個物體表面掉落。",
+      ok: "fell down 表示跌倒。"
+    },
+    {
+      s: "Mimi: Where is your bag?\nRobo: Oh no! It ___ my bike on the way here.",
+      o: [
+        "fell down",
+        "fell off",
+        "arrived at",
+        "got off"
+      ],
+      a: 1,
+      h1: "書包原本在腳踏車上，現在不見了。",
+      h2: "後面接 my bike，表示物品從某個表面掉落。",
+      ok: "fell off my bike 表示從腳踏車上掉落。"
+    }
+  ],
+  headings: {
+    qs2: "練習｜會考式（續）"
+  },
+  split: 4,
+  pages: 2
+};
+/* ===== 以下是版型，不用改 ===== */
+const L = ["A","B","C","D"];
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function qHTML(q,qi){
+  return `<div class="q" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+}
+function passageHTML(p){
+  if(!p) return "";
+  const rows = p.rows ? `<table>${p.rows.map((r,i)=>`<tr>${r.map(c=>i===0?`<th>${esc(c)}</th>`:`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</table>` : "";
+  return `<h2>${esc(p.heading || "會考題組｜讀一讀")}</h2><section class="passage"><span class="ptype">${esc(p.type || "短文")}</span><span class="ptitle">${esc(p.title || "")}</span>${p.text ? `<div class="ptext">${esc(p.text)}</div>` : ""}${rows}</section>`;
+}
+function render(){
+  const u = SHEET, split = (u.split ?? u.qs.length);
+  const T = Object.assign({scene:"情境｜這樣說", patterns:"句型｜一眼分辨", qs:"練習｜會考式", qs2:"題組練習", recall:"單字回想｜看中文寫英文"}, u.headings || {});
+  let p1 = `<header><div class="eyebrow">${esc(u.kind)}</div><h1>${esc(u.code)}｜${esc(u.title)}</h1></header>`;
+  if (u.scene?.length) p1 += `<h2>${esc(T.scene)}<button type="button" class="playall">🔊 全部播放</button></h2><section class="scene">${u.scene.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line"><span class="who">${esc(l.who)}</span><span><span class="en">${esc(l.en)}</span></span><span class="zh">${esc(l.zh)}</span></button></div>`).join("")}</section><p class="tap-tip">點一下句子可以看中文，按 🔊 聽英文。</p>`;
+  if (u.patterns?.length) p1 += `<h2>${esc(T.patterns)}</h2><div class="patterns${u.patterns.length > 4 ? " many" : ""}">${u.patterns.map(p=>`<div class="pat"><div class="head">${esc(p.head)}</div><div class="form">${esc(p.form)}</div><div class="rule">${esc(p.rule)}</div><div class="en">${esc(p.en)}</div><div class="zh">${esc(p.zh)}</div></div>`).join("")}</div>`;
+  if (u.tip) p1 += `<div class="tip">💡 ${esc(u.tip)}</div>`;
+  if (u.wordlist?.length) p1 += `<h2>${esc(T.wordlist || "主題字表｜★＝最多人錯")}</h2><div class="wordlist">${u.wordlist.map(w=>`<div class="${w[3] ? "hard" : ""}"><b>${esc(w[0])}</b><i>${esc(w[1])}</i>${esc(w[2])}</div>`).join("")}</div>`;
+  if (u.words?.length) p1 += `<div class="words">${u.words.map(w=>`<span><b>${esc(w[0])}</b> ${esc(w[1])}</span>`).join("")}</div>`;
+  if (split > 0) p1 += `<h2>${esc(T.qs)}</h2>` + u.qs.slice(0, split).map((q,i)=>qHTML(q,i)).join("");
+  let p2 = "";
+  if (split < u.qs.length || u.passage) {
+    p2 += passageHTML(u.passage);
+    if (split < u.qs.length) p2 += `<h2>${esc(T.qs2)}</h2>` + u.qs.slice(split).map((q,i)=>qHTML(q, split + i)).join("");
+  }
+  let recall = "";
+  if (u.recall?.length) recall = `<h2>${esc(T.recall)}</h2><div class="recall">${u.recall.map((r,i)=>`<div>${i+1}. ${esc(r[0])}<span>&nbsp;</span></div>`).join("")}</div>`;
+  const answers = `<section id="answers" hidden><h2>答案</h2><ol>${u.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>${u.recall?.length ? `<p>單字：${u.recall.map((r,i)=>`${i+1}. ${esc(r[1])}`).join("　")}</p>` : ""}</section>`;
+  const key = `<div class="anskey"><b>答案</b>　${u.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join("　")}${u.recall?.length ? `｜單字：${u.recall.map((r,i)=>`${i+1}.${esc(r[1])}`).join(" ")}` : ""}</div>`;
+  const html = p2 || (u.pages === 2)
+    ? `<div class="page">${p1}</div><div class="page">${p2}${recall}${answers}${key}</div>`
+    : `<div class="page">${p1}${recall}${answers}${key}</div>`;
+  document.getElementById("sheet").innerHTML = html;
+}
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `　完成 ${done.size} / ${SHEET.qs.length} 題`; };
+document.addEventListener("click", e=>{
+  const say = e.target.closest(".say"), all = e.target.closest(".playall");
+  if(say){ speakRows([say.closest(".row")]); return; }
+  if(all){ speakRows([...document.querySelectorAll(".scene .row")]); return; }
+  const line = e.target.closest(".line"); if(line){ line.classList.toggle("show"); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), qi = +qEl.dataset.q, q = SHEET.qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){ btn.classList.add("correct"); done.add(qi); qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true); fb.textContent = "✓ 對了。" + q.ok; updateProgress(); }
+  else { tries[qi] = (tries[qi]||0) + 1; btn.classList.add("wrong"); fb.textContent = tries[qi] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2; }
+});
+let slow = false;
+function speakRows(rows){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel(); document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing"));
+  const voice = speechSynthesis.getVoices().find(v=>/^en(-|_)US/i.test(v.lang)) || speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
+  rows.forEach(row=>{
+    const u = new SpeechSynthesisUtterance(row.querySelector(".en").textContent.replace(/[“”]/g,'"'));
+    u.lang = "en-US"; u.rate = slow ? 0.7 : 0.95; if(voice) u.voice = voice;
+    u.onstart = ()=>{ document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing")); row.classList.add("playing"); row.querySelector(".say").classList.add("playing"); };
+    u.onend = ()=>{ row.classList.remove("playing"); row.querySelector(".say").classList.remove("playing"); };
+    speechSynthesis.speak(u);
+  });
+}
+if(!("speechSynthesis" in window)) document.documentElement.classList.add("nospeech");
+document.getElementById("slowBtn").onclick = e=>{ slow = !slow; e.target.textContent = slow ? "🐇 正常速度" : "🐢 慢速朗讀"; };
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    if (bottom > p.clientHeight - reserve) p.classList.add("tight");
+    const b2 = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+if (location.pathname.endsWith(".html")) document.getElementById("home").href = "../web/index.html";
+render(); updateProgress();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>
