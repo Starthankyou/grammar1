@@ -442,9 +442,10 @@ function fitPages(){
     p.classList.remove("tight");
     const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
     const bottom = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
-    if (bottom > p.clientHeight - reserve) p.classList.add("tight");
+    const SAFE = 28; // 列印時字會比螢幕寬一點，多留安全空間
+    if (bottom > p.clientHeight - reserve - SAFE) p.classList.add("tight");
     const b2 = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
-    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve)));
+    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve - SAFE)));
   });
 }
 const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");

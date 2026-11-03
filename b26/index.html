@@ -122,6 +122,7 @@ body.paper .short .stem-text{font-size:10.8pt}
 body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
 /* 觀念三：選項四欄 */
 body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .long.n3 .opts{grid-template-columns:repeat(3,1fr)}
 body.paper .vocab{gap:4px}
 body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
 body.paper .word b{font-size:10.3pt}
@@ -185,11 +186,11 @@ const UNIT = {
     {en:"The note said, “Remember to check the garden.” Ben hurried outside and found Mimi beside a basket.", zh:"紙條寫著：「記得去花園看看。」Ben 急忙跑出去，發現 Mimi 坐在一個籃子旁。"},
     {en:"Robo was there, too. “We decided to move the food,” he explained. “The kitchen was too hot.”", zh:"Robo 也在那裡。「我們決定把食物移走，」他解釋。「廚房太熱了。」"},
     {en:"Ben looked at the basket. It was full of fresh food. “But I didn't finish making dinner!” he cried.", zh:"Ben 看著籃子，裡面裝滿新鮮食物。「可是我還沒把晚餐做完！」他喊道。"},
-    {en:"“You can stop worrying,” said Robo. “Your grandmother loves eating outside. We made a table for her here.”", zh:"「你可以別再擔心了，」Robo 說。「你奶奶喜歡在外面吃東西。我們在這裡替她準備了一張桌子。」"},
+    {en:"“You can stop worrying,” said Robo. “Your grandmother loves eating outside.”", zh:"「你可以別再擔心了，」Robo 說。「你奶奶喜歡在外面吃飯。」"},
     {en:"It took Ben two hours to finish the meal. When his grandmother arrived, she smiled at the garden table.", zh:"Ben 花了兩個小時才完成這頓飯。奶奶到達時，看著花園裡的桌子笑了。"},
-    {en:"“I remember eating here with your grandfather,” she said. “Thank you for bringing back that happy day.”", zh:"「我記得以前和你爺爺在這裡吃過飯，」她說。「謝謝你讓那個快樂的日子重新回到我心裡。」"},
+    {en:"“I remember eating here with your grandfather,” she said. “Thank you.”", zh:"「我記得以前和你爺爺在這裡吃過飯，」她說。「謝謝你。」"},
     {f:1, en:"Ash looked down at the key. “She enjoyed telling stories,” he said. “She wanted me to tell my own story.”", zh:"Ash 低頭看著鑰匙。「她喜歡說故事，」他說。「她希望我也說出自己的故事。」"},
-    {f:1, en:"He decided to remember. Behind the twenty-sixth door, Mia found a book with one sentence: “LISTEN BEFORE YOU OPEN THE NEXT DOOR.”", zh:"他決定努力想起來。第二十六扇門後，Mia 找到一本書，上面只有一句話：「打開下一扇門前，先聽。」"}
+    {f:1, en:"Behind the twenty-sixth door, Mia found a book: “LISTEN BEFORE YOU OPEN THE NEXT DOOR.”", zh:"第二十六扇門後，Mia 找到一本書：「打開下一扇門前，先聽。」"}
   ],
   think: "Ben 原本想做一頓完美的晚餐，奶奶最後卻因為另一件事而感動。你覺得他真正送給奶奶的是什麼？",
   concepts: [
@@ -253,14 +254,12 @@ const UNIT = {
     ["perfect","adj.","完美的","新"],
     ["practice","v./n.","練習","新"],
     ["key","n.","鑰匙","複習"],
-    ["door","n.","門","複習"],
-    ["note","n.","紙條；便條","複習"],
-    ["book","n.","書","複習"]
+    ["note","n.","紙條；便條","複習"]
   ],
   chunks: [
-    ["be good at","擅長","He was good at cutting vegetables, but he kept dropping eggs."],
+    ["be good at","擅長","He was good at cutting vegetables."],
     ["stop to V","停下原本的事去做另一件事","One day, he stopped cooking to answer the phone."],
-    ["It takes someone time to V","某人花時間做某事","It took Ben two hours to finish the meal."]
+    ["It takes＋人＋時間＋to V", "花多久做某事","It took Ben two hours to finish the meal."]
   ]
 };
 /* ===== 以下是版型，做新單元不用改（新增一夜時，把 SERIES_LAST 改成最新的單元號碼） ===== */
@@ -269,8 +268,9 @@ const L = ["A","B","C","D"];
 const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const storyHTML = lines => lines.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en">${esc(l.en)}</span><span class="zh">${esc(l.zh)}</span></button></div>`).join("");
 function conceptHTML(c, ci){
-  const kind = c.qs[0].o.length > 3 ? "long" : "short";
-  let h = `<section class="concept ${kind}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
+  const kind = c.layout || ((c.qs[0].o.length > 3 || c.qs.some(q => q.o.some(o => o.length > 14))) ? "long" : "short");
+  const nopt = c.qs[0].o.length;
+  let h = `<section class="concept ${kind} n${nopt}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
   c.qs.forEach((q,qi)=>{
     h += `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
   });
@@ -346,9 +346,10 @@ function fitPages(){
     p.classList.remove("tight","tight2");
     const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
     const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
-    if (bottom() > p.clientHeight - reserve - 12) p.classList.add("tight");
-    if (bottom() > p.clientHeight - reserve) p.classList.add("tight2");
-    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve)));
+    const SAFE = 28; // 列印時字會比螢幕寬一點，多留安全空間
+    if (bottom() > p.clientHeight - reserve - 12 - SAFE) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve - SAFE) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve - SAFE)));
   });
 }
 const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");

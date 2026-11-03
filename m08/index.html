@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>第 8 課｜一般動詞過去式：不規則動詞</title>
+<meta name="description" content="三份說詞｜承認，不代表偷竊">
+<style>
+:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto 60px;background:#fff;padding:28px 32px 40px;box-shadow:0 3px 15px #0001}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
+.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
+.toolbar button{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 13px;cursor:pointer}
+.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.status{color:var(--accent);font-weight:700;font-size:14px}
+.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:25px;margin:2px 0 4px;border-bottom:2px solid var(--accent);padding-bottom:8px}
+.title-zh{color:var(--sub);margin:0}
+h2{font-size:19px;color:var(--accent);margin:26px 0 6px}
+.story{background:var(--moon);border-radius:12px;padding:8px 14px;margin:10px 0}
+.story-label{overflow:hidden;font-size:13px;color:var(--moonline);font-weight:700;margin:4px 0 2px}
+.line{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:7px 4px;cursor:pointer;color:inherit;font:inherit}
+.row{display:flex;align-items:flex-start;gap:2px}
+.row .line{flex:1;min-width:0}
+.row:last-of-type .line{border-bottom:0}
+.say{flex:none;border:0;background:none;cursor:pointer;font-size:15px;line-height:1;padding:9px 3px;opacity:.55;border-radius:6px}
+.say:hover,.say.playing{opacity:1;background:#e6dff5}
+.playall{float:right;font:inherit;font-size:12.5px;border:1px solid #cfc4ea;background:#fff;color:#5d4a8f;border-radius:12px;padding:1px 9px;cursor:pointer}
+.row.playing .line{background:#efe9fb}
+.line:hover{background:#ece7f6}
+.line:focus-visible{outline:3px solid #b5a8dc}
+.line .en{display:block;font:17px/1.55 Georgia,"Times New Roman",serif}
+.line.frame .en{font-style:italic;color:#4b3f75}
+.line{display:grid;grid-template-columns:55% 1fr;gap:14px;align-items:baseline}
+.line .zh{display:block;font-size:14px;color:var(--sub)}
+@media (max-width:640px){.line{display:block}}
+.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
+.think{background:#fff6e3;border-radius:10px;padding:8px 14px;margin:10px 0}
+.rule{margin:2px 0 6px}
+.examples{display:grid;gap:6px;margin:6px 0 8px}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--soft);border-radius:8px;padding:7px 12px}
+.ex .en{font:16px/1.45 Georgia,serif;font-weight:700;color:#234f6b}
+.ex .zh{font-size:14px;color:var(--sub)}
+.q{border-bottom:1px solid var(--line);padding:9px 0}
+.stem{display:flex;gap:8px;margin-bottom:7px}
+.qnum{color:var(--accent);font-weight:700;min-width:22px}
+.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding-left:30px}
+.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:7px 10px;cursor:pointer}
+.opt .letter{font-weight:700;color:var(--accent);flex:none}
+.opt:hover:not(:disabled){background:#edf7ff}
+.opt:focus-visible{outline:3px solid #91c3dd}
+.opt.wrong{background:var(--warn);border-color:var(--warnline)}
+.opt.correct{background:var(--ok);border-color:var(--okline)}
+.opt:disabled{cursor:default}
+.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
+.feedback:empty{display:none}
+.vocab{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.word{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;line-height:1.4}
+.word b{font:16px Georgia,serif;margin-right:4px}
+.word .tag{display:inline-block;font-size:11px;border-radius:9px;padding:0 6px;background:#e4eef5;color:#38617a}
+.word .tag.review{background:#efe9f8;color:#5d4a8f}
+.chunks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chunk{background:var(--soft);border-radius:8px;padding:7px 10px;font-size:14px;line-height:1.45}
+.chunk b{font-family:Georgia,serif;font-size:15px}
+.chunk i{display:block;font-family:Georgia,serif;font-style:normal;color:#234f6b}
+#answers{margin-top:22px;border-top:2px solid var(--line);padding-top:8px}
+#answers ol{padding-left:22px;margin:4px 0 10px}
+.anskey{display:none}
+ruby{ruby-position:over;ruby-align:center}
+rt{font-size:10px;line-height:1;transform:translateY(.45em);color:#8a6d3b;font-family:"Noto Sans TC","PingFang TC",sans-serif;font-weight:400;letter-spacing:0}
+.evidence{border:1.5px solid #9bb6c8;border-radius:10px;padding:8px 12px;margin:8px 0 6px;background:#fbfdfe}
+.evidence .ptype{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:#7a5c2e;border-radius:4px;padding:0 7px;margin-right:6px}
+.evidence .ptitle{font:700 16px Georgia,serif}
+.evidence .ptext{font:15px/1.5 Georgia,serif;white-space:pre-line;margin-top:4px}
+.evidence table{border-collapse:collapse;margin-top:6px;font:14px Georgia,serif;width:100%}
+.evidence td,.evidence th{border:1px solid #c8d6df;padding:3px 7px;text-align:left;vertical-align:top}
+.evidence th{background:var(--soft);font-family:inherit;font-size:13px}
+.ev2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:640px){.ev2{grid-template-columns:1fr}}
+.caseupdate{border:2px solid #7a5c2e;border-radius:12px;padding:8px 14px;margin:14px 0 8px;background:#fffaf2}
+.caseupdate h2{color:#7a5c2e;margin:2px 0 6px}
+.cu-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.cu-grid b{font-size:14px}
+.cu-grid ul{margin:2px 0 4px;padding-left:18px;font-size:14px}
+.cu-grid li{margin:1px 0}
+.caseupdate .next{margin:6px 0 0;font-size:14px;color:#7a5c2e;font-weight:700}
+.nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
+.series-nav{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin:0 0 14px}
+.series-nav.bottom{margin:28px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.series-nav a{color:var(--accent);text-decoration:none;border:1px solid #b9cfdc;border-radius:7px;padding:5px 11px}
+.series-nav a:hover{background:#edf7ff}
+.series-nav .gap{flex:1}
+@media (max-width:640px){
+  .cu-grid{grid-template-columns:1fr}
+  main{padding:18px 16px 30px}
+  .ex{grid-template-columns:1fr;gap:2px}
+  .opts{padding-left:0;grid-template-columns:1fr 1fr}
+  .feedback{padding-left:0}
+  .vocab{grid-template-columns:repeat(2,1fr)}
+  .chunks{grid-template-columns:1fr}
+  h1{font-size:21px}
+  .toolbar{padding:6px 10px;gap:4px}
+  .toolbar button{font-size:12.5px;padding:5px 8px}
+  #printBtn{display:none}
+}
+
+/* ===== 紙本：一張雙面 A4（列印時自動套用 body.paper） ===== */
+@page{size:A4;margin:10mm 11mm}
+body.paper{background:#fff;font-size:10pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body.paper .say,body.paper .playall,body.paper .toolbar,body.paper .series-nav,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
+body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
+body.paper .page{height:277mm;overflow:hidden;break-after:page;display:flex;flex-direction:column}
+body.paper .page:last-child{break-after:auto}
+body.paper .eyebrow{font-size:8.5pt}
+body.paper h1{font-size:16.5pt;margin:0 0 2px;padding-bottom:3px}
+body.paper .title-zh{font-size:9.5pt}
+body.paper h2{font-size:12pt;margin:7px 0 2px}
+body.paper .story{padding:3px 9px;margin:5px 0;border-radius:7px}
+body.paper .story-label{font-size:8.5pt;margin:2px 0 0}
+body.paper .line{display:grid;grid-template-columns:55% 1fr;gap:9px;padding:1.6px 0;border-bottom:1px dashed #e2dcef}
+body.paper .line .en{font-size:10.6pt;line-height:1.32}
+body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.35;padding-top:1px}
+body.paper .think{padding:3px 9px;margin:4px 0;font-size:9.5pt}
+body.paper .rule{font-size:9.5pt;margin:0 0 3px}
+body.paper .examples{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:3px 0 2px}
+body.paper .ex{display:block;padding:3px 8px;border-radius:5px}
+body.paper .ex .en{display:block;font-size:10pt;line-height:1.3}
+body.paper .ex .zh{display:block;font-size:8.5pt;line-height:1.3}
+body.paper .q{padding:2.6px 0;break-inside:avoid}
+body.paper .stem{margin:0}
+body.paper .qnum{min-width:16px;font-size:10pt}
+body.paper .stem-text{font-size:10.4pt;line-height:1.32}
+body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
+body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px;line-height:1.3}
+body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
+/* 觀念一、二：題目和選項同一行 */
+body.paper .short .q{display:grid;grid-template-columns:1fr 92mm;gap:6px;align-items:center;padding:5.5px 0}
+body.paper .short .stem-text{font-size:10.8pt}
+body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
+/* 觀念三：選項四欄 */
+body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .long.n3 .opts{grid-template-columns:repeat(3,1fr)}
+.long.n3 .opts{grid-template-columns:repeat(3,1fr)}
+body.paper .vocab{gap:4px}
+body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
+body.paper .word b{font-size:10.3pt}
+body.paper .word .tag{font-size:7.5pt;padding:0 4px}
+body.paper .chunks{gap:5px}
+body.paper .chunk{padding:3px 7px;font-size:8.8pt;border-radius:5px;line-height:1.35}
+body.paper .chunk b,body.paper .chunk i{font-size:9.8pt}
+body.paper .page.tight .short .q{padding:2.4px 0}
+body.paper .page.tight .q{padding:1.8px 0}
+body.paper .page.tight .line{padding:0.6px 0}
+body.paper .page.tight h2{margin:5px 0 1px}
+body.paper .page.tight .examples{margin:2px 0 1px}
+body.paper .page.tight2 .vocab{gap:3px}
+body.paper .page.tight2 .word{padding:1px 5px}
+body.paper .page.tight2 .chunks{gap:3px}
+body.paper .page.tight2 .chunk{padding:1.5px 6px}
+body.paper .page.tight2 .think{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 .story{padding:2px 8px;margin:3px 0}
+body.paper .page.tight2 h2{margin:3px 0 1px}
+body.paper .page.tight2 .examples{gap:3px}
+body.paper .page.tight2 .ex{padding:2px 7px}
+body.paper .page.tight2 .rule{margin:0 0 2px}
+body.paper .evidence{padding:3px 8px;margin:4px 0 3px;border-radius:6px}
+body.paper .evidence .ptitle{font-size:10.5pt}
+body.paper .evidence .ptype{font-size:8pt}
+body.paper .evidence .ptext{font-size:10pt;line-height:1.3;margin-top:1px}
+body.paper .evidence table{font-size:9.6pt;margin-top:2px}
+body.paper .evidence td,body.paper .evidence th{padding:1px 5px}
+body.paper .evidence th{font-size:8.6pt}
+body.paper .caseupdate{padding:4px 9px;margin:6px 0 4px;border-radius:7px}
+body.paper .caseupdate h2{margin:0 0 2px}
+body.paper .cu-grid{gap:2px 12px}
+body.paper .cu-grid b{font-size:9.6pt}
+body.paper .cu-grid ul{font-size:9.4pt;margin:0 0 2px;padding-left:15px}
+body.paper .caseupdate .next{font-size:9.6pt;margin-top:2px}
+body.paper rt{font-size:6.5pt;transform:translateY(.5em)}
+body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.6pt;color:var(--sub)}
+body.paper .anskey b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span class="status" id="progress">完成 0 / 15 題</span>
+  <div class="btns">
+    <button type="button" id="slowBtn">🐢 慢速朗讀</button>
+    <button type="button" id="zhBtn">全部顯示中文</button>
+    <button type="button" id="resetBtn">重新練習</button>
+    <button type="button" id="ansBtn">查看答案</button>
+    <button type="button" id="printBtn">列印</button>
+  </div>
+</div>
+<main id="lesson"></main>
+
+<script>
+/* ===== 單元資料：做新單元時只改這一段 ===== */
+const CASE = {
+  "code": "M8",
+  "title": "一般動詞過去式：不規則動詞",
+  "caseLabel": "English Mystery Lab · Case 1：The Empty Frame",
+  "lessonLabel": "第 8 課",
+  "subtitle": "三份說詞｜承認，不代表偷竊",
+  "page2From": [
+    1,
+    "qs"
+  ],
+  "names": [
+    "Nora",
+    "Max",
+    "Iris",
+    "Leo",
+    "Ethan",
+    "Park",
+    "Han",
+    "Wu",
+    "Pepper"
+  ],
+  "opening": [
+    {
+      "en": "Friday, 2:50 p.m. The art show is in 17 hours.",
+      "zh": "星期五下午 2:50。離美術展還有 17 小時。"
+    },
+    {
+      "en": "Principal Han puts the three in one room. “Talk. Now.”",
+      "zh": "韓校長把三個人關進同一間教室：「說。現在。」"
+    },
+    {
+      "en": "“Fine. The red button was mine,” Leo says.",
+      "zh": "「好啦，紅鈕扣是我的，」Leo 說。"
+    },
+    {
+      "en": "“You denied it,” Nora replies. “I panicked,” Leo says.",
+      "zh": "「你之前否認了。」Nora 說。「我慌了。」Leo 回答。"
+    },
+    {
+      "en": "“I went back for my phone. Then I saw the note.”",
+      "zh": "「我回來拿手機，然後看到那張紙條。」"
+    },
+    {
+      "en": "“My button fell. I ran,” Leo admits.",
+      "zh": "「我的鈕扣掉了。我就跑了。」Leo 承認。"
+    },
+    {
+      "en": "“Not heroic,” Max says. “Not theft,” Leo replies.",
+      "zh": "「真不英勇。」Max 說。「但也不是偷竊。」Leo 回嘴。"
+    },
+    {
+      "en": "Iris arrives. “I took my painting back to finish it.”",
+      "zh": "Iris 到了：「我把畫拿走，是為了把它完成。」"
+    },
+    {
+      "en": "“NOT YET was mine. I lied about being home,” Iris admits.",
+      "zh": "「NOT YET 是我寫的。我說整晚都在家，其實是說謊。」Iris 承認。"
+    },
+    {
+      "en": "Ethan looks away. “I saw Iris take it at 6:40.”",
+      "zh": "Ethan 移開視線：「6:40 我看到 Iris 把畫拿走。」"
+    },
+    {
+      "en": "“And you said nothing?” Iris asks. “No painting, no prize.”",
+      "zh": "「你卻什麼都沒說？」Iris 問。「沒有畫，就沒有獎。」"
+    },
+    {
+      "en": "Nora hands you the statements. “Who took what? You decide.”",
+      "zh": "Nora 把證詞交給你：「誰拿了什麼？你來判斷。」"
+    }
+  ],
+  "concepts": [
+    {
+      "title": "調查 1｜不規則過去式：重讀 Leo 的證詞",
+      "rule": "一般動詞過去式不是全部加 -ed；go→went、see→saw、run→ran。用過去式還原已發生的事。",
+      "examples": [
+        [
+          "Leo went back for his phone.",
+          "Leo 回去拿手機。"
+        ],
+        [
+          "Ethan saw Iris at 6:40.",
+          "Ethan 在 6:40 看到了 Iris。"
+        ]
+      ],
+      "evidence": {
+        "type": "訪談紀錄",
+        "title": "Leo’s Statement",
+        "cols": 2,
+        "rows": [
+          [
+            "Time / Person",
+            "Recorded action"
+          ],
+          [
+            "Leo / Thu 7:30",
+            "went back for his phone"
+          ],
+          [
+            "Leo / hall",
+            "saw NOT YET"
+          ],
+          [
+            "Leo / jacket",
+            "button fell by the frame"
+          ],
+          [
+            "Leo / after that",
+            "ran away"
+          ],
+          [
+            "Ethan / Thu 6:40",
+            "saw Iris take the painting"
+          ]
+        ]
+      },
+      "qs": [
+        {
+          "s": "Look at the Leo’s Statement card. Leo ___ back for his phone.",
+          "o": [
+            "goes",
+            "went",
+            "goed",
+            "going"
+          ],
+          "a": 1,
+          "h1": "回到 Leo 說的第一個動作，注意時間是昨晚。",
+          "h2": "go 是不規則動詞，不使用 -ed 規則。",
+          "ok": "went：Leo 回學校拿手機，並不等於回來偷畫。"
+        },
+        {
+          "s": "Look at the Leo’s Statement card. Leo ___ the yellow note.",
+          "o": [
+            "seed",
+            "seeing",
+            "saw",
+            "sees"
+          ],
+          "a": 2,
+          "h1": "在大廳那一列，找 Leo 看到什麼。",
+          "h2": "see 的一般過去式不是加 -ed。",
+          "ok": "saw：Leo 看見 NOT YET，才想起自己的玩笑。"
+        },
+        {
+          "s": "Look at the Leo’s Statement card. His button ___ near the frame.",
+          "o": [
+            "fell",
+            "fall",
+            "falls",
+            "falling"
+          ],
+          "a": 0,
+          "h1": "先核對鈕扣在哪裡掉落。",
+          "h2": "fall 的過去式形式與原形不同。",
+          "ok": "fell：鈕扣掉在畫框旁，並不能證明 Leo 拿走了畫。"
+        },
+        {
+          "s": "Look at the Leo’s Statement card. Leo ___ away after that.",
+          "o": [
+            "run",
+            "running",
+            "runs",
+            "ran"
+          ],
+          "a": 3,
+          "h1": "鈕扣掉落後，Leo 做了哪個動作？",
+          "h2": "run 的過去式改變母音，不用 -ed。",
+          "ok": "ran：Leo 逃走是事實，但他的動機仍要查證。"
+        },
+        {
+          "s": "Look at the Leo's Statement card. Ethan ___ Iris with the painting.",
+          "o": [
+            "sees",
+            "saw",
+            "seeing",
+            "seen"
+          ],
+          "a": 1,
+          "h1": "找 Ethan 那一列，看他做了什麼。",
+          "h2": "see 是不規則動詞，過去式要記住。",
+          "ok": "saw：Ethan 6:40 就看到 Iris 拿走畫，卻一直不說。"
+        }
+      ]
+    },
+    {
+      "title": "調查 2｜不規則動詞家族：Iris 的紙條",
+      "rule": "take→took、write→wrote、leave→left、draw→drew；形式要記住，也要看時間與語境。",
+      "examples": [
+        [
+          "Iris took the painting to the art room.",
+          "Iris 把畫拿到美術教室。"
+        ],
+        [
+          "Iris wrote NOT YET on the note.",
+          "Iris 在紙條上寫了 NOT YET。"
+        ]
+      ],
+      "evidence": {
+        "type": "證詞與照片",
+        "title": "Iris’s Statement",
+        "cols": 2,
+        "rows": [
+          [
+            "Time / Item",
+            "What Iris says"
+          ],
+          [
+            "Thu 6:40",
+            "took painting to art room"
+          ],
+          [
+            "Yellow note",
+            "wrote NOT YET"
+          ],
+          [
+            "Grandpa’s picture",
+            "drew the missing cat"
+          ],
+          [
+            "Thu 7:22",
+            "took photo: painting on table"
+          ],
+          [
+            "Before she left",
+            "left painting to dry"
+          ]
+        ]
+      },
+      "qs": [
+        {
+          "s": "Look at the Iris’s Statement card. Iris ___ the painting to the art room.",
+          "o": [
+            "taked",
+            "takes",
+            "took",
+            "taking"
+          ],
+          "a": 2,
+          "h1": "找 Iris 把畫移往哪裡的那一行。",
+          "h2": "take 的過去式不是 taked。",
+          "ok": "took：她從大廳取下畫，放到美術教室繼續作畫。"
+        },
+        {
+          "s": "Look at the Iris’s Statement card. Iris ___ NOT YET.",
+          "o": [
+            "wrote",
+            "write",
+            "writes",
+            "writed"
+          ],
+          "a": 0,
+          "h1": "紙條是誰寫的？對照她自己的證詞。",
+          "h2": "write 的過去式有特殊變化。",
+          "ok": "wrote：紙條是 Iris 對作品進度的提醒，不是威脅。"
+        },
+        {
+          "s": "Look at the Iris’s Statement card. Iris ___ a cat in the picture.",
+          "o": [
+            "draw",
+            "draws",
+            "drawing",
+            "drew"
+          ],
+          "a": 3,
+          "h1": "檢查她補上了畫裡的哪個部分。",
+          "h2": "draw 的過去式不是加 -ed。",
+          "ok": "drew：她補畫的是爺爺店門口的貓。"
+        },
+        {
+          "s": "Look at the Iris’s Statement card. Iris ___ the painting to dry.",
+          "o": [
+            "leaves",
+            "left",
+            "leaved",
+            "leaving"
+          ],
+          "a": 1,
+          "h1": "查 Iris 離開教室前如何處理畫作。",
+          "h2": "leave 的過去式是另一個字形。",
+          "ok": "left：她把畫留在桌上晾乾，沒有帶回家。"
+        },
+        {
+          "s": "Look at the Iris’s Statement card. Iris ___ a photo at 7:22.",
+          "o": [
+            "takes",
+            "taked",
+            "taking",
+            "took"
+          ],
+          "a": 3,
+          "h1": "星期四 7:22 的照片是誰拍的？",
+          "h2": "過去的動作，用 take 的不規則過去式。",
+          "ok": "took：7:22 畫作仍在美術教室桌上。"
+        }
+      ]
+    },
+    {
+      "title": "調查 3｜多份證詞：誰拿走了什麼？",
+      "rule": "先用過去式重建人物行動，再分辨已確認的事件與尚未證實的推論；拿過畫不等於偷畫。",
+      "examples": [
+        [
+          "Leo took his phone, not the painting.",
+          "Leo 拿的是手機，不是畫作。"
+        ],
+        [
+          "Iris left the painting on the table.",
+          "Iris 把畫留在桌上。"
+        ]
+      ],
+      "evidence": {
+        "type": "證詞交叉表",
+        "title": "The Three Witnesses",
+        "cols": 2,
+        "rows": [
+          [
+            "Evidence",
+            "What it shows"
+          ],
+          [
+            "Iris / 6:40",
+            "took painting into art room"
+          ],
+          [
+            "Ethan / 6:40",
+            "saw Iris; said nothing"
+          ],
+          [
+            "Iris / 7:22",
+            "photo: painting on table"
+          ],
+          [
+            "Leo / 7:30",
+            "went for his phone"
+          ],
+          [
+            "Wu / 7:40",
+            "moved things; names unknown"
+          ],
+          [
+            "Ethan / Thursday",
+            "missed his usual bus"
+          ]
+        ]
+      },
+      "qs": [
+        {
+          "s": "Look at the Three Witnesses card. Who ___ the painting into the art room?",
+          "o": [
+            "Leo",
+            "Ethan",
+            "Mr. Wu",
+            "Iris"
+          ],
+          "a": 3,
+          "h1": "找 6:40 那一列；誰承認搬過畫作？",
+          "h2": "區分「從大廳拿到美術教室」與「從學校偷走」。",
+          "ok": "Iris：她拿畫去補畫。這解釋了最初的空畫框。"
+        },
+        {
+          "s": "Look at the Three Witnesses card. Leo ___ for his phone at 7:30.",
+          "o": [
+            "went",
+            "goes",
+            "go",
+            "going"
+          ],
+          "a": 0,
+          "h1": "把 7:30 的行動與前面的證詞對起來。",
+          "h2": "用 go 的過去式描述已發生的行動。",
+          "ok": "went：Leo 7:30 回來時，Iris 和 Ethan 都已經離開了。"
+        },
+        {
+          "s": "Look at the Three Witnesses card. Who ___ Iris at 6:40?",
+          "o": [
+            "seeing",
+            "sees",
+            "saw",
+            "see"
+          ],
+          "a": 2,
+          "h1": "找 6:40 那兩列。",
+          "h2": "問過去發生的事，用不規則過去式。",
+          "ok": "saw：Ethan 看到了，卻選擇沉默。他沒拿畫，但他也不無辜。"
+        },
+        {
+          "s": "Look at the Three Witnesses card. Which question is still open?",
+          "o": [
+            "Where is the painting?",
+            "Who wrote NOT YET?",
+            "Whose button was it?",
+            "Who took the photo?"
+          ],
+          "a": 0,
+          "h1": "把已揭曉的三件事和仍未知的核心問題分開。",
+          "h2": "此題檢驗推論範圍，不能從舊證詞直接確定畫現在在哪。",
+          "ok": "畫的現在位置仍未知；下一步需要核實 Wu 搬了什麼。"
+        },
+        {
+          "s": "Look at the Three Witnesses card. Which claim goes beyond the log?",
+          "o": [
+            "Iris took the painting.",
+            "Wu moved the painting.",
+            "Leo lost his button.",
+            "Ethan saw Iris."
+          ],
+          "a": 1,
+          "h1": "日誌是寫 things，還是 painting？",
+          "h2": "證據沒有列出物品名稱時，不能擅自換成特定物品。",
+          "ok": "Wu 搬了畫仍是待驗證推論；他的日誌只寫了 things。"
+        }
+      ]
+    }
+  ],
+  "caseUpdate": {
+    "facts": [
+      "Leo admitted the red button was his.",
+      "Iris took the painting to the art room.",
+      "Iris wrote NOT YET and left the painting to dry.",
+      "Ethan saw Iris at 6:40, but he said nothing."
+    ],
+    "clues": [
+      "Leo 承認掉了紅鈕扣",
+      "Iris 拿畫補上爺爺的貓",
+      "NOT YET 是 Iris 寫的",
+      "Ethan 看到 Iris 卻沉默"
+    ],
+    "hypotheses": [
+      [
+        "Max：Ethan 沉默，所以他是共犯。",
+        "他沒拿畫，但選擇不說。"
+      ],
+      [
+        "Nora：Wu 先生可能搬了畫。",
+        "日誌只寫 things，還要確認。"
+      ]
+    ],
+    "questions": [
+      "Who moved the painting after 7:22?",
+      "What did Mr. Wu move?",
+      "Where is the painting now?",
+      "Why was Iris afraid to tell the truth?"
+    ],
+    "next": "didn’t／Did。離美術展還有 16 小時；交叉詢問三人，Park 老師終於透過 Wu 的女兒聯絡到他。"
+  },
+  "vocab": [
+    [
+      "admit",
+      "v.",
+      "承認",
+      "新"
+    ],
+    [
+      "deny",
+      "v.",
+      "否認",
+      "新"
+    ],
+    [
+      "panic",
+      "v.",
+      "慌張",
+      "新"
+    ],
+    [
+      "statement",
+      "n.",
+      "證詞",
+      "新"
+    ],
+    [
+      "witness",
+      "n.",
+      "證人",
+      "新"
+    ],
+    [
+      "prize",
+      "n.",
+      "獎",
+      "新"
+    ],
+    [
+      "silent",
+      "adj.",
+      "沉默的",
+      "新"
+    ],
+    [
+      "theft",
+      "n.",
+      "偷竊",
+      "新"
+    ],
+    [
+      "finish",
+      "v.",
+      "完成",
+      "新"
+    ],
+    [
+      "afraid",
+      "adj.",
+      "害怕的",
+      "新"
+    ]
+  ],
+  "chunks": []
+};
+const UNIT = CASE;
+/* ===== 以下是版型，做新單元不用改（新增一夜時，把 SERIES_LAST 改成最新的單元號碼） ===== */
+const SERIES_LAST = 10;
+const L = ["A","B","C","D"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+// 生字小註解：資料裡寫 {{gold|金色的}}，畫面上 gold 上方會出現小字「金色的」；朗讀只念英文
+const gl = s => esc(s).replace(/\{\{([^|{}]+)\|([^{}]+)\}\}/g, (_, w, z) => `<ruby>${w}<rt>${z}</rt></ruby>`);
+const plain = s => s.replace(/\{\{([^|{}]+)\|[^{}]+\}\}/g, "$1");
+const storyHTML = lines => lines.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en" data-say="${esc(plain(l.en))}">${esc(plain(l.en))}</span><span class="zh">${esc(l.zh)}</span></button></div>`).join("");
+function qHTML(q, ci, qi){
+  return `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${gl(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
+}
+function evidenceHTML(p){
+  if(!p) return "";
+  const tbl = rs => `<table>${rs.map((r,i)=>`<tr>${r.map(c=>i===0?`<th>${gl(c)}</th>`:`<td>${gl(c)}</td>`).join("")}</tr>`).join("")}</table>`;
+  let rows = "";
+  if (p.rows && p.cols === 2) { const body = p.rows.slice(1), half = Math.ceil(body.length / 2); rows = `<div class="ev2">${tbl([p.rows[0], ...body.slice(0, half)])}${tbl([p.rows[0], ...body.slice(half)])}</div>`; }
+  else if (p.rows) rows = tbl(p.rows);
+  return `<section class="evidence"><span class="ptype">${esc(p.type || "證據")}</span><span class="ptitle">${gl(p.title || "")}</span>${p.text ? `<div class="ptext">${gl(p.text)}</div>` : ""}${rows}</section>`;
+}
+function conceptHTML(c, ci, from = 0, to = c.qs.length, cont = false){
+  const kind = c.layout || ((c.qs[0].o.length > 3 || c.qs.some(q => q.o.some(o => plain(o).length > 14))) ? "long" : "short");
+  const nopt = c.qs[0].o.length;
+  if (from > 0 || cont) { let h = `<section class="concept ${kind} n${nopt}"><h2>${c.title.split("｜")[0]}（續）</h2>`; c.qs.slice(from, to).forEach((q,k)=>{ const qi = from + k; h += qHTML(q, ci, qi); }); return h + `</section>`; }
+  let h = `<section class="concept ${kind} n${nopt}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>${evidenceHTML(c.evidence)}`;
+  c.qs.slice(0, to).forEach((q,qi)=>{ h += qHTML(q, ci, qi); });
+  return h + `</section>`;
+}
+function navHTML(pos){
+  const n = parseInt(UNIT.code.replace(/\D/g, ""), 10), local = location.pathname.endsWith(".html");
+  const href = k => { const id = "m" + String(k).padStart(2, "0"); return local ? id + ".html" : "../" + id + "/"; };
+  const home = local ? "../web/index.html" : "../";
+  const prev = n > 1 ? `<a href="${href(n - 1)}">← 第 ${n - 1} 課</a>` : "";
+  const next = n < SERIES_LAST ? `<a href="${href(n + 1)}">第 ${n + 1} 課 →</a>` : "";
+  return `<nav class="series-nav ${pos}">${prev}<span class="gap"></span><a href="${home}">目錄</a><span class="gap"></span>${next}</nav>`;
+}
+function caseHTML(cu){
+  const li = a => (a||[]).map(x=>`<li>${esc(Array.isArray(x) ? x[0] + "　→ " + x[1] : x)}</li>`).join("");
+  return `<section class="caseupdate"><h2>案件更新｜Case Update</h2><div class="cu-grid">
+    <div><b>✔ 已確認的事實</b><ul>${li(cu.facts)}</ul></div>
+    <div><b>🔎 新線索</b><ul>${li(cu.clues)}</ul></div>
+    <div><b>🤔 假設與評估</b><ul>${li(cu.hypotheses)}</ul></div>
+    <div><b>❓ 還沒解決的問題</b><ul>${li(cu.questions)}</ul></div></div>
+    ${cu.next ? `<p class="next">▶ 下一課：${esc(cu.next)}</p>` : ""}</section>`;
+}
+function render(){
+  const u = UNIT, p = u.page2From ?? 2;
+  const head = `<header><div class="eyebrow">${esc(u.caseLabel)}</div><h1>${esc(u.lessonLabel)}｜${esc(u.title)}</h1><p class="title-zh">${esc(u.subtitle || "")}</p></header>`;
+  const front = `<section class="story"><div class="story-label">開場｜Opening Scene<button type="button" class="playall">🔊 全部播放</button></div>${storyHTML(u.opening)}<p class="tap-tip">按 🔊 聽英文。</p></section>`;
+  const vocab = `<h2>Vocabulary｜10 個新單字</h2><div class="vocab">${u.vocab.map(v=>`<div class="word"><b>${v[0]}</b>${v[1]} ${v[2]}</div>`).join("")}</div>`;
+  const chunks = u.chunks?.length ? `<h2>Chunks｜片語</h2><div class="chunks">${u.chunks.map(c=>`<div class="chunk"><b>${c[0]}</b> ${c[1]}<i>${esc(c[2])}</i></div>`).join("")}</div>` : "";
+  const answers = `<section id="answers" hidden><h2>答案</h2>${u.concepts.map((c,ci)=>`<b>調查 ${ci+1}</b><ol>${c.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>`).join("")}</section>`;
+  const anskey = `<div class="anskey"><b>答案</b>　${u.concepts.map((c,ci)=>`調查 ${ci+1}：${c.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join(" ")}`).join("　｜　")}</div>`;
+  // page2From：數字＝從第幾個觀念起放背面；[觀念, 題號]＝那個觀念從第幾題起放背面；[觀念, "qs"]＝說明和證據在正面、題目全部放背面
+  const [pc, pq] = Array.isArray(p) ? p : [p, 0];
+  let c1 = u.concepts.slice(0, pc).map((c,i)=>conceptHTML(c,i)).join(""), c2 = "";
+  if (pq === "qs") { c1 += conceptHTML(u.concepts[pc], pc, 0, 0); c2 += conceptHTML(u.concepts[pc], pc, 0, undefined, true); }
+  else if (pq > 0) { c1 += conceptHTML(u.concepts[pc], pc, 0, pq); c2 += conceptHTML(u.concepts[pc], pc, pq); }
+  else if (pc < u.concepts.length) c2 += conceptHTML(u.concepts[pc], pc);
+  c2 += u.concepts.slice(pc + 1).map((c,i)=>conceptHTML(c, pc + 1 + i)).join("");
+  document.getElementById("lesson").innerHTML =
+    `${navHTML("top")}<div class="page">${head}${front}${c1}</div>` +
+    `<div class="page">${c2}${caseHTML(u.caseUpdate)}${vocab}${chunks}${answers}${anskey}</div>${navHTML("bottom")}`;
+}
+const total = UNIT.concepts.reduce((n,c)=>n+c.qs.length,0);
+let done = new Set(), tries = {};
+const updateProgress = ()=>{ document.getElementById("progress").textContent = `完成 ${done.size} / ${total} 題`; };
+document.addEventListener("click", e=>{
+  const say = e.target.closest(".say"), all = e.target.closest(".playall");
+  if(say){ speakRows([say.closest(".row")]); return; }
+  if(all){ speakRows([...all.closest(".story").querySelectorAll(".row")]); return; }
+  const line = e.target.closest(".line");
+  if(line){ line.classList.toggle("show"); line.setAttribute("aria-expanded", line.classList.contains("show")); return; }
+  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
+  const qEl = btn.closest(".q"), ci = +qEl.dataset.c, qi = +qEl.dataset.q, key = ci+"-"+qi;
+  const q = UNIT.concepts[ci].qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
+  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
+  if(pick === q.a){
+    btn.classList.add("correct"); done.add(key);
+    qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true);
+    fb.textContent = "✓ 對了。" + q.ok; updateProgress();
+  } else {
+    tries[key] = (tries[key]||0) + 1; btn.classList.add("wrong");
+    fb.textContent = tries[key] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2;
+  }
+});
+// 朗讀（手機、電腦內建語音，不用網路檔案）
+let slow = false;
+function speakRows(rows){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel(); document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing"));
+  const voice = speechSynthesis.getVoices().find(v=>/^en(-|_)US/i.test(v.lang)) || speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
+  rows.forEach(row=>{
+    const u = new SpeechSynthesisUtterance((row.querySelector(".en").dataset.say || row.querySelector(".en").textContent).replace(/[“”]/g,'"'));
+    u.lang = "en-US"; u.rate = slow ? 0.7 : 0.95; if(voice) u.voice = voice;
+    u.onstart = ()=>{ document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing")); row.classList.add("playing"); row.querySelector(".say").classList.add("playing"); };
+    u.onend = ()=>{ row.classList.remove("playing"); row.querySelector(".say").classList.remove("playing"); };
+    speechSynthesis.speak(u);
+  });
+}
+if(!("speechSynthesis" in window)) document.documentElement.classList.add("nospeech");
+document.getElementById("slowBtn").onclick = e=>{ slow = !slow; e.target.textContent = slow ? "🐇 正常速度" : "🐢 慢速朗讀"; };
+document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
+document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
+document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
+document.getElementById("printBtn").onclick = ()=>window.print();
+// 列印時切換成雙面 A4 版面
+// 某一面快超出 A4 時，只收緊那一面的行距（不縮字）
+function fitPages(){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("tight","tight2");
+    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
+    const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
+    const SAFE = 44; // 列印時字會比螢幕寬一點，多留安全空間
+    if (bottom() > p.clientHeight - reserve - 12 - SAFE) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve - SAFE) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve - SAFE)));
+  });
+}
+const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
+addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
+matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
+render();
+if(location.hash === "#paper") paperOn();
+</script>
+</body>
+</html>

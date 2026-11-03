@@ -122,6 +122,7 @@ body.paper .short .stem-text{font-size:10.8pt}
 body.paper .short .opts{grid-template-columns:repeat(3,1fr);padding-left:0;margin:0}
 /* 觀念三：選項四欄 */
 body.paper .long .opts{grid-template-columns:repeat(4,1fr)}
+body.paper .long.n3 .opts{grid-template-columns:repeat(3,1fr)}
 body.paper .vocab{gap:4px}
 body.paper .word{padding:2px 6px;font-size:8.8pt;border-radius:5px}
 body.paper .word b{font-size:10.3pt}
@@ -194,6 +195,7 @@ const UNIT = {
   think: "Ella 手上有地圖，卻仍然找不到路。你認為尋找答案時，問對問題和擁有資料，哪一個比較重要？為什麼？",
   concepts: [
     {
+      layout: "short",
       title: "觀念一｜間接問句：改成直述句順序",
       rule: "把一個問句放進另一個句子裡，後面的部分要用「主詞＋動詞」的直述句語序。直接問句是 Where is she?；間接問句則是 I don't know where she is。句尾是否加問號，要看整個句子是不是問句。",
       examples: [["Where is the shop? → I know where the shop is.","商店在哪裡？→ 我知道商店在哪裡。"],["What does Ella want? → Do you know what Ella wants?","Ella 想要什麼？→ 你知道 Ella 想要什麼嗎？"]],
@@ -211,6 +213,7 @@ const UNIT = {
       ]
     },
     {
+      layout: "short",
       title: "觀念二｜why、how、when：把問題放進句子",
       rule: "why 問原因、how 問方式、when 問時間，放入間接問句後都要接直述句語序。一般動詞問句原本使用的 do、does、did，改寫後通常會消失，動詞須恢復適當的時態。先從前後句找出真正想問的資訊。",
       examples: [["Why did she leave? → I wonder why she left.","她為什麼離開？→ 我想知道她為什麼離開。"],["How can we help? → Tell me how we can help.","我們可以怎麼幫忙？→ 告訴我我們可以怎麼幫忙。"]],
@@ -269,8 +272,9 @@ const L = ["A","B","C","D"];
 const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const storyHTML = lines => lines.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line${l.f?" frame":""}" aria-expanded="false"><span class="en">${esc(l.en)}</span><span class="zh">${esc(l.zh)}</span></button></div>`).join("");
 function conceptHTML(c, ci){
-  const kind = c.qs[0].o.length > 3 ? "long" : "short";
-  let h = `<section class="concept ${kind}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
+  const kind = c.layout || ((c.qs[0].o.length > 3 || c.qs.some(q => q.o.some(o => o.length > 14))) ? "long" : "short");
+  const nopt = c.qs[0].o.length;
+  let h = `<section class="concept ${kind} n${nopt}"><h2>${c.title}</h2><p class="rule">${esc(c.rule)}</p><div class="examples">${c.examples.map(e=>`<div class="ex"><span class="en">${esc(e[0])}</span><span class="zh">${esc(e[1])}</span></div>`).join("")}</div>`;
   c.qs.forEach((q,qi)=>{
     h += `<div class="q" data-c="${ci}" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
   });
@@ -346,9 +350,10 @@ function fitPages(){
     p.classList.remove("tight","tight2");
     const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
     const bottom = () => Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
-    if (bottom() > p.clientHeight - reserve - 12) p.classList.add("tight");
-    if (bottom() > p.clientHeight - reserve) p.classList.add("tight2");
-    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve)));
+    const SAFE = 28; // 列印時字會比螢幕寬一點，多留安全空間
+    if (bottom() > p.clientHeight - reserve - 12 - SAFE) p.classList.add("tight");
+    if (bottom() > p.clientHeight - reserve - SAFE) p.classList.add("tight2");
+    p.dataset.over = Math.max(0, Math.round(bottom() - (p.clientHeight - reserve - SAFE)));
   });
 }
 const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");

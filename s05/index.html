@@ -39,6 +39,13 @@ h2{font-size:18px;color:var(--accent);margin:22px 0 6px}
 .recall div{font-size:14.5px;border-bottom:1px solid var(--line);padding:4px 0}
 .recall span{display:inline-block;min-width:110px;border-bottom:1px solid #7f95a3;margin-left:6px}
 .nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
+.wordlist{display:grid;grid-template-columns:repeat(4,1fr);gap:3px 12px}
+.wordlist div{font-size:14px;border-bottom:1px solid var(--line);padding:3px 0}
+.wordlist b{font-family:Georgia,serif;font-size:15px}
+.wordlist i{color:var(--sub);font-size:12px;font-style:normal;margin:0 3px}
+.wordlist .hard b::before{content:"★";color:#d98a2b;font-size:12px;margin-right:2px}
+.wordlist .hard b{color:#8a4b12}
+@media (max-width:640px){.wordlist{grid-template-columns:repeat(2,1fr)}}
 .line:hover{background:#ece7f6}
 .who{font-weight:700;color:var(--moonline);font-size:14px}
 .line .en{font:16.5px/1.5 Georgia,serif}
@@ -94,6 +101,10 @@ body.paper .passage .ptext{font-size:10.3pt;line-height:1.35;margin-top:2px}
 body.paper .passage table{font-size:9.8pt;margin-top:3px}
 body.paper .passage td,body.paper .passage th{padding:1px 5px}
 body.paper .recall{gap:2px 14px}
+body.paper .wordlist{gap:1px 10px}
+body.paper .wordlist div{font-size:9.6pt;padding:1.5px 0}
+body.paper .wordlist b{font-size:10.4pt}
+body.paper .wordlist i{font-size:8pt}
 body.paper .recall div{font-size:9.8pt;padding:2px 0}
 body.paper .eyebrow{font-size:8.5pt}
 body.paper h1{font-size:16pt;margin:0 0 4px;padding-bottom:3px}
@@ -215,12 +226,13 @@ function passageHTML(p){
   return `<h2>${esc(p.heading || "會考題組｜讀一讀")}</h2><section class="passage"><span class="ptype">${esc(p.type || "短文")}</span><span class="ptitle">${esc(p.title || "")}</span>${p.text ? `<div class="ptext">${esc(p.text)}</div>` : ""}${rows}</section>`;
 }
 function render(){
-  const u = SHEET, split = u.split || u.qs.length;
+  const u = SHEET, split = (u.split ?? u.qs.length);
   const T = Object.assign({scene:"情境｜這樣說", patterns:"句型｜一眼分辨", qs:"練習｜會考式", qs2:"題組練習", recall:"單字回想｜看中文寫英文"}, u.headings || {});
   let p1 = `<header><div class="eyebrow">${esc(u.kind)}</div><h1>${esc(u.code)}｜${esc(u.title)}</h1></header>`;
   if (u.scene?.length) p1 += `<h2>${esc(T.scene)}<button type="button" class="playall">🔊 全部播放</button></h2><section class="scene">${u.scene.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line"><span class="who">${esc(l.who)}</span><span><span class="en">${esc(l.en)}</span></span><span class="zh">${esc(l.zh)}</span></button></div>`).join("")}</section><p class="tap-tip">點一下句子可以看中文，按 🔊 聽英文。</p>`;
   if (u.patterns?.length) p1 += `<h2>${esc(T.patterns)}</h2><div class="patterns${u.patterns.length > 4 ? " many" : ""}">${u.patterns.map(p=>`<div class="pat"><div class="head">${esc(p.head)}</div><div class="form">${esc(p.form)}</div><div class="rule">${esc(p.rule)}</div><div class="en">${esc(p.en)}</div><div class="zh">${esc(p.zh)}</div></div>`).join("")}</div>`;
   if (u.tip) p1 += `<div class="tip">💡 ${esc(u.tip)}</div>`;
+  if (u.wordlist?.length) p1 += `<h2>${esc(T.wordlist || "主題字表｜★＝最多人錯")}</h2><div class="wordlist">${u.wordlist.map(w=>`<div class="${w[3] ? "hard" : ""}"><b>${esc(w[0])}</b><i>${esc(w[1])}</i>${esc(w[2])}</div>`).join("")}</div>`;
   if (u.words?.length) p1 += `<div class="words">${u.words.map(w=>`<span><b>${esc(w[0])}</b> ${esc(w[1])}</span>`).join("")}</div>`;
   if (split > 0) p1 += `<h2>${esc(T.qs)}</h2>` + u.qs.slice(0, split).map((q,i)=>qHTML(q,i)).join("");
   let p2 = "";
@@ -274,9 +286,10 @@ function fitPages(){
     p.classList.remove("tight");
     const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
     const bottom = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
-    if (bottom > p.clientHeight - reserve) p.classList.add("tight");
+    const SAFE = 28; // 列印時字會比螢幕寬一點，多留安全空間
+    if (bottom > p.clientHeight - reserve - SAFE) p.classList.add("tight");
     const b2 = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
-    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve)));
+    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve - SAFE)));
   });
 }
 const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
