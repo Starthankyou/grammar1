@@ -1,286 +1,211 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<meta name="description" content="學會問時間、星期與日期，並用 at、on、in 說明時間。">
-<title>S1｜時間、日期、星期月份</title>
+<title>S1｜電話、時間、年齡與序數、祈使句</title>
+<meta name="description" content="陳家的週末：讀懂六張生活文件＋會考題型">
 <style>
-:root{--ink:#243547;--sub:#5f7282;--line:#dce6ec;--accent:#2b617f;--soft:#eef5f9;--moon:#f4f1fa;--moonline:#8a7bb5;--ok:#e7f6eb;--okline:#6fae8a;--warn:#fff4e9;--warnline:#e2a66f}
+@page{size:A4;margin:0}
 *{box-sizing:border-box}
-body{margin:0;background:#e9eef2;color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
-main{max-width:860px;margin:0 auto 60px;background:#fff;padding:26px 32px 36px;box-shadow:0 3px 15px #0001}
-.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:10px 16px;background:#e9eef2ee}
-.toolbar .btns{display:flex;flex-wrap:wrap;gap:8px}
-.toolbar button,.toolbar a{font:inherit;font-size:14px;background:#fff;color:var(--accent);border:1px solid #b9cfdc;border-radius:7px;padding:7px 12px;cursor:pointer;text-decoration:none}
-.toolbar #printBtn{background:var(--accent);color:#fff;border-color:var(--accent)}
-.status{color:var(--accent);font-weight:700;font-size:14px}
-.eyebrow{color:var(--moonline);font-weight:700;letter-spacing:.08em;font-size:13px}
-h1{font-size:24px;margin:2px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:8px}
-h2{font-size:18px;color:var(--accent);margin:22px 0 6px}
-.scene{background:var(--moon);border-radius:12px;padding:8px 14px}
-.line{display:grid;grid-template-columns:62px 1fr;gap:8px;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed #d9d2ea;padding:6px 2px;cursor:pointer;color:inherit;font:inherit}
-.row{display:flex;align-items:flex-start;gap:2px}
-.row .line{flex:1;min-width:0}
-.row:last-child .line{border-bottom:0}
-.say{flex:none;border:0;background:none;cursor:pointer;font-size:15px;line-height:1;padding:8px 3px;opacity:.55;border-radius:6px}
-.say:hover,.say.playing{opacity:1;background:#e6dff5}
-.row.playing .line{background:#efe9fb}
-.playall{float:right;font:inherit;font-size:12.5px;border:1px solid #cfc4ea;background:#fff;color:#5d4a8f;border-radius:12px;padding:1px 9px;cursor:pointer}
-.passage{border:1.5px solid #9bb6c8;border-radius:10px;padding:10px 14px;background:#fbfdfe}
-.passage .ptype{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:4px;padding:0 7px;margin-right:6px}
-.passage .ptitle{font:700 17px Georgia,serif}
-.passage .ptext{font:15.5px/1.55 Georgia,serif;white-space:pre-line;margin-top:6px}
-.passage table{border-collapse:collapse;margin-top:8px;font:14.5px Georgia,serif;width:100%}
-.passage td,.passage th{border:1px solid #c8d6df;padding:4px 8px;text-align:left}
-.passage th{background:var(--soft);font-family:inherit}
-.recall{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px}
-.recall div{font-size:14.5px;border-bottom:1px solid var(--line);padding:4px 0}
-.recall span{display:inline-block;min-width:110px;border-bottom:1px solid #7f95a3;margin-left:6px}
-.nospeech .say,.nospeech .playall,.nospeech #slowBtn{display:none}
-.wordlist{display:grid;grid-template-columns:repeat(4,1fr);gap:3px 12px}
-.wordlist div{font-size:14px;border-bottom:1px solid var(--line);padding:3px 0}
-.wordlist b{font-family:Georgia,serif;font-size:15px}
-.wordlist i{color:var(--sub);font-size:12px;font-style:normal;margin:0 3px}
-.wordlist .hard b::before{content:"★";color:#d98a2b;font-size:12px;margin-right:2px}
-.wordlist .hard b{color:#8a4b12}
-@media (max-width:640px){.wordlist{grid-template-columns:repeat(2,1fr)}}
-.line:hover{background:#ece7f6}
-.who{font-weight:700;color:var(--moonline);font-size:14px}
-.line .en{font:16.5px/1.5 Georgia,serif}
-.line .zh{display:none;font-size:14px;color:var(--sub)}
-.line.show .zh,body.allzh .line .zh{display:block}
-.tap-tip{font-size:13px;color:var(--sub);margin:4px 0}
-.patterns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.pat{border:1px solid var(--line);border-radius:10px;padding:8px 12px}
-.pat .head{font:700 19px Georgia,serif;color:var(--accent)}
-.pat .form{font-weight:700;margin:2px 0}
-.pat .rule{font-size:14px;color:var(--sub)}
-.pat .en{font:15px/1.45 Georgia,serif;color:#234f6b;margin-top:4px}
-.pat .zh{font-size:13.5px;color:var(--sub)}
-.tip{background:#fff6e3;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:14.5px}
-.words{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.words span{border:1px solid var(--line);border-radius:14px;padding:2px 10px;font-size:13.5px}
-.words b{font-family:Georgia,serif}
-.q{border-bottom:1px solid var(--line);padding:9px 0}
-.stem{display:flex;gap:8px;margin-bottom:6px}
-.qnum{color:var(--accent);font-weight:700;min-width:22px}
-.stem-text{white-space:pre-line;font:16px/1.5 Georgia,serif}
-.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-left:30px}
-.opt{display:flex;gap:.5em;align-items:baseline;text-align:left;font:15px/1.35 Arial,sans-serif;background:#fff;color:var(--ink);border:1px solid #c5d7e2;border-radius:7px;padding:6px 10px;cursor:pointer}
-.opt .letter{font-weight:700;color:var(--accent);flex:none}
-.opt:hover:not(:disabled){background:#edf7ff}
-.opt.wrong{background:var(--warn);border-color:var(--warnline)}
-.opt.correct{background:var(--ok);border-color:var(--okline)}
-.opt:disabled{cursor:default}
-.feedback{padding-left:30px;font-size:14px;color:#456a5f;margin-top:5px}
-.feedback:empty{display:none}
-#answers{margin-top:20px;border-top:2px solid var(--line);padding-top:8px}
-#answers ol{padding-left:22px;margin:4px 0}
-.anskey{display:none}
-@media (max-width:640px){
-  main{padding:18px 16px 30px}
-  .patterns{grid-template-columns:1fr}
-  .opts{padding-left:0;grid-template-columns:1fr 1fr}
-  .feedback{padding-left:0}
-  .line{grid-template-columns:52px 1fr}
-  .toolbar button,.toolbar a{font-size:12.5px;padding:5px 8px}
-  #printBtn{display:none}
-}
-/* ===== 紙本：單面 A4（列印時自動套用 body.paper） ===== */
-@page{size:A4;margin:10mm 11mm}
-body.paper{background:#fff;font-size:10pt;line-height:1.35;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-body.paper .say,body.paper .playall,body.paper .toolbar,body.paper .feedback,body.paper .tap-tip,body.paper #answers{display:none!important}
-body.paper main{width:188mm;max-width:none;margin:0;padding:0;box-shadow:none}
-body.paper .page{height:277mm;overflow:hidden;display:flex;flex-direction:column;break-after:page}
-body.paper .page:last-child{break-after:auto}
-body.paper .passage{padding:4px 9px;border-radius:6px}
-body.paper .passage .ptitle{font-size:11pt}
-body.paper .passage .ptext{font-size:10.3pt;line-height:1.35;margin-top:2px}
-body.paper .passage table{font-size:9.8pt;margin-top:3px}
-body.paper .passage td,body.paper .passage th{padding:1px 5px}
-body.paper .recall{gap:2px 14px}
-body.paper .wordlist{gap:1px 10px}
-body.paper .wordlist div{font-size:9.6pt;padding:1.5px 0}
-body.paper .wordlist b{font-size:10.4pt}
-body.paper .wordlist i{font-size:8pt}
-body.paper .recall div{font-size:9.8pt;padding:2px 0}
-body.paper .eyebrow{font-size:8.5pt}
-body.paper h1{font-size:16pt;margin:0 0 4px;padding-bottom:3px}
-body.paper h2{font-size:12pt;margin:7px 0 3px}
-body.paper .scene{padding:3px 9px;border-radius:7px}
-body.paper .line{grid-template-columns:11mm 58% 1fr;gap:5px;padding:1.2px 0;align-items:baseline}
-body.paper .who{font-size:8.6pt}
-body.paper .line .en{font-size:10.5pt;line-height:1.3}
-body.paper .line .zh{display:block!important;font-size:8.8pt;line-height:1.3}
-body.paper .patterns{gap:5px}
-body.paper .patterns.many{grid-template-columns:1fr 1fr 1fr}
-body.paper .pat{padding:3px 8px;border-radius:6px}
-body.paper .pat .head{font-size:12pt}
-body.paper .pat .form{font-size:10pt;margin:0}
-body.paper .pat .rule{font-size:8.8pt}
-body.paper .pat .en{font-size:9.8pt;margin-top:1px;line-height:1.3}
-body.paper .pat .zh{font-size:8.6pt}
-body.paper .tip{padding:3px 8px;margin-top:5px;font-size:9.2pt}
-body.paper .words{gap:4px;margin-top:4px}
-body.paper .words span{font-size:8.8pt;padding:0 7px}
-body.paper .q{padding:3px 0;break-inside:avoid}
-body.paper .stem{margin:0}
-body.paper .stem-text{font-size:10.4pt;line-height:1.3}
-body.paper .opts{gap:5px;padding-left:22px;margin-top:2px}
-body.paper .opt{font-size:9.6pt;padding:1.5px 6px;border-radius:4px}
-body.paper .opt.wrong,body.paper .opt.correct{background:#fff;border-color:#c5d7e2}
-body.paper .page.tight .q{padding:1.5px 0}
-body.paper .page.tight .line{padding:0.5px 0}
-body.paper .page.tight h2{margin:4px 0 2px}
-body.paper .page.tight .pat{padding:2px 7px}
-body.paper .page.tight .tip{padding:2px 8px;margin-top:3px}
-body.paper .page.tight .words{margin-top:3px}
-body.paper .anskey{display:block;margin-top:auto;border-top:1px solid #c8d6df;padding-top:3px;font-size:8.8pt;color:var(--sub)}
-body.paper .anskey b{color:var(--ink)}
+body{margin:0;background:#e9e7e2;font-family:"PingFang TC","Noto Sans TC",sans-serif;color:#222;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;margin:10mm auto;background:#fff;padding:12mm 13mm;overflow:hidden;position:relative}
+@media print{body{background:#fff}.page{margin:0;break-after:page}}
+@media screen and (max-width:820px){.page{width:auto;height:auto;margin:0 0 12px;padding:18px 16px}}
+.en{font-family:Georgia,"Times New Roman",serif}
+header{border-bottom:2px solid #2d4a5e;padding-bottom:6px;margin-bottom:10px}
+header small{color:#6a6a8a;font-size:11px;letter-spacing:.05em}
+header h1{margin:2px 0 2px;font-size:22px;color:#1f3444}
+header p{margin:0;font-size:12.5px;color:#555}
+.rules{border:1.5px solid #2d4a5e;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12.5px}
+.rules b.h{display:block;color:#2d4a5e;margin-bottom:4px;font-size:13px}
+.rules ol{margin:0;padding-left:20px;line-height:1.75}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media screen and (max-width:820px){.grid{grid-template-columns:1fr}}
+.doc{position:relative;padding:12px 14px 12px;font-size:13.5px;line-height:1.55}
+.tag{position:absolute;top:-9px;left:12px;background:#2d4a5e;color:#fff;font-size:11px;padding:1px 8px;border-radius:10px}
+/* A 電話 */
+.call{border:1.5px solid #9bb0bf;border-radius:10px;background:#f4f8fb}
+.call .t{font-size:11.5px;color:#666;margin-bottom:4px}
+.call p{margin:2px 0}.call b{display:inline-block;min-width:62px}
+/* B 留言條 */
+.memo{background:#fff8d6;border:1.5px solid #d9c46a;box-shadow:2px 3px 0 #e5d78f}
+.memo .mh{font-weight:700;letter-spacing:.12em;text-align:center;border-bottom:2px solid #c9b04a;padding-bottom:3px;margin-bottom:6px;font-size:13px}
+.memo .f{display:flex;gap:6px;border-bottom:1px dotted #bba851;padding:1px 0}
+.memo .f span:first-child{color:#7a6a20;font-size:11.5px;min-width:44px;font-family:inherit}
+.memo .msg{margin-top:5px;font-family:"Bradley Hand","Segoe Print",Georgia,serif;font-size:14px;line-height:1.5}
+/* C 時刻表 */
+.board{border:1.5px solid #333;border-radius:6px;background:#fff}
+.board table{width:100%;border-collapse:collapse;font-size:13.5px;margin:2px 0 6px}
+.board th{background:#333;color:#fff;font-weight:600;padding:3px 6px;text-align:left;font-size:12px}
+.board td{border-bottom:1px solid #ccc;padding:3px 6px}
+.board .title{font-weight:700;margin-bottom:4px}
+.board .sign{border:1.5px dashed #b33;color:#a22;border-radius:4px;padding:4px 8px;font-size:13px}
+/* D 邀請卡 */
+.card{border:2px solid #b0726c;border-radius:12px;text-align:center;background:#fff4f2;outline:1px solid #e3b7b2;outline-offset:-7px}
+.card .big{font-size:18px;font-weight:700;color:#8a3d36;margin:2px 0}
+.card p{margin:3px 0}
+.card .small{font-size:12.5px;color:#555}
+.hint{font-size:11.5px;color:#777;margin-top:10px;text-align:center}
+/* E 公告 */
+.notice{border:1.5px solid #4f6b3a;border-radius:4px;background:#f5f9f0}
+.notice .nh{font-weight:700;color:#3c5a28;border-bottom:1.5px solid #8aa66f;margin-bottom:4px;padding-bottom:2px}
+.notice ul{margin:4px 0 0;padding-left:18px}
+.exam{margin-top:8px}
+.src{font-size:11px;color:#fff;background:#b0726c;border-radius:8px;padding:0 6px;margin-left:4px;white-space:nowrap;align-self:center}
+/* 背面 */
+h2{font-size:15px;color:#1f3444;margin:0 0 6px;border-left:4px solid #2d4a5e;padding-left:8px}
+.qs{margin:0;padding:0;list-style:none}
+.q{padding:3px 0 4px;border-bottom:1px solid #e4e4e4;font-size:13.5px}
+.q .s{display:flex;gap:6px}.q .s .n{font-weight:700;color:#2d4a5e;min-width:18px}
+.q .from{font-size:11px;color:#fff;background:#8aa0b0;border-radius:8px;padding:0 6px;margin-left:4px;white-space:nowrap;align-self:center}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:2px 4px;margin:2px 0 0 24px}
+.opts span{font-size:13px}
+.opts.two{grid-template-columns:1fr 1fr}
+.blank{display:inline-block;width:28px;border-bottom:1px solid #333;margin-right:4px}
+.check{margin-top:8px;border:1.5px solid #2d4a5e;border-radius:8px;padding:5px 12px;font-size:12px}
+.ans{position:absolute;left:13mm;right:13mm;bottom:10mm;border-top:1.5px solid #2d4a5e;padding-top:6px;font-size:11.5px;line-height:1.6;color:#333}
+@media screen and (max-width:820px){.ans{position:static;margin-top:14px}.opts{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<div class="toolbar">
-  <div class="btns"><a id="home" href="../">← 目錄</a><span class="status" id="progress"></span></div>
-  <div class="btns">
-    <button type="button" id="slowBtn">🐢 慢速朗讀</button>
-    <button type="button" id="zhBtn">全部顯示中文</button>
-    <button type="button" id="resetBtn">重新練習</button>
-    <button type="button" id="ansBtn">查看答案</button>
-    <button type="button" id="printBtn">列印</button>
+
+<div class="page">
+  <header>
+    <small>補給站 S1｜電話用語・時間・年齡與序數・祈使句</small>
+    <h1>陳家的週末：六張生活文件</h1>
+    <p>陳家這週末要搭火車去花蓮，參加奶奶的生日。下面是他們家這兩天出現的六樣東西。先讀懂規則，再看文件，背面的題目都從文件裡找答案。</p>
+  </header>
+
+  <div class="rules">
+    <b class="h">看懂這六張文件，你只需要 5 件事</b>
+    <ol>
+      <li><b>電話</b>：找人 <span class="en">May I speak to…?</span>；本人接 <span class="en">Speaking.</span>；請對方等一下 <span class="en">Hold on, please.</span>；打錯 <span class="en">You have the wrong number.</span></li>
+      <li><b>15 分和 30 分</b>：<span class="en">a quarter past seven</span>＝7:15；<span class="en">a quarter to nine</span>＝8:45；<span class="en">half past nine</span>＝9:30</li>
+      <li><b>錶快、錶慢</b>：<span class="en">fast</span>＝錶上的時間比真的多；<span class="en">slow</span>＝比真的少</li>
+      <li><b>年齡與第幾</b>：<span class="en">eighty years old</span>；名詞前面變 <span class="en">an eighty-year-old woman</span>（不加 s）；第八十個生日 <span class="en">eightieth birthday</span></li>
+      <li><b>祈使句</b>：原形動詞開頭（<span class="en">Stand…</span>）；「不要…」用 <span class="en">Don't＋原形</span></li>
+    </ol>
+  </div>
+
+  <div class="grid">
+    <div class="doc call">
+      <span class="tag">文件 A｜一通電話</span>
+      <div class="t">Friday, 7:15 p.m.　陳家的電話響了，接電話的是兒子 Ben。</div>
+      <div class="en">
+        <p><b>Ms. Lin:</b> Hello. May I speak to Mr. Chen?</p>
+        <p><b>Ben:</b> Sorry, he isn't home. Who's this?</p>
+        <p><b>Ms. Lin:</b> This is Amy Lin from Sunny Travel.</p>
+        <p><b>Ben:</b> Hold on, please. I need a pen.</p>
+        <p><b>Ms. Lin:</b> Your train tickets are ready.</p>
+      </div>
+    </div>
+
+    <div class="doc memo">
+      <span class="tag">文件 B｜Ben 寫的留言條</span>
+      <div class="mh en">WHILE YOU WERE OUT</div>
+      <div class="f"><span>To</span><span class="en">Dad</span></div>
+      <div class="f"><span>From</span><span class="en">Ms. Amy Lin, Sunny Travel</span></div>
+      <div class="f"><span>When</span><span class="en">Fri., May 2nd, a quarter past seven</span></div>
+      <div class="msg">Our train leaves at a quarter to nine tomorrow. Get the tickets at Gate 3. Call her back: 2246-7180. — Ben</div>
+    </div>
+
+    <div class="doc board">
+      <span class="tag">文件 C｜車站時刻表</span>
+      <div class="title en">Taipei → Hualien　Saturday</div>
+      <table class="en">
+        <tr><th>Train</th><th>Leaves</th><th>Arrives</th></tr>
+        <tr><td>402</td><td>8:15</td><td>10:30</td></tr>
+        <tr><td>408</td><td>8:45</td><td>11:00</td></tr>
+        <tr><td>412</td><td>9:30</td><td>11:50</td></tr>
+      </table>
+      <div class="sign en">⚠ Stand behind the yellow line.<br>Don't run on the stairs.</div>
+    </div>
+
+    <div class="doc card">
+      <span class="tag">文件 D｜生日邀請卡</span>
+      <p class="en small">You're invited!</p>
+      <p class="en big">Grandma Chen's 80th Birthday</p>
+      <p class="en">Saturday, May 3rd · 12:30 p.m.<br>Ocean Restaurant, Hualien</p>
+      <p class="en small">Don't bring gifts. Just bring a big smile!</p>
+    </div>
+
+    <div class="doc notice">
+      <span class="tag">文件 E｜Ben 書包裡的學校公告</span>
+      <div class="nh en">NOTICE · English Speech Contest</div>
+      <div class="en"><b>When:</b> Friday, May 9th, half past two – a quarter to four<br><b>Where:</b> Room 302</div>
+      <ul class="en">
+        <li>Be on time.</li>
+        <li>Bring your student card.</li>
+        <li>Don't use your phone in the room.</li>
+      </ul>
+    </div>
+
+    <div class="doc call">
+      <span class="tag">文件 F｜又一通電話</span>
+      <div class="t">Saturday, 7:30 a.m.　出門前，電話又響了。</div>
+      <div class="en">
+        <p><b>Man:</b> Hello. Is this 2246-7180?</p>
+        <p><b>Ben:</b> No. This is 2246-7108.</p>
+        <p><b>Ben:</b> Sorry, you have the wrong number.</p>
+        <p><b>Man:</b> Oh, sorry. Thank you.</p>
+      </div>
+    </div>
+  </div>
+  <p class="hint">翻到背面作答 →</p>
+</div>
+
+<div class="page">
+  <h2>練習｜答案都在正面的文件裡</h2>
+  <ol class="qs">
+    <li class="q"><div class="s"><span class="n">1.</span><span class="en">If Mr. Chen answered the phone, he would say, “____”</span><span class="from">文件 A</span></div>
+      <div class="opts en"><span>(A) Speaking.</span><span>(B) Hold on, please.</span><span>(C) Who's this?</span><span>(D) He isn't home.</span></div></li>
+    <li class="q"><div class="s"><span class="n">2.</span><span class="en">Ben says “Hold on, please.” He wants Ms. Lin to ____.</span><span class="from">文件 A</span></div>
+      <div class="opts en"><span>(A) call back later</span><span>(B) wait a moment</span><span>(C) speak louder</span><span>(D) call Dad</span></div></li>
+    <li class="q"><div class="s"><span class="n">3.</span><span class="en">Ben wrote the message at ____.</span><span class="from">文件 B</span></div>
+      <div class="opts en"><span>(A) 7:15</span><span>(B) 7:45</span><span>(C) 6:45</span><span>(D) 7:30</span></div></li>
+    <li class="q"><div class="s"><span class="n">4.</span><span class="en">The Chens' train leaves at ____.</span><span class="from">文件 B</span></div>
+      <div class="opts en"><span>(A) 8:15</span><span>(B) 9:15</span><span>(C) 8:45</span><span>(D) 9:45</span></div></li>
+    <li class="q"><div class="s"><span class="n">5.</span><span class="en">Which train will the Chens take?</span><span class="from">文件 B＋C</span></div>
+      <div class="opts en"><span>(A) Train 402</span><span>(B) Train 408</span><span>(C) Train 412</span><span>(D) None of them</span></div></li>
+    <li class="q"><div class="s"><span class="n">6.</span><span class="en">On Saturday, Dad's watch says 8:50. But his watch is ten minutes fast. The real time is ____.</span><span class="from">文件 C</span></div>
+      <div class="opts en"><span>(A) 8:40</span><span>(B) 9:00</span><span>(C) 8:50</span><span>(D) 8:45</span></div></li>
+    <li class="q"><div class="s"><span class="n">7.</span><span class="en">So, can the Chens still catch their train?</span><span class="from">文件 C</span></div>
+      <div class="opts two en"><span>(A) No. It left five minutes ago.</span><span>(B) Yes. They have five minutes.</span><span>(C) Yes. They have twenty minutes.</span><span>(D) No. They must take Train 402.</span></div></li>
+    <li class="q"><div class="s"><span class="n">8.</span><span class="en">Which sentence is right for a station sign?</span><span class="from">文件 C</span></div>
+      <div class="opts two en"><span>(A) Not run on the stairs.</span><span>(B) Don't running on the stairs.</span><span>(C) Don't run on the stairs.</span><span>(D) No run on the stairs.</span></div></li>
+    <li class="q"><div class="s"><span class="n">9.</span><span class="en">On Saturday, Grandma is an eighty-____ woman.</span><span class="from">文件 D</span></div>
+      <div class="opts en"><span>(A) years-old</span><span>(B) year old</span><span>(C) year-old</span><span>(D) years old</span></div></li>
+    <li class="q"><div class="s"><span class="n">10.</span><span class="en">It is Grandma's ____ birthday.</span><span class="from">文件 D</span></div>
+      <div class="opts en"><span>(A) eightieth</span><span>(B) eighty</span><span>(C) eightyth</span><span>(D) eighteenth</span></div></li>
+    <li class="q"><div class="s"><span class="n">11.</span><span class="en">The speech contest is ____ long.</span><span class="from">文件 E</span></div>
+      <div class="opts en"><span>(A) half an hour</span><span>(B) one hour</span><span>(C) an hour and a quarter</span><span>(D) two hours</span></div></li>
+    <li class="q"><div class="s"><span class="n">12.</span><span class="en">Look at the phone number. Who did the man really want to call?</span><span class="from">文件 F＋B</span></div>
+      <div class="opts en"><span>(A) Grandma</span><span>(B) Ben's school</span><span>(C) Ocean Restaurant</span><span>(D) Sunny Travel</span></div></li>
+  </ol>
+
+  <h2 class="exam">會考題型｜換個情境也會嗎？</h2>
+  <ol class="qs">
+    <li class="q"><div class="s"><span class="n">13.</span><span class="en">____ a map with you when you go to a place for the first time.</span><span class="src">106 會考</span></div>
+      <div class="opts en"><span>(A) Have taken</span><span>(B) Take</span><span>(C) Taking</span><span>(D) To take</span></div></li>
+    <li class="q"><div class="s"><span class="n">14.</span><span class="en">Ann: Hello. May I speak to Tom?　Tom: ____</span><span class="src">模擬</span></div>
+      <div class="opts en"><span>(A) Hold on, please.</span><span>(B) He isn't here.</span><span>(C) Speaking.</span><span>(D) Wrong number.</span></div></li>
+    <li class="q"><div class="s"><span class="n">15.</span><span class="en">It's 7:45 now. The movie starts at a quarter past eight. We have ____ minutes.</span><span class="src">模擬</span></div>
+      <div class="opts en"><span>(A) fifteen</span><span>(B) twenty</span><span>(C) thirty</span><span>(D) forty-five</span></div></li>
+    <li class="q"><div class="s"><span class="n">16.</span><span class="en">My sister just started first grade. She is a ____ girl.</span><span class="src">模擬</span></div>
+      <div class="opts en"><span>(A) six-year-old</span><span>(B) six-years-old</span><span>(C) six years old</span><span>(D) sixth-year-old</span></div></li>
+  </ol>
+
+  <div class="check">
+    <b>自己檢查</b>　錯的題目回正面，找出是 5 件事裡的哪一件：① 電話 ② 15／30 分 ③ 錶快慢 ④ 年齡與第幾 ⑤ 祈使句。我錯最多的是第 <span class="blank"></span> 件。
+  </div>
+
+  <div class="ans">
+    <b>答案</b>　1.A　2.B　3.A　4.C　5.B　6.A　7.B　8.C　9.C　10.A　11.C　12.D　｜　會考題型　13.B　14.C　15.C　16.A<br>
+    1. 本人接電話說 Speaking.（我就是）。　2. Hold on＝請稍等，Ben 要去拿筆。　3. a quarter past seven＝7:15。　4. a quarter to nine＝8:45。　5. 8:45 開的是 408 次。
+    6. 錶快十分鐘，真的時間要減掉：8:50－10＝8:40。　7. 8:40 到 8:45 還有五分鐘。　8. 否定祈使句：Don't＋原形動詞。　9. 放在名詞前：eighty-year-old，year 不加 s。　10. 第八十個：eighty → eightieth（y 改 ie 加 th）。　11. 2:30 到 3:45＝一小時又十五分。　12. 2246-7180 是留言條上旅行社的號碼。　13. 祈使句用原形動詞開頭。　14. 本人接：Speaking.　15. 7:45 到 8:15＝30 分鐘。　16. 名詞前：six-year-old，不加 s。
   </div>
 </div>
-<main id="sheet"></main>
-<script>
-/* ===== 單張資料：做新的補給站時只改這一段 ===== */
-const SHEET = {
-  code: "S1",
-  split: 4,
-  pages: 2,
-  headings: {qs2: "練習｜會考式（續）"},
-  title: "時間、日期、星期月份",
-  kind: "月亮圖書館 · 補給站",
-  desc: "學會問時間、星期與日期，並用 at、on、in 說明時間。",
-  names: ["Robo", "Mimi"],
-  scene: [
-    {who:"Mia",en:"What time is it, Robo?",zh:"Robo，現在幾點？"},
-    {who:"Robo",en:"It's seven thirty. We must leave at 7:30!",zh:"七點半了。我們必須七點半出發！"},
-    {who:"Mimi",en:"What day is it today?",zh:"今天星期幾？"},
-    {who:"Mia",en:"It's Monday. Our meeting is on Monday morning.",zh:"今天星期一。我們的聚會在星期一早上。"},
-    {who:"Robo",en:"What's the date today?",zh:"今天幾月幾號？"},
-    {who:"Mia",en:"It's May fifth. The party is on May 5th.",zh:"今天五月五日。派對在五月五日。"},
-    {who:"Mimi",en:"Is your birthday in May or in June?",zh:"你的生日在五月還是六月？"},
-    {who:"Robo",en:"It's in June, but my party starts at noon.",zh:"在六月，但我的派對中午開始。"},
-    {who:"Mimi",en:"Great! I'll eat breakfast at noon, too!",zh:"太好了！我也要在中午吃早餐！"}
-  ],
-  patterns: [
-    {head:"Clock time: at",form:"at＋幾點／noon",rule:"明確的鐘點或正午用 at；不要用 on 或 in。",en:"The class starts at seven thirty.",zh:"課程七點半開始。"},
-    {head:"Days and dates: on",form:"on＋星期／日期",rule:"星期幾、特定日期，以及星期加上早午晚，使用 on。",en:"We meet on Monday morning.",zh:"我們星期一早上見面。"},
-    {head:"Months and years: in",form:"in＋月份／年份／the morning",rule:"月份、年份及一般的早上下午晚上用 in；特定星期早上則用 on。",en:"My birthday is in May.",zh:"我的生日在五月。"},
-    {head:"Ask about day or date",form:"What day＋is it?／What's＋the date?",rule:"問星期用 What day；問幾月幾號用 What's the date，日期用序數唸法。",en:"What's the date today?",zh:"今天幾月幾號？"}
-  ],
-  tip: "一眼判斷：幾點用 at、星期和幾月幾號用 on、月份年份用 in。問星期是 What day?；問日期是 What's the date?。日期用序數：1st first、2nd second、3rd third、5th fifth、12th twelfth、21st twenty-first、31st thirty-first。",
-  words: [
-    ["time","時間；時刻"],["date","日期"],["Monday","星期一"],["morning","早上"],
-    ["noon","正午"],["May","五月"],["June","六月"],["year","年"]
-  ],
-  qs: [
-    {s:"Mia: When does the movie start?\nRobo: It starts ___ 7:30 tonight.",o:["on","in","at","for"],a:2,h1:"答案後面是具體鐘點 7:30。",h2:"說幾點鐘的時候，要用專門接鐘點的時間介系詞。",ok:"at 7:30 表示在七點半。"},
-    {s:"Mimi: What day is it today?\nMia: It's ___. We have English class every Monday.",o:["Monday","May","2027","noon"],a:0,h1:"問句是 What day，不是 What's the date。",h2:"回答應該是星期名稱，而不是月份、年份或鐘點。",ok:"What day 問星期，所以回答 Monday。"},
-    {s:"Robo: When is the school trip?\nMia: It's ___ May 5th.",o:["at","in","for","on"],a:3,h1:"May 5th 是特定日期。",h2:"在某一天或某個日期前，要用接日期的介系詞。",ok:"on May 5th 表示在五月五日。"},
-    {s:"Mia: Is the science show in April?\nRobo: No, it's ___ June.",o:["on","in","at","by"],a:1,h1:"June 是月份，沒有指明某一天。",h2:"月份前用的介系詞，與特定日期前不同。",ok:"in June 表示在六月。"},
-    {s:"Mimi: ___?\nRobo: It's October thirty-first.",o:["What time is it","What's the date today","What day is it","How old are you"],a:1,h1:"回答的是 October thirty-first，包含月和日。",h2:"要問幾月幾號，不能只問星期，也不是問幾點。",ok:"What's the date today? 用來詢問日期。"},
-    {s:"The library opens at 9:00 a.m. When does it open?",o:["At nine in the morning.","On nine in the morning.","In nine on Monday.","At Monday morning."],a:0,h1:"9:00 a.m. 是明確的開門鐘點。",h2:"表示幾點用鐘點介系詞；in the morning 表示早上。",ok:"At nine in the morning 是正確的時間說法。"},
-    {s:"Mia: We have a test ___ Friday morning.\nRobo: Then I'll study on Thursday!",o:["in","at","for","on"],a:3,h1:"Friday morning 指特定星期五的早上。",h2:"一般的早上可用 in，但『某個星期的早上』要用接星期的介系詞。",ok:"on Friday morning 表示星期五早上。"},
-    {s:"The party is on May 21st. How do we say 21st?",o:["twenty-one","twenty-first","twenty-second","twentieth"],a:1,h1:"日期中的 21st 是序數，不是一般數量。",h2:"21 的序數是 twenty 加上 one 的序數形式。",ok:"21st 唸 twenty-first。"}
-  ]
-};
-/* ===== 以下是版型，不用改 ===== */
-const L = ["A","B","C","D"];
-const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-function qHTML(q,qi){
-  return `<div class="q" data-q="${qi}"><div class="stem"><span class="qnum">${qi+1}.</span><span class="stem-text">${esc(q.s)}</span></div><div class="opts">${q.o.map((o,oi)=>`<button type="button" class="opt" data-o="${oi}"><span class="letter">(${L[oi]})</span><span>${esc(o)}</span></button>`).join("")}</div><div class="feedback" aria-live="polite"></div></div>`;
-}
-function passageHTML(p){
-  if(!p) return "";
-  const rows = p.rows ? `<table>${p.rows.map((r,i)=>`<tr>${r.map(c=>i===0?`<th>${esc(c)}</th>`:`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</table>` : "";
-  return `<h2>${esc(p.heading || "會考題組｜讀一讀")}</h2><section class="passage"><span class="ptype">${esc(p.type || "短文")}</span><span class="ptitle">${esc(p.title || "")}</span>${p.text ? `<div class="ptext">${esc(p.text)}</div>` : ""}${rows}</section>`;
-}
-function render(){
-  const u = SHEET, split = (u.split ?? u.qs.length);
-  const T = Object.assign({scene:"情境｜這樣說", patterns:"句型｜一眼分辨", qs:"練習｜會考式", qs2:"題組練習", recall:"單字回想｜看中文寫英文"}, u.headings || {});
-  let p1 = `<header><div class="eyebrow">${esc(u.kind)}</div><h1>${esc(u.code)}｜${esc(u.title)}</h1></header>`;
-  if (u.scene?.length) p1 += `<h2>${esc(T.scene)}<button type="button" class="playall">🔊 全部播放</button></h2><section class="scene">${u.scene.map(l=>`<div class="row"><button type="button" class="say" aria-label="朗讀這一句" title="朗讀">🔊</button><button type="button" class="line"><span class="who">${esc(l.who)}</span><span><span class="en">${esc(l.en)}</span></span><span class="zh">${esc(l.zh)}</span></button></div>`).join("")}</section><p class="tap-tip">點一下句子可以看中文，按 🔊 聽英文。</p>`;
-  if (u.patterns?.length) p1 += `<h2>${esc(T.patterns)}</h2><div class="patterns${u.patterns.length > 4 ? " many" : ""}">${u.patterns.map(p=>`<div class="pat"><div class="head">${esc(p.head)}</div><div class="form">${esc(p.form)}</div><div class="rule">${esc(p.rule)}</div><div class="en">${esc(p.en)}</div><div class="zh">${esc(p.zh)}</div></div>`).join("")}</div>`;
-  if (u.tip) p1 += `<div class="tip">💡 ${esc(u.tip)}</div>`;
-  if (u.wordlist?.length) p1 += `<h2>${esc(T.wordlist || "主題字表｜★＝最多人錯")}</h2><div class="wordlist">${u.wordlist.map(w=>`<div class="${w[3] ? "hard" : ""}"><b>${esc(w[0])}</b><i>${esc(w[1])}</i>${esc(w[2])}</div>`).join("")}</div>`;
-  if (u.words?.length) p1 += `<div class="words">${u.words.map(w=>`<span><b>${esc(w[0])}</b> ${esc(w[1])}</span>`).join("")}</div>`;
-  if (split > 0) p1 += `<h2>${esc(T.qs)}</h2>` + u.qs.slice(0, split).map((q,i)=>qHTML(q,i)).join("");
-  let p2 = "";
-  if (split < u.qs.length || u.passage) {
-    p2 += passageHTML(u.passage);
-    if (split < u.qs.length) p2 += `<h2>${esc(T.qs2)}</h2>` + u.qs.slice(split).map((q,i)=>qHTML(q, split + i)).join("");
-  }
-  let recall = "";
-  if (u.recall?.length) recall = `<h2>${esc(T.recall)}</h2><div class="recall">${u.recall.map((r,i)=>`<div>${i+1}. ${esc(r[0])}<span>&nbsp;</span></div>`).join("")}</div>`;
-  const answers = `<section id="answers" hidden><h2>答案</h2><ol>${u.qs.map(q=>`<li>(${L[q.a]}) ${esc(q.o[q.a])}　— ${esc(q.ok)}</li>`).join("")}</ol>${u.recall?.length ? `<p>單字：${u.recall.map((r,i)=>`${i+1}. ${esc(r[1])}`).join("　")}</p>` : ""}</section>`;
-  const key = `<div class="anskey"><b>答案</b>　${u.qs.map((q,qi)=>`${qi+1}.${L[q.a]}`).join("　")}${u.recall?.length ? `｜單字：${u.recall.map((r,i)=>`${i+1}.${esc(r[1])}`).join(" ")}` : ""}</div>`;
-  const html = p2 || (u.pages === 2)
-    ? `<div class="page">${p1}</div><div class="page">${p2}${recall}${answers}${key}</div>`
-    : `<div class="page">${p1}${recall}${answers}${key}</div>`;
-  document.getElementById("sheet").innerHTML = html;
-}
-let done = new Set(), tries = {};
-const updateProgress = ()=>{ document.getElementById("progress").textContent = `　完成 ${done.size} / ${SHEET.qs.length} 題`; };
-document.addEventListener("click", e=>{
-  const say = e.target.closest(".say"), all = e.target.closest(".playall");
-  if(say){ speakRows([say.closest(".row")]); return; }
-  if(all){ speakRows([...document.querySelectorAll(".scene .row")]); return; }
-  const line = e.target.closest(".line"); if(line){ line.classList.toggle("show"); return; }
-  const btn = e.target.closest(".opt"); if(!btn || btn.disabled) return;
-  const qEl = btn.closest(".q"), qi = +qEl.dataset.q, q = SHEET.qs[qi], fb = qEl.querySelector(".feedback"), pick = +btn.dataset.o;
-  qEl.querySelectorAll(".opt").forEach(b=>b.classList.remove("wrong"));
-  if(pick === q.a){ btn.classList.add("correct"); done.add(qi); qEl.querySelectorAll(".opt").forEach(b=>b.disabled=true); fb.textContent = "✓ 對了。" + q.ok; updateProgress(); }
-  else { tries[qi] = (tries[qi]||0) + 1; btn.classList.add("wrong"); fb.textContent = tries[qi] === 1 ? "再試一次。線索：" + q.h1 : "提示：" + q.h2; }
-});
-let slow = false;
-function speakRows(rows){
-  if(!("speechSynthesis" in window)) return;
-  speechSynthesis.cancel(); document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing"));
-  const voice = speechSynthesis.getVoices().find(v=>/^en(-|_)US/i.test(v.lang)) || speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));
-  rows.forEach(row=>{
-    const u = new SpeechSynthesisUtterance(row.querySelector(".en").textContent.replace(/[“”]/g,'"'));
-    u.lang = "en-US"; u.rate = slow ? 0.7 : 0.95; if(voice) u.voice = voice;
-    u.onstart = ()=>{ document.querySelectorAll(".playing").forEach(x=>x.classList.remove("playing")); row.classList.add("playing"); row.querySelector(".say").classList.add("playing"); };
-    u.onend = ()=>{ row.classList.remove("playing"); row.querySelector(".say").classList.remove("playing"); };
-    speechSynthesis.speak(u);
-  });
-}
-if(!("speechSynthesis" in window)) document.documentElement.classList.add("nospeech");
-document.getElementById("slowBtn").onclick = e=>{ slow = !slow; e.target.textContent = slow ? "🐇 正常速度" : "🐢 慢速朗讀"; };
-document.getElementById("zhBtn").onclick = e=>{ const on = document.body.classList.toggle("allzh"); e.target.textContent = on ? "收起中文" : "全部顯示中文"; };
-document.getElementById("resetBtn").onclick = ()=>{ done.clear(); tries = {}; render(); updateProgress(); document.getElementById("ansBtn").textContent = "查看答案"; };
-document.getElementById("ansBtn").onclick = e=>{ const a = document.getElementById("answers"); a.hidden = !a.hidden; e.target.textContent = a.hidden ? "查看答案" : "收起答案"; if(!a.hidden) a.scrollIntoView({behavior:"smooth"}); };
-document.getElementById("printBtn").onclick = ()=>window.print();
-function fitPages(){
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("tight");
-    const key = p.querySelector(".anskey"), reserve = (key ? key.offsetHeight + 6 : 0) + 6;
-    const bottom = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
-    const SAFE = 28; // 列印時字會比螢幕寬一點，多留安全空間
-    if (bottom > p.clientHeight - reserve - SAFE) p.classList.add("tight");
-    const b2 = Math.max(...[...p.children].filter(k=>!k.classList.contains("anskey") && getComputedStyle(k).display!=="none").map(k=>k.getBoundingClientRect().bottom)) - p.getBoundingClientRect().top;
-    p.dataset.over = Math.max(0, Math.round(b2 - (p.clientHeight - reserve - SAFE)));
-  });
-}
-const paperOn = ()=>{ document.body.classList.add("paper"); fitPages(); }, paperOff = ()=>document.body.classList.remove("paper");
-addEventListener("beforeprint", paperOn); addEventListener("afterprint", paperOff);
-matchMedia("print").addEventListener("change", m=>m.matches ? paperOn() : paperOff());
-if (location.pathname.endsWith(".html")) document.getElementById("home").href = "../web/index.html";
-render(); updateProgress();
-if(location.hash === "#paper") paperOn();
-</script>
+
 </body>
 </html>
